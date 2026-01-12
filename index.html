@@ -1,0 +1,107 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>포켓몬 클라이머 유형 테스트</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="badge">🧗‍♂️ jdh._.climb</div>
+      <h1>포켓몬 클라이머 유형 테스트</h1>
+      <p class="sub">심심하다 심심해</p>
+    </header>
+
+    <section id="screenStart" class="screen">
+      <div class="card">
+        <h2>시작하기</h2>
+        <ul class="bullets">
+          <li>총 <b id="qTotal">17</b>문항</li>
+          <li>각 문항에서 가장 가까운 선택지 1개만 선택</li>
+        </ul>
+        <button id="btnStart" class="btn primary">테스트 시작 🧗‍♀️</button>
+      </div>
+    </section>
+
+    <section id="screenQuiz" class="screen hidden">
+      <div class="topbar">
+        <div class="progress-wrap">
+          <div class="progress">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+          <div class="progress-text">
+            <span id="qIndex">1</span>/<span id="qTotal2">17</span>
+          </div>
+        </div>
+        <button id="btnResetTop" class="btn ghost" title="처음부터">다시 테스트하기</button>
+      </div>
+
+      <div class="card">
+        <h2 id="qTitle" class="q-title">Q1. ...</h2>
+        <div id="options" class="options"></div>
+
+        <div class="nav">
+          <button id="btnPrev" class="btn" disabled>← 이전</button>
+          <button id="btnNext" class="btn primary" disabled>다음 →</button>
+        </div>
+      </div>
+
+      <p class="hint">※ 안클행클 어쩌고😎</p>
+    </section>
+
+<section id="screenResult" class="screen hidden">
+      <div class="card">
+        <div class="result-head">
+          <div id="resultEmoji" class="result-emoji">⚡</div>
+          <div>
+            <div class="result-label">당신의 타입</div>
+            <h2 id="resultName" class="result-name">피카츄형</h2>
+          </div>
+        </div>
+
+        <p id="resultOneLiner" class="result-oneliner">“오늘도 암장에 전기 공급하러 왔습니다.”</p>
+
+        <div class="result-grid">
+          <div class="pillbox">
+            <div class="pillbox-title">포켓몬 성격</div>
+            <ul id="resultPokemonTraits" class="list"></ul>
+          </div>
+          <div class="pillbox">
+            <div class="pillbox-title">클라이머 적용</div>
+            <ul id="resultClimberTraits" class="list"></ul>
+          </div>
+        </div>
+
+        <div class="match-grid">
+          <div class="pillbox">
+            <div class="pillbox-title">🔥 잘 맞는 포켓몬</div>
+            <div id="goodMatches" class="chips"></div>
+          </div>
+          <div class="pillbox">
+            <div class="pillbox-title">😵 잘 안 맞는 포켓몬</div>
+            <div id="badMatches" class="chips"></div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button id="btnRestart" class="btn">다시 하기</button>
+          <button id="btnCopy" class="btn">결과 복사</button>
+          <button id="btnSaveCard" class="btn primary">결과 카드 저장(PNG)</button>
+        </div>
+
+        <!-- 캔버스(이미지 저장용) -->
+        <canvas id="cardCanvas" width="1080" height="1350" class="hidden"></canvas>
+      </div>
+
+      <footer class="footer">
+        <small>※ 결과 카드 저장은 브라우저에 따라 다운로드가 새 탭으로 열릴 수도 있음</small>
+      </footer>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
