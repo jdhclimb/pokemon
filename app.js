@@ -162,9 +162,9 @@
     {
       title: "Q1. 다음 중 가장 빡치는 상황은?",
       options: [
-        { key: "A", text: "계속 같은 구간에서 막힐 때", points: [["mewtwo", 2], ["lucario", 1]] },
+        { key: "A", text: "될 거 같은데 아주 작은 차이로 계속 같은 구간에서 실패 중일 때", points: [["mewtwo", 2], ["lucario", 1]] },
         { key: "B", text: "존버하던 문제를 실력 비슷한 사람이 먼저 깰 때", points: [["mewtwo", 2], ["rayquaza", 1]] },
-        { key: "C", text: "내가 생각하던 무브랑 전혀 다른 방식으로 누가 풀어버렸을 때", points: [["gengar", 2], ["porygon", 1]] },
+        { key: "C", text: "존버하던 문제를 누군가 리치로 뜯어갈 때", points: [["gengar", 2], ["porygon", 1]] },
         { key: "D", text: "내 그레이드 문제를 많이 풀었는데 막상 뿌무는 없을 때", points: [["charizard", 2], ["pikachu", 1]] },
       ],
     },
@@ -173,44 +173,44 @@
       options: [
         { key: "A", text: "무브 진짜 깔끔하다", points: [["lucario", 2], ["dragonite", 1]] },
         { key: "B", text: "방금 그 동작 진짜 멋있었다", points: [["charizard", 2], ["pikachu", 1]] },
-        { key: "C", text: "아 그 베타 나도 써봐야겠다", points: [["gengar", 2], ["porygon", 1]] },
+        { key: "C", text: "아 그 베타 나도 써봐야겠다", points: [["ditto", 2], ["gengar", 1]] },
         { key: "D", text: "너랑 하니까 오늘 다 잘 풀린다", points: [["jirachi", 2], ["togepi", 1]] },
       ],
     },
     {
       title: "Q3. 존버 문제를 풀지 못했을 때 집 가면서 드는 생각은?",
       options: [
-        { key: "A", text: "그래도 오늘 재밌었으니 됐지", points: [["jirachi", 2], ["togepi", 1]] },
-        { key: "B", text: "저거 탈거 언제지 그 전에 다시 올까..?", points: [["mewtwo", 2], ["snorlax", 1]] },
+        { key: "A", text: "하 이걸 못했네...그래도 오늘 재밌었으니 됐지", points: [["jirachi", 2], ["togepi", 1]] },
+        { key: "B", text: "젠장 내일 또 와야겠다", points: [["mewtwo", 2], ["snorlax", 1]] },
         { key: "C", text: "다른 방법으로 풀 수 있나? 다음엔 이렇게 시도해 봐야겠다", points: [["porygon", 2], ["ditto", 1]] },
-        { key: "D", text: "완등 못해도 저기까지만이라도 풀고 싶었는데", points: [["pikachu", 2], ["charizard", 1]] },
+        { key: "D", text: "젠장 다른 거나 풀 걸", points: [["pikachu", 2], ["charizard", 1]] },
       ],
     },
     {
       title: "Q4. 다음 중 가장 설레는 상황은?",
       options: [
         { key: "A", text: "오늘 암장에 아는 사람 많을 때", points: [["jirachi", 2], ["eevee", 1]] },
-        { key: "B", text: "누가 나한테 “이거 어떻게 해?” 물어볼 때", points: [["dragonite", 2], ["lucario", 1]] },
-        { key: "C", text: "조명+각도 완벽한 루트 만났을 때", points: [["charizard", 2], ["pikachu", 1]] },
+        { key: "B", text: "뉴비가 나한테 “이거 어떻게 해?” 물어볼 때", points: [["dragonite", 2], ["lucario", 1]] },
+        { key: "C", text: "암장이 한적할 때(많이 붙어볼 수 있겠다)", points: [["charizard", 2], ["pikachu", 1]] },
         { key: "D", text: "‘뭔가 다르게 풀 수 있을 것 같은데?’ 싶은 문제를 발견했을 때", points: [["gengar", 2], ["porygon", 1]] },
       ],
     },
     {
       title: "Q5. 가장 부담스러운 순간은?",
       options: [
-        { key: "A", text: "뒤에서 많은 사람들이 나이스 외쳐줄 때", points: [["togepi", 2], ["psyduck", 1]] },
-        { key: "B", text: "모르는 사람들이 잘하는 거 같다고 말하면서 쳐다볼 때", points: [["charizard", 2], ["pikachu", 1]] },
+        { key: "A", text: "뒤에서 많은 사람들이 나이스 외쳐줄 때", points: [["psyduck", 2], ["togepi", 1]] },
+        { key: "B", text: "힘 털려서 떨어지고 싶은데 뒤에서 탑 좋아요! 저그예요! 해줄 때", points: [["pikachu", 2], ["charizard", 1]] },
         { key: "C", text: "잘못 푼 거 같은데 사람들이 내 무브를 따라할 때", points: [["porygon", 2], ["gengar", 1]] },
-        { key: "D", text: "힘 다 털렸는데 뭔가 보여줘야 할 것 같은 분위기가 깔렸을 때", points: [["charizard", 2], ["mewtwo", 1]] },
+        { key: "D", text: "못 할 거 같아서 접으려는데, 모르는 사람이 엄청 친절하게 피드백 해줄 때", points: [["charizard", 2], ["mewtwo", 1]] },
       ],
     },
     {
       title: "Q6. 가장 인스타그램 스토리로 올리고 싶은 장면은?",
       options: [
         { key: "A", text: "나만의 무브로 문제를 풀어낸 순간", points: [["gengar", 2], ["rayquaza", 1]] },
-        { key: "B", text: "허당짓 했는데 다 같이 웃는 장면", points: [["jirachi", 2], ["togepi", 1]] },
-        { key: "C", text: "한 번에 터진 멋있는 동작", points: [["charizard", 2], ["pikachu", 1]] },
-        { key: "D", text: "어제까지 안 되던 게 오늘 자연스럽게 풀린 순간", points: [["eevee", 2], ["pikachu", 1]] },
+        { key: "B", text: "그동안 안 되던 게 갑자기 자연스럽게 풀린 순간", points: [["jirachi", 2], ["togepi", 1]] },
+        { key: "C", text: "한 번에 터진 멋있는 동작과 사람들의 환호가 담긴 장면", points: [["charizard", 2], ["pikachu", 1]] },
+        { key: "D", text: "허당짓 했는데 다 같이 웃는 장면", points: [["psyduck", 2], ["eevee", 1]] },
       ],
     },
     {
@@ -235,9 +235,9 @@
       title: "Q9. 다음 중 가장 만족스러운 마무리는?",
       options: [
         { key: "A", text: "다 같이 웃으면서 귀가", points: [["jirachi", 2], ["eevee", 1]] },
-        { key: "B", text: "목표 하나 달성", points: [["mewtwo", 2], ["lucario", 1]] },
-        { key: "C", text: "영상 하나 건짐", points: [["charizard", 2], ["pikachu", 1]] },
-        { key: "D", text: "방금 느낌 좋았다 싶은 순간이 한 번이라도 있었을 때", points: [["pikachu", 2], ["eevee", 1]] },
+        { key: "B", text: "존버하던 문제 극적 완등", points: [["mewtwo", 2], ["lucario", 1]] },
+        { key: "C", text: "미친 뿌무 GET", points: [["rayquaza", 2], ["pikachu", 1]] },
+        { key: "D", text: "평소보다 갑자기 레벨업 된 느낌이 들 때", points: [["pikachu", 2], ["eevee", 1]] },
       ],
     },
     {
@@ -246,7 +246,7 @@
         { key: "A", text: "베타 강요하는 사람", points: [["gengar", 2], ["rayquaza", 1]] },
         { key: "B", text: "자기 트라이 끝나면 바로 자리 뜨는 사람", points: [["jirachi", 2], ["togepi", 1]] },
         { key: "C", text: "남 무브 평가하는 사람", points: [["charizard", 2], ["togepi", 1]] },
-        { key: "D", text: "루트파인딩 중인데 말거는 사람", points: [["rayquaza", 2], ["snorlax", 1]] },
+        { key: "D", text: "스스로 고민하지 않고 하나부터 열까지 물어보는 사람", points: [["rayquaza", 2], ["snorlax", 1]] },
       ],
     },
     {
