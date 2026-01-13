@@ -161,3 +161,21 @@ h1{ margin: 12px 0 6px; font-size: 30px; letter-spacing: -0.5px; }
 .chip small{ color: var(--muted); }
 
 .footer{ margin-top: 10px; color: var(--muted); text-align:center; }
+
+
+.result-media{
+  margin: 10px 0 14px;
+  display:flex;
+  justify-content:center;
+}
+
+.result-img{
+  display:none;
+  width: min(260px, 70vw);
+  height: auto;
+  image-rendering: auto;
+  filter: drop-shadow(0 14px 22px rgba(0,0,0,.45));
+  opacity: .98;
+  user-select: none;
+  pointer-events: none;
+}
