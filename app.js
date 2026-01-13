@@ -759,17 +759,148 @@
     drawMatchBox(rightX, rightW, matchY, matchH, "😵 잘 안 맞는 포켓몬", bad ? `${bad.emoji} ${bad.name}` : "-");
   }
 
-  async function saveCanvasAsPng(filename = "result-card.png") {
+async function saveCanvasAsPng(filename = "result-card.png") {
+  // 0) 먼저 캔버스 그리기
+  try {
     await drawResultCard();
-    if (!cardCanvas) return;
-    const url = cardCanvas.toDataURL("image/png");
+  } catch (e) {
+    console.error(e);
+    alert("카드 생성 에러 🥲");
+    return;
+  }
+
+  if (!cardCanvas) return;
+
+  // 1) canvas -> blob (iOS/모바일 친화)
+  const blob = await new Promise((resolve) => {
+    try {
+      cardCanvas.toBlob(resolve, "image/png", 1.0);
+    } catch (e) {
+      console.error(e);
+      resolve(null);
+    }
+  });
+
+  // 1-1) toBlob 실패(대부분: 캔버스 tainted/CORS or 구형 브라우저)
+  if (!blob) {
+    console.warn("toBlob failed. Likely canvas tainted (CORS) or unsupported.");
+
+    // fallback A) dataURL 시도 (PC/일부 안드에서라도)
+    try {
+      const dataUrl = cardCanvas.toDataURL("image/png");
+      // iOS는 download가 잘 안 먹어서 새탭 띄우기
+      openImageInNewTabForSave(dataUrl);
+      return;
+    } catch (e) {
+      console.error(e);
+      alert(
+        "이미지 저장 에러 🥲"
+      );
+      return;
+    }
+  }
+
+  // 2) Web Share (모바일 최강)
+  const file = new File([blob], filename, { type: "image/png" });
+
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({
+        files: [file],
+        title: "포켓몬 클라이머 결과",
+        text: "내 결과 카드",
+      });
+      return; // ✅ 성공 종료
+    } catch (e) {
+      // 사용자가 공유창 닫아도 여기로 옴 → fallback 진행
+      console.warn("share canceled or failed:", e);
+    }
+  }
+
+  // 3) 다운로드 시도 (PC/안드 크롬은 보통 여기서 끝)
+  const objectUrl = URL.createObjectURL(blob);
+  const ok = tryDownload(objectUrl, filename);
+
+  // 4) iOS 사파리에서 download가 씹히는 경우가 많아서
+  // 다운로드가 "안 된 것 같으면" 새탭 저장 루트도 열어줌 (사용자가 길게 눌러 저장)
+  // 너무 공격적으로 열면 팝업차단 걸릴 수 있어서 "ok 여부"로 조건 걸기
+  if (!ok) {
+    openUrlInNewTabForSave(objectUrl);
+  } else {
+    // 그래도 iOS에서 저장 안 될 수 있어서 안내는 가볍게
+    setTimeout(() => {
+      // 너무 귀찮으면 이 alert 제거해도 됨
+      // alert("저장이 안 되면 뜬 이미지에서 길게 눌러 '사진에 추가' 해줘!");
+    }, 200);
+  }
+
+  // 5) 정리
+  setTimeout(() => URL.revokeObjectURL(objectUrl), 4000);
+}
+
+function tryDownload(href, filename) {
+  try {
     const a = document.createElement("a");
-    a.href = url;
+    a.href = href;
     a.download = filename;
+    a.rel = "noopener";
     document.body.appendChild(a);
     a.click();
     a.remove();
+    return true;
+  } catch (e) {
+    console.warn("download failed:", e);
+    return false;
   }
+}
+
+// iOS/모바일: 새탭으로 이미지 열고 길게 눌러 저장하게 하는 루트
+function openUrlInNewTabForSave(url) {
+  try {
+    const w = window.open(url, "_blank", "noopener,noreferrer");
+    if (!w) {
+      alert("팝업이 차단, 팝업 허용 ㄱㄱ");
+      return;
+    }
+    // iOS는 여기서 사용자가 길게 눌러 저장하면 됨
+  } catch (e) {
+    console.error(e);
+    alert("새 탭 열기 실패 🥲");
+  }
+}
+
+function openImageInNewTabForSave(dataUrl) {
+  try {
+    const w = window.open("", "_blank");
+    if (!w) {
+      alert("팝업이 차단, 팝업 허용 ㄱㄱ");
+      return;
+    }
+    w.document.open();
+    w.document.write(`
+      <!doctype html>
+      <html>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>이미지 저장</title>
+          <style>
+            body{margin:0;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+            img{max-width:100vw;max-height:100vh;height:auto;width:auto;}
+            .tip{position:fixed;bottom:12px;left:12px;right:12px;color:#fff;font:14px system-ui;opacity:.85;text-align:center}
+          </style>
+        </head>
+        <body>
+          <img src="${dataUrl}" alt="result" />
+          <div class="tip">이미지를 길게 눌러서 ‘사진에 추가’로 저장하라!</div>
+        </body>
+      </html>
+    `);
+    w.document.close();
+  } catch (e) {
+    console.error(e);
+    alert("이미지 열기 실패 🥲");
+  }
+}
 
   // -----------------------------
   // 6) 이벤트 바인딩
