@@ -1,6 +1,8 @@
-// app.js (완성본) - 11문항(Q1~Q11) + 14포켓몬 타입 매핑
-// - 선택지 클릭/엔터 선택 시 자동 다음 문항 이동 (마지막이면 결과로)
-// - "다음" 버튼은 유지 (자동진행이라 거의 안 씀)
+// app.js (최종) - 11문항 + 14포켓몬 타입
+// - 선택지 클릭/엔터 선택 시 자동 다음 문항 이동(마지막이면 결과로)
+// - 결과 화면에 투명 PNG(assets/doodles/{id}.png) 표시
+// - 결과 카드 저장(PNG) 레이아웃: 카드 높이 안에서 자동 맞춤(넘치면 이미지/리스트 높이 줄임)
+// - 해시태그 제거
 
 (() => {
   const DOODLE_PATH = (id) => `assets/doodles/${id}.png`;
@@ -15,15 +17,15 @@
       emoji: "🍀",
       oneLiner: "“괜찮아 괜찮아 거의 다 왔어!”",
       pokemonTraits: ["긴장 잘 함", "응원 받으면 급성장", "보호본능 유발"],
-      climberTraits: ["응원 받으면 폼 올라옴", "초심 잃지 않는 타입", "함께 타면 다들 챙기게 됨"],
+      climberTraits: ["응원 받으면 폼 올라옴", "초심 잃지 않는 타입", "다들 챙기게 됨"],
     },
     {
       id: "jirachi",
       name: "자라치(버프형)",
       emoji: "⭐",
       oneLiner: "“너랑 하니까 오늘 다 잘 풀린다”",
-      pokemonTraits: ["응원 요정", "분위기 메이커", "주변을 끌어올림"],
-      climberTraits: ["파티/세션 버프 담당", "칭찬·응원 자주 함", "같이 타면 전체 컨디션 상승"],
+      pokemonTraits: ["나이스 요정", "분위기 메이커", "주변을 끌어올림"],
+      climberTraits: ["크루 버프 담당", "칭찬·응원 자주 함", "같이 타면 전체 컨디션 상승"],
     },
     {
       id: "porygon",
@@ -31,7 +33,7 @@
       emoji: "💾",
       oneLiner: "“감각 말고 데이터로 푼다.”",
       pokemonTraits: ["베타 분석 집착", "논리 우선", "계산형"],
-      climberTraits: ["각도·거리·순서 분석", "정리하면 바로 좋아짐", "설명 잘함(근데 길어질 수 있음)"],
+      climberTraits: ["각도·거리·순서 분석", "왜 안되는지 바로 분석함", "설명 잘함(근데 길어질 수 있음)"],
     },
     {
       id: "psyduck",
@@ -39,7 +41,7 @@
       emoji: "🤯",
       oneLiner: "“방금 그거 왜 된 거야?”",
       pokemonTraits: ["감각 ON/OFF", "될 땐 미침", "본인도 이유 모름"],
-      climberTraits: ["컨디션 타는 날엔 연속 완등", "감각 터지면 난이도 뚫음", "본인도 놀람"],
+      climberTraits: ["어떤 날은 벽이 쉬워보임", "감각 터지면 난이도 뚫음", "본인도 놀람"],
     },
     {
       id: "gengar",
@@ -53,17 +55,17 @@
       id: "pikachu",
       name: "피카츄(각성형)",
       emoji: "⚡",
-      oneLiner: "“지금 감 올라오는 중.”",
-      pokemonTraits: ["몸이 먼저 반응", "순간 몰입력 최상", "각성 구간"],
-      climberTraits: ["플래시에 강함", "흐름 타면 연속 완등", "중급에서 한 단계 점프 중"],
+      oneLiner: "“오늘도 암장에 전기 공급하러 왔습니다.”",
+      pokemonTraits: ["몸이 먼저 반응", "순간 몰입력 최상", "각성 타이밍 있음"],
+      climberTraits: ["긴 존버보단 ‘타이밍/리듬’에서 강점", "루트파인딩보다 ‘순간 판단’이 빠름", "컨디션 좋으면 연속 완등"],
     },
     {
       id: "eevee",
       name: "이브이(멀티성장형)",
       emoji: "🧬",
       oneLiner: "“성장속도 미쳤네”",
-      pokemonTraits: ["적응력 최강", "흡수력 좋음", "가능성 덩어리"],
-      climberTraits: ["조언 흡수 빠름", "스타일 다양하게 시도", "조용히 급성장"],
+      pokemonTraits: ["적응력 GOAT", "흡수력 최강", "가능성 덩어리"],
+      climberTraits: ["조언 흡수 빠름", "스타일 다양하게 시도", "실력 증가가 눈에 보임"],
     },
     {
       id: "ditto",
@@ -71,7 +73,7 @@
       emoji: "🔄",
       oneLiner: "“좋은 건 바로 복붙.”",
       pokemonTraits: ["고집 없음", "관찰형", "유연한 변신"],
-      climberTraits: ["남 등반 보고 바로 적용", "상황 대응 빠름", "같이 타면 급성장함"],
+      climberTraits: ["남 등반 보고 바로 적용", "상황 대응 빠름", "잘하는 사람이랑 타면 급성장"],
     },
     {
       id: "charizard",
@@ -79,15 +81,15 @@
       emoji: "🔥",
       oneLiner: "“멋있으면 됐지.”",
       pokemonTraits: ["화려함", "리스크 감수", "임팩트 중시"],
-      climberTraits: ["다이노·런지 러버", "영상각 장인", "한 방 있는 타입"],
+      climberTraits: ["다이노·런지 러버", "영상각 장인", "한 방 끝"],
     },
     {
       id: "mewtwo",
       name: "뮤츠(집착&완벽주의형)",
       emoji: "🧠",
-      oneLiner: "“이 문제 안 되면 다음 없다.”",
+      oneLiner: "“오늘 이거 안 되면 마감 찍는다.”",
       pokemonTraits: ["자존심", "집착", "완벽주의"],
-      climberTraits: ["한 문제 올인", "끝까지 파는 타입", "성공하면 포효(속으로)"],
+      climberTraits: ["한 문제 올인", "끝까지 파는 타입", "풀면 세상이 밝아짐"],
     },
     {
       id: "lucario",
@@ -109,7 +111,7 @@
       id: "dragonite",
       name: "망나뇽(착한고수형)",
       emoji: "🐲",
-      oneLiner: "“순둥한데 왜 이렇게 잘해?”",
+      oneLiner: "“겉촉속바”",
       pokemonTraits: ["파워+체력", "온화함", "숨은 고수"],
       climberTraits: ["일정한 퍼포먼스", "남도 잘 챙김", "기복 거의 없음"],
     },
@@ -119,47 +121,42 @@
       emoji: "🐉",
       oneLiner: "“혼자 다른 난이도 타는 것 같아”",
       pokemonTraits: ["압도적 존재감", "독립적", "고독한 강자"],
-      climberTraits: ["남 신경 X", "자기 페이스 확고", "공중 동작 강함"],
+      climberTraits: ["남 신경 X", "자기 페이스 확고"],
     },
   ];
 
   const ids = POKEMON.map((p) => p.id);
   const emptyScore = () => Object.fromEntries(ids.map((id) => [id, 0]));
-  const add = (score, id, pts) => {
-    score[id] = (score[id] || 0) + pts;
-  };
+  const add = (score, id, pts) => (score[id] = (score[id] || 0) + pts);
 
   // -----------------------------
-  // 2) 궁합(원하면 수정 가능)
-  // - 없으면 그냥 "-"로 나옴
+  // 2) 궁합
   // -----------------------------
   const COMPAT = {
-    togepi:   { good: "jirachi",  bad: "mewtwo"   },
-    jirachi:  { good: "togepi",   bad: "rayquaza" },
+    togepi: { good: "jirachi", bad: "mewtwo" },
+    jirachi: { good: "togepi", bad: "rayquaza" },
 
-    porygon:  { good: "lucario",  bad: "psyduck"  },
-    psyduck:  { good: "pikachu",  bad: "porygon"  },
+    porygon: { good: "lucario", bad: "psyduck" },
+    psyduck: { good: "pikachu", bad: "porygon" },
 
-    gengar:   { good: "ditto",    bad: "lucario"  },
-    pikachu:  { good: "eevee",    bad: "snorlax"  },
+    gengar: { good: "ditto", bad: "lucario" },
+    pikachu: { good: "eevee", bad: "snorlax" },
 
-    eevee:    { good: "pikachu",  bad: "mewtwo"   },
-    ditto:    { good: "eevee",    bad: "porygon"  },
+    eevee: { good: "pikachu", bad: "mewtwo" },
+    ditto: { good: "eevee", bad: "porygon" },
 
-    charizard:{ good: "pikachu",  bad: "snorlax"  },
-    mewtwo:   { good: "lucario",  bad: "snorlax"  },
+    charizard: { good: "pikachu", bad: "snorlax" },
+    mewtwo: { good: "lucario", bad: "snorlax" },
 
-    lucario:  { good: "porygon",  bad: "gengar"   },
-    snorlax:  { good: "dragonite",bad: "mewtwo"   },
+    lucario: { good: "porygon", bad: "gengar" },
+    snorlax: { good: "dragonite", bad: "mewtwo" },
 
-    dragonite:{ good: "jirachi",  bad: "gengar"   },
-    rayquaza: { good: "mewtwo",   bad: "jirachi"  },
+    dragonite: { good: "jirachi", bad: "gengar" },
+    rayquaza: { good: "mewtwo", bad: "jirachi" },
   };
 
   // -----------------------------
   // 3) 질문(11개) + 점수 매핑
-  // - “너무 티 나지 않게” 분배
-  // - 각 선택지마다 1순위 + 2순위(보조) 점수
   // -----------------------------
   const QUESTIONS = [
     {
@@ -264,7 +261,7 @@
   ];
 
   // -----------------------------
-  // 4) DOM 참조 (기존 구조 그대로)
+  // 4) DOM 참조
   // -----------------------------
   const screenStart = document.querySelector("#screenStart");
   const screenQuiz = document.querySelector("#screenQuiz");
@@ -295,6 +292,7 @@
   const resultClimberTraits = document.querySelector("#resultClimberTraits");
   const goodMatches = document.querySelector("#goodMatches");
   const badMatches = document.querySelector("#badMatches");
+  const resultImg = document.querySelector("#resultImg"); // (index.html에 있어야 함)
 
   const cardCanvas = document.querySelector("#cardCanvas");
   const ctx = cardCanvas?.getContext?.("2d");
@@ -370,7 +368,7 @@
     if (btnPrev) btnPrev.disabled = current === 0;
     if (btnNext) {
       btnNext.disabled = answers[current] == null;
-      btnNext.textContent = current === QUESTIONS.length - 1 ? "결과 보기 ✨" : "다음 →";
+      btnNext.textContent = current === QUESTIONS.length - 1 ? "결과 보기" : "다음 →";
     }
   }
 
@@ -397,7 +395,6 @@
     return score;
   }
 
-  // 동점 처리: 1) 점수 높은 순 2) 보조 규칙(우선순위)
   function pickWinner(score) {
     let max = -Infinity;
     let winners = [];
@@ -412,7 +409,6 @@
     }
     if (winners.length === 1) return winners[0];
 
-    // 우선순위(원하면 수정)
     const priority = [
       "mewtwo",
       "lucario",
@@ -443,10 +439,9 @@
   function renderFixedChip(target, pokemon) {
     if (!target) return;
     target.innerHTML = "";
-    if (!pokemon) return;
     const chip = document.createElement("div");
     chip.className = "chip";
-    chip.textContent = `${pokemon.emoji} ${pokemon.name}`;
+    chip.textContent = pokemon ? `${pokemon.emoji} ${pokemon.name}` : "-";
     target.appendChild(chip);
   }
 
@@ -477,6 +472,17 @@
       });
     }
 
+    // 결과 이미지(투명 PNG)
+    if (resultImg) {
+      resultImg.style.display = "none";
+      resultImg.onload = () => (resultImg.style.display = "block");
+      resultImg.onerror = () => {
+        resultImg.style.display = "none";
+        resultImg.removeAttribute("src");
+      };
+      resultImg.src = DOODLE_PATH(winner.id);
+    }
+
     const { good, bad } = fixedMatches(winnerId);
     renderFixedChip(goodMatches, good);
     renderFixedChip(badMatches, bad);
@@ -485,7 +491,7 @@
   }
 
   // -----------------------------
-  // 5) 결과 카드 캔버스 저장(선택)
+  // 5) 캔버스 저장(PNG)
   // -----------------------------
   function roundRect(ctx2, x, y, w, h, r) {
     const rr = Math.min(r, w / 2, h / 2);
@@ -508,15 +514,15 @@
     });
   }
 
-  function drawWrappedText(ctx2, text, x, y, maxWidth, lineHeight, maxLines = 3) {
-    const words = text.split(" ");
+  function drawWrappedText(ctx2, text, x, y, maxWidth, lineHeight, maxLines = 2) {
+    const words = String(text || "").split(" ");
     let line = "";
-    let lines = [];
+    const lines = [];
     for (const w of words) {
       const test = line ? `${line} ${w}` : w;
       if (ctx2.measureText(test).width <= maxWidth) line = test;
       else {
-        lines.push(line);
+        if (line) lines.push(line);
         line = w;
       }
       if (lines.length >= maxLines) break;
@@ -533,108 +539,224 @@
     const winner = POKEMON.find((p) => p.id === winnerId) || POKEMON[0];
     const { good, bad } = fixedMatches(winnerId);
 
-    const W = cardCanvas.width,
-      H = cardCanvas.height;
+    const W = cardCanvas.width;
+    const H = cardCanvas.height;
     ctx.clearRect(0, 0, W, H);
 
+    // 배경
     const bg = ctx.createLinearGradient(0, 0, W, H);
     bg.addColorStop(0, "#0b0f19");
-    bg.addColorStop(0.5, "rgba(124,58,237,0.35)");
-    bg.addColorStop(1, "rgba(167,139,250,0.20)");
+    bg.addColorStop(0.55, "rgba(124,58,237,0.35)");
+    bg.addColorStop(1, "rgba(167,139,250,0.22)");
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, W, H);
 
-    const pad = 64;
-    const cardX = pad,
-      cardY = pad,
-      cardW = W - pad * 2,
-      cardH = H - pad * 2;
+    // 카드
+    const pad = 70;
+    const cardX = pad, cardY = pad;
+    const cardW = W - pad * 2;
+    const cardH = H - pad * 2;
 
     ctx.fillStyle = "rgba(17,24,39,0.90)";
     ctx.strokeStyle = "rgba(255,255,255,0.12)";
     ctx.lineWidth = 3;
-    roundRect(ctx, cardX, cardY, cardW, cardH, 36);
+    roundRect(ctx, cardX, cardY, cardW, cardH, 42);
     ctx.fill();
     ctx.stroke();
 
+    // ============
+    // ✅ 세로 자동 맞춤 레이아웃 계산
+    // ============
+    const innerPadX = 56;
+    const innerPadTop = 78;   // 타이틀 시작 기준
+    const innerPadBottom = 52;
+
+    const contentX = cardX + innerPadX;
+    const contentW = cardW - innerPadX * 2;
+
+    const usableTopY = cardY + 48; // 카드 안쪽에서 실제로 시작
+    const usableBottomY = cardY + cardH - innerPadBottom;
+    const usableH = usableBottomY - usableTopY;
+
+    // 상단(타이틀+타입명) 고정 영역
+    const headerH = 190; // "포켓몬..." + "이모지 이름" 영역
+    const headerY = usableTopY;
+
+    // 아래 콘텐츠(이미지/원라이너/리스트/궁합)
+    const gapY1 = 36;
+    const gapY2 = 30;
+    const gapY3 = 26;
+
+    const oneH = 86;
+    const matchH = 150;
+
+    let imgBoxH = 560;
+    let listH = 360;
+
+    const remainingH = usableH - headerH;
+    const needH = imgBoxH + gapY1 + oneH + gapY2 + listH + gapY3 + matchH;
+
+    if (needH > remainingH) {
+      let over = needH - remainingH;
+
+      // 1) 이미지에서 먼저 줄이기(최소 400)
+      const imgMin = 400;
+      const cutImg = Math.min(over, Math.max(0, imgBoxH - imgMin));
+      imgBoxH -= cutImg;
+      over -= cutImg;
+
+      // 2) 리스트에서 줄이기(최소 260)
+      const listMin = 260;
+      const cutList = Math.min(over, Math.max(0, listH - listMin));
+      listH -= cutList;
+      over -= cutList;
+
+      // 3) 그래도 남으면 이미지에서 한번 더(최소 340)
+      if (over > 0) {
+        const imgMin2 = 340;
+        const cutImg2 = Math.min(over, Math.max(0, imgBoxH - imgMin2));
+        imgBoxH -= cutImg2;
+        over -= cutImg2;
+      }
+
+      // (여기까지도 오버면… 캔버스 자체가 너무 낮은 거라 어쩔 수 없음)
+    }
+
+    const imgBoxY = headerY + headerH;
+    const oneY = imgBoxY + imgBoxH + gapY1;
+    const listY = oneY + oneH + gapY2;
+    const matchY = listY + listH + gapY3;
+
+    // 2컬럼 폭 계산(정수/오차 흡수)
+    const gapX = 28;
+    const colW = Math.floor((contentW - gapX) / 2);
+    const remain = contentW - (colW * 2 + gapX);
+    const leftW = colW;
+    const rightW = colW + remain;
+    const leftX = contentX;
+    const rightX = leftX + leftW + gapX;
+
+    // 이미지 박스는 중앙 카드처럼 보이게 (양 옆 패딩)
+    const imgBoxX = cardX + 210;
+    const imgBoxW = cardW - 420;
+
+    // ============
+    // 실제 그리기
+    // ============
+
+    // 상단 타이틀
     ctx.fillStyle = "rgba(148,163,184,0.95)";
     ctx.font = "28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-    ctx.fillText("포켓몬 클라이머 유형 테스트", cardX + 44, cardY + 70);
+    ctx.fillText("포켓몬 클라이머 유형 테스트", cardX + 56, cardY + 78);
 
+    // 타입(이모지 + 이름)
     ctx.fillStyle = "#e5e7eb";
     ctx.font = "bold 64px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-    ctx.fillText(`${winner.emoji} ${winner.name}`, cardX + 44, cardY + 155);
+    ctx.fillText(`${winner.emoji} ${winner.name}`, cardX + 56, cardY + 168);
 
-    ctx.fillStyle = "rgba(245,243,255,0.98)";
-    ctx.font = "36px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-    const maxTextW = cardW - 44 * 2 - 560;
-    drawWrappedText(ctx, winner.oneLiner, cardX + 44, cardY + 220, Math.max(420, maxTextW), 44, 2);
+    // 이미지 박스
+    ctx.fillStyle = "rgba(255,255,255,0.04)";
+    ctx.strokeStyle = "rgba(255,255,255,0.10)";
+    ctx.lineWidth = 2;
+    roundRect(ctx, imgBoxX, imgBoxY, imgBoxW, imgBoxH, 36);
+    ctx.fill();
+    ctx.stroke();
 
     try {
       const img = await loadImage(DOODLE_PATH(winner.id));
-      const imgW = 520,
-        imgH = 520;
-      const imgX = cardX + cardW - imgW - 44;
-      const imgY = cardY + 250;
+      const iw = img.width, ih = img.height;
 
-      ctx.fillStyle = "rgba(255,255,255,0.06)";
-      ctx.strokeStyle = "rgba(255,255,255,0.12)";
-      ctx.lineWidth = 2;
-      roundRect(ctx, imgX - 18, imgY - 18, imgW + 36, imgH + 36, 40);
-      ctx.fill();
-      ctx.stroke();
+      // contain-fit (박스가 줄어들어도 자동 대응)
+      const scale = Math.min((imgBoxW - 50) / iw, (imgBoxH - 50) / ih);
+      const dw = iw * scale;
+      const dh = ih * scale;
+      const dx = imgBoxX + (imgBoxW - dw) / 2;
+      const dy = imgBoxY + (imgBoxH - dh) / 2;
 
-      ctx.drawImage(img, imgX, imgY, imgW, imgH);
+      ctx.drawImage(img, dx, dy, dw, dh);
     } catch {
       ctx.fillStyle = "rgba(148,163,184,0.9)";
       ctx.font = "26px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-      ctx.fillText("※ assets/doodles/에 낙서 이미지 넣으면 여기에 표시돼요", cardX + 44, cardY + 330);
+      ctx.fillText("※ assets/doodles/에 이미지가 없어요", imgBoxX + 30, imgBoxY + 60);
     }
 
-    const boxY = cardY + 820;
-    const boxH = 360;
-    const gap = 26;
-    const boxW = (cardW - 44 * 2 - gap) / 2;
-    const leftX = cardX + 44;
-    const rightX = leftX + boxW + gap;
+    // 한줄멘트 박스(점선)
+    const oneX = contentX;
+    const oneW = contentW;
 
-    function drawBox(x, y, title, lines) {
+    ctx.fillStyle = "rgba(124,58,237,0.10)";
+    ctx.strokeStyle = "rgba(167,139,250,0.55)";
+    ctx.setLineDash([10, 8]);
+    ctx.lineWidth = 2;
+    roundRect(ctx, oneX, oneY, oneW, oneH, 22);
+    ctx.fill();
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = "rgba(245,243,255,0.98)";
+    ctx.font = "36px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
+    drawWrappedText(ctx, winner.oneLiner, oneX + 22, oneY + 54, oneW - 44, 44, 2);
+
+    // 리스트 박스(2칸)
+    function drawListBox(x, w, y, h, title, lines) {
       ctx.fillStyle = "rgba(255,255,255,0.04)";
       ctx.strokeStyle = "rgba(255,255,255,0.10)";
       ctx.lineWidth = 2;
-      roundRect(ctx, x, y, boxW, boxH, 28);
+      roundRect(ctx, x, y, w, h, 26);
       ctx.fill();
       ctx.stroke();
 
       ctx.fillStyle = "rgba(148,163,184,0.95)";
       ctx.font = "26px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-      ctx.fillText(title, x + 26, y + 46);
+      ctx.fillText(title, x + 24, y + 46);
 
       ctx.fillStyle = "#e5e7eb";
-      ctx.font = "28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-      let ty = y + 96;
-      lines.slice(0, 5).forEach((t) => {
-        ctx.fillText(`• ${t}`, x + 26, ty);
-        ty += 44;
+      ctx.font = "30px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
+
+      const top = y + 102;
+      const lineH = 50;
+      const maxLines = Math.max(3, Math.floor((h - 120) / lineH)); // 박스 높이에 맞춰 자동
+      let ty = top;
+
+      (lines || []).slice(0, maxLines).forEach((t) => {
+        ctx.fillText(`• ${t}`, x + 24, ty);
+        ty += lineH;
       });
     }
 
-    drawBox(leftX, boxY, "포켓몬 성격", winner.pokemonTraits);
-    drawBox(rightX, boxY, "클라이머 적용", winner.climberTraits);
+    drawListBox(leftX, leftW, listY, listH, "포켓몬 성격", winner.pokemonTraits);
+    drawListBox(rightX, rightW, listY, listH, "클라이머 적용", winner.climberTraits);
 
-    ctx.fillStyle = "rgba(148,163,184,0.95)";
-    ctx.font = "26px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-    ctx.fillText("🔥 잘 맞는 포켓몬", leftX, cardY + cardH - 92);
-    ctx.fillText("😵 잘 안 맞는 포켓몬", rightX, cardY + cardH - 92);
+    // 궁합 박스(2칸)
+    function drawMatchBox(x, w, y, h, title, text) {
+      ctx.fillStyle = "rgba(255,255,255,0.04)";
+      ctx.strokeStyle = "rgba(255,255,255,0.10)";
+      ctx.lineWidth = 2;
+      roundRect(ctx, x, y, w, h, 26);
+      ctx.fill();
+      ctx.stroke();
 
-    ctx.fillStyle = "#e5e7eb";
-    ctx.font = "30px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-    ctx.fillText(good ? `${good.emoji} ${good.name}` : "-", leftX, cardY + cardH - 48);
-    ctx.fillText(bad ? `${bad.emoji} ${bad.name}` : "-", rightX, cardY + cardH - 48);
+      ctx.fillStyle = "rgba(148,163,184,0.95)";
+      ctx.font = "26px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
+      ctx.fillText(title, x + 24, y + 50);
 
-    ctx.fillStyle = "rgba(148,163,184,0.9)";
-    ctx.font = "24px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-    ctx.fillText("#클라이밍 #볼더링 #유형테스트", cardX + 44, cardY + cardH - 16);
+      ctx.fillStyle = "#e5e7eb";
+      ctx.font = "bold 34px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
+
+      // 텍스트가 길면 살짝 줄바꿈
+      const txt = text || "-";
+      const maxW = w - 48;
+      if (ctx.measureText(txt).width <= maxW) {
+        ctx.fillText(txt, x + 24, y + 110);
+      } else {
+        // 2줄로 쪼개기(최소한)
+        ctx.font = "bold 30px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
+        drawWrappedText(ctx, txt, x + 24, y + 98, maxW, 36, 2);
+      }
+    }
+
+    drawMatchBox(leftX, leftW, matchY, matchH, "🔥 잘 맞는 포켓몬", good ? `${good.emoji} ${good.name}` : "-");
+    drawMatchBox(rightX, rightW, matchY, matchH, "😵 잘 안 맞는 포켓몬", bad ? `${bad.emoji} ${bad.name}` : "-");
   }
 
   async function saveCanvasAsPng(filename = "result-card.png") {
@@ -685,8 +807,7 @@ ${winner.oneLiner}
 
 🔥 잘 맞는 포켓몬: ${good?.name ?? "-"}
 😵 잘 안 맞는 포켓몬: ${bad?.name ?? "-"}
-
-#클라이밍 #볼더링 #유형테스트`;
+`;
 
     try {
       await navigator.clipboard.writeText(shareText);
