@@ -14,14 +14,14 @@
       id: "togepi",
       name: "토게피(감정형)",
       emoji: "🍀",
-      oneLiner: "“나… 천천히 해도 돼?”",
+      oneLiner: "“나 조금만 이따 하께...”",
       pokemonTraits: ["긴장 잘 함", "응원 버프 큼", "보호본능 유발"],
       climberTraits: [
         "컨디션 영향 큼",
         "압박 주면 위축",
         "안 풀리면 벽이 괜히 밉다",
-        "응원 들으면 급성장",
-        "주변에서 챙김 받음",
+        "응원 받으면 급성장",
+        "주변에서 많이 챙겨줌",
       ],
     },
     {
@@ -29,10 +29,10 @@
       name: "잉어킹(끈기형)",
       emoji: "🐟",
       oneLiner: "“못 풀어도 괜찮지 뭐”",
-      pokemonTraits: ["욕심 적음", "꾸준함", "단단한 멘탈"],
+      pokemonTraits: ["욕심 없음", "꾸준함", "단단한 멘탈"],
       climberTraits: [
-        "완등 집착 적음",
-        "트라이 수 많음",
+        "완등 집착 없음",
+        "",
         "실패 후 재도전 빠름",
         "속도는 느림",
         "붙는 순간엔 최선",
@@ -285,12 +285,13 @@
   // -----------------------------
   const QUESTIONS = [
     {
-      title: "Q1. 다음 중 가장 빡치는 상황은?",
+      title: "Q1. 다음 중 가장 싫은 상황은?",
       options: [
-        { key: "A", text: "될 거 같은데 아주 작은 차이로 계속 같은 구간에서 실패 중일 때", points: [["mewtwo", 2], ["lucario", 1]] },
-        { key: "B", text: "존버하던 문제를 실력 비슷한 사람이 먼저 깰 때", points: [["mewtwo", 2], ["rayquaza", 1]] },
-        { key: "C", text: "존버하던 문제를 누군가 리치로 뜯어갈 때", points: [["gengar", 2], ["treecko", 1]] },
-        { key: "D", text: "내 그레이드 문제를 많이 풀었는데 막상 뿌무는 없을 때", points: [["pikachu", 2], ["eevee", 1]] },
+        {key: "A", text: "될 거 같은데 아주 작은 차이로 계속 같은 구간에서 실패 중일 때",points: [["mewtwo", 1],["lucario", 1],["snorlax", -1]]},
+        {key: "B",text: "존버하던 문제를 실력 더 안 좋은 사람이 먼저 깰 때",points: [["mewtwo", 1],["rayquaza", 2], ["jirachi", -1]]},
+        {key: "C",text: "존버하던 문제를 누군가 리치로 뜯어갈 때",points: [["gengar", 1],["treecko", 1],["lucario", -1]]},
+        {key: "D",text: "내 그레이드 문제를 많이 풀었는데 막상 뿌무는 없을 때",points: [["pikachu", 1],["eevee", 1],["rayquaza", -1]]},
+        { key: "E", text: "암장에서 불편한 사람이랑 마주쳤을 때",points: [["togepi", +1], ["jirachi", +1], ["rayquaza", -1]] },
       ],
     },
     {
@@ -448,6 +449,7 @@
     hide(screenQuiz);
     show(screenResult);
     renderResult();
+    // injectBulkSaveButton(); // ✅ 모든 이미지
   }
 
   function autoAdvance() {
@@ -698,75 +700,91 @@
     const cardW = W - pad * 2;
     const cardH = H - pad * 2;
 
-    ctx.fillStyle = "rgba(17,24,39,0.90)";
-    ctx.strokeStyle = "rgba(255,255,255,0.12)";
-    ctx.lineWidth = 3;
-    roundRect(ctx, cardX, cardY, cardW, cardH, 42);
-    ctx.fill();
-    ctx.stroke();
+    // ctx.fillStyle = "rgba(17,24,39,0.90)";
+    // ctx.strokeStyle = "rgba(255,255,255,0.12)";
+    // ctx.lineWidth = 3;
+    // roundRect(ctx, cardX, cardY, cardW, cardH, 42);
+    // ctx.fill();
+    // ctx.stroke();
 
-    // 레이아웃 계산
-    const innerPadX = 56;
-    const innerPadBottom = 52;
+    // ============
+// ✅ 세로 자동 맞춤 레이아웃 계산(오버플로우 방지: 아래부터 고정)
+// ============
 
-    const contentX = cardX + innerPadX;
-    const contentW = cardW - innerPadX * 2;
+const innerPadX = 56;
+const innerPadBottom = 52;
 
-    const usableTopY = cardY + 48;
-    const usableBottomY = cardY + cardH - innerPadBottom;
-    const usableH = usableBottomY - usableTopY;
+const contentX = cardX + innerPadX;
+const contentW = cardW - innerPadX * 2;
 
-    const headerH = 190;
-    const headerY = usableTopY;
+const usableTopY = cardY + 48;
+const usableBottomY = cardY + cardH - innerPadBottom;
+const usableH = usableBottomY - usableTopY;
 
-    const gapY1 = 36;
-    const gapY2 = 30;
-    const gapY3 = 26;
+// 상단(타이틀+타입명) 고정
+const headerH = 190;
+const headerY = usableTopY;
 
-    const oneH = 86;
-    const matchH = 150;
+// 고정 영역들
+const gapY1 = 36;
+const gapY2 = 30;
+const gapY3 = 26;
 
-    let imgBoxH = 560;
-    let listH = 360;
+const oneH = 86;
+const matchH = 150;
 
-    const remainingH = usableH - headerH;
-    const needH = imgBoxH + gapY1 + oneH + gapY2 + listH + gapY3 + matchH;
+// ✅ 리스트는 5개(클라이머) 기준으로 최소 높이 확보
+let listH = 420;          // 기본
+const listMin = 380;      // 최소(5줄 들어가게)
+const imgMin = 320;       // 이미지 박스 최소
 
-    if (needH > remainingH) {
-      let over = needH - remainingH;
+// ✅ 아래부터 배치(바닥 기준 고정)
+let matchY = usableBottomY - matchH;
+let listY = matchY - gapY3 - listH;
+let oneY = listY - gapY2 - oneH;
 
-      const imgMin = 400;
-      const cutImg = Math.min(over, Math.max(0, imgBoxH - imgMin));
-      imgBoxH -= cutImg;
-      over -= cutImg;
+// ✅ 남는 공간을 이미지 박스로 줌
+let imgBoxY = headerY + headerH;
+let imgBoxH = oneY - gapY1 - imgBoxY;
 
-      const listMin = 260;
-      const cutList = Math.min(over, Math.max(0, listH - listMin));
-      listH -= cutList;
-      over -= cutList;
+// ✅ 만약 공간 부족하면: 1) 이미지 먼저 줄이고 2) 그래도 부족하면 리스트 줄이기
+if (imgBoxH < imgMin) {
+  const need = imgMin - imgBoxH;
+  imgBoxH = imgMin;
 
-      if (over > 0) {
-        const imgMin2 = 340;
-        const cutImg2 = Math.min(over, Math.max(0, imgBoxH - imgMin2));
-        imgBoxH -= cutImg2;
-      }
-    }
+  // 리스트에서 줄일 수 있는 만큼 줄임(최소 listMin까지)
+  const canCutList = Math.max(0, listH - listMin);
+  const cutList = Math.min(need, canCutList);
+  listH -= cutList;
 
-    const imgBoxY = headerY + headerH;
-    const oneY = imgBoxY + imgBoxH + gapY1;
-    const listY = oneY + oneH + gapY2;
-    const matchY = listY + listH + gapY3;
+  // 다시 재계산
+  listY = matchY - gapY3 - listH;
+  oneY = listY - gapY2 - oneH;
+  imgBoxH = oneY - gapY1 - imgBoxY;
+}
 
-    const gapX = 28;
-    const colW = Math.floor((contentW - gapX) / 2);
-    const remain = contentW - (colW * 2 + gapX);
-    const leftW = colW;
-    const rightW = colW + remain;
-    const leftX = contentX;
-    const rightX = leftX + leftW + gapX;
+// ✅ 그래도 imgBoxH가 음수면(진짜 극단) 모든 간격 조금씩 줄이기
+if (imgBoxH < 200) {
+  // 안전빵: 이미지 박스 더 줄이고 리스트도 최저치로
+  listH = listMin;
+  listY = matchY - gapY3 - listH;
+  oneY = listY - gapY2 - oneH;
+  imgBoxH = Math.max(200, oneY - gapY1 - imgBoxY);
+}
 
-    const imgBoxX = cardX + 210;
-    const imgBoxW = cardW - 420;
+// 2컬럼 폭 계산(정수/오차 흡수)
+const gapX = 28;
+const colW = Math.floor((contentW - gapX) / 2);
+const remain = contentW - (colW * 2 + gapX);
+const leftW = colW;
+const rightW = colW + remain;
+const leftX = contentX;
+const rightX = leftX + leftW + gapX;
+
+// 이미지 박스는 중앙 카드처럼 보이게
+const imgBoxX = cardX + 210;
+const imgBoxW = cardW - 420;
+
 
     // 상단 타이틀
     ctx.fillStyle = "rgba(148,163,184,0.95)";
@@ -779,18 +797,18 @@
     ctx.fillText(`${winner.emoji} ${winner.name}`, cardX + 56, cardY + 168);
 
     // 이미지 박스
-    ctx.fillStyle = "rgba(255,255,255,0.04)";
-    ctx.strokeStyle = "rgba(255,255,255,0.10)";
-    ctx.lineWidth = 2;
-    roundRect(ctx, imgBoxX, imgBoxY, imgBoxW, imgBoxH, 36);
-    ctx.fill();
-    ctx.stroke();
+    // ctx.fillStyle = "rgba(255,255,255,0.04)";
+    // ctx.strokeStyle = "rgba(255,255,255,0.10)";
+    // ctx.lineWidth = 2;
+    // roundRect(ctx, imgBoxX, imgBoxY, imgBoxW, imgBoxH, 36);
+    // ctx.fill();
+    // ctx.stroke();
 
     try {
       const img = await loadImage(DOODLE_PATH(winner.id));
       const iw = img.width, ih = img.height;
 
-      const scale = Math.min((imgBoxW - 50) / iw, (imgBoxH - 50) / ih);
+      const scale = Math.min((imgBoxW - 10) / iw, (imgBoxH - 10) / ih) * 1.2;
       const dw = iw * scale;
       const dh = ih * scale;
       const dx = imgBoxX + (imgBoxW - dw) / 2;
@@ -821,34 +839,96 @@
     drawWrappedText(ctx, winner.oneLiner, oneX + 22, oneY + 54, oneW - 44, 44, 2);
 
     // 리스트 박스(2칸)
-    function drawListBox(x, w, y, h, title, lines) {
-      ctx.fillStyle = "rgba(255,255,255,0.04)";
-      ctx.strokeStyle = "rgba(255,255,255,0.10)";
-      ctx.lineWidth = 2;
-      roundRect(ctx, x, y, w, h, 26);
-      ctx.fill();
-      ctx.stroke();
+function drawMultilineText(ctx, text, x, y, maxW, lineH, maxLines) {
+  const words = String(text ?? "").split(" ");
+  let line = "";
+  const lines = [];
 
-      ctx.fillStyle = "rgba(148,163,184,0.95)";
-      ctx.font = "26px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-      ctx.fillText(title, x + 24, y + 46);
-
-      ctx.fillStyle = "#e5e7eb";
-      ctx.font = "30px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
-
-      const top = y + 102;
-      const lineH = 50;
-      const maxLines = Math.max(3, Math.floor((h - 120) / lineH));
-      let ty = top;
-
-      (lines || []).slice(0, maxLines).forEach((t) => {
-        ctx.fillText(`• ${t}`, x + 24, ty);
-        ty += lineH;
-      });
+  for (const word of words) {
+    const test = line ? `${line} ${word}` : word;
+    if (ctx.measureText(test).width <= maxW) {
+      line = test;
+    } else {
+      lines.push(line);
+      line = word;
+      if (lines.length === maxLines - 1) break;
     }
+  }
+  if (line && lines.length < maxLines) lines.push(line);
 
-    drawListBox(leftX, leftW, listY, listH, "포켓몬 성격", winner.pokemonTraits);
-    drawListBox(rightX, rightW, listY, listH, "클라이머 적용", winner.climberTraits);
+  // 마지막 줄 넘치면 …
+  if (lines.length === maxLines) {
+    let last = lines[maxLines - 1];
+    while (ctx.measureText(last + "…").width > maxW && last.length > 0) {
+      last = last.slice(0, -1);
+    }
+    lines[maxLines - 1] = last + "…";
+  }
+
+  lines.forEach((ln, i) => {
+    ctx.fillText(ln, x, y + i * lineH);
+  });
+
+  return lines.length;
+}
+
+
+function drawListBox(x, w, y, h, title, lines, desiredLines) {
+  // 박스
+  ctx.fillStyle = "rgba(255,255,255,0.04)";
+  ctx.strokeStyle = "rgba(255,255,255,0.10)";
+  ctx.lineWidth = 2;
+  roundRect(ctx, x, y, w, h, 26);
+  ctx.fill();
+  ctx.stroke();
+
+  // 타이틀
+  ctx.fillStyle = "rgba(148,163,184,0.95)";
+  ctx.font = "26px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
+  ctx.fillText(title, x + 24, y + 46);
+
+  // ✅ 세팅: 5줄이 박스에 들어가도록 폰트/라인하이트 자동 조절
+  const contentTop = y + 102;
+  const contentH = h - 120;
+  const want = Math.min(desiredLines, (lines || []).length);
+
+  let fontSize = 25;   // 기존 30 → 28
+  let lineH = 35;     // 기존 50 → 40
+
+  // 박스가 작으면 조금씩 줄여서라도 "원하는 줄 수"를 넣는다
+  while (want > 0 && (want * lineH) > contentH && fontSize > 22) {
+    fontSize -= 2;
+    lineH -= 2;
+  }
+
+  ctx.fillStyle = "#e5e7eb";
+  ctx.font = `${fontSize}px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'`;
+
+  const maxW = w - 48; // 좌우 패딩
+  let ty = contentTop;
+
+  (lines || []).slice(0, want).forEach((t) => {
+    const bullet = "• ";
+    const startX = x + 24;
+    const maxTextW = w - 48;
+
+    const usedLines = drawMultilineText(
+      ctx,
+      bullet + t,
+      startX,
+      ty,
+      maxTextW,
+      lineH,
+      2 // ✅ 한 항목당 최대 2줄
+    );
+
+    ty += usedLines * lineH;
+
+  });
+}
+
+drawListBox(leftX, leftW, listY, listH, "포켓몬 성격", winner.pokemonTraits, 3);
+drawListBox(rightX, rightW, listY, listH, "클라이머 적용", winner.climberTraits, 5);
 
     // 궁합 박스(2칸)
     function drawMatchBox(x, w, y, h, title, text) {
@@ -1058,11 +1138,223 @@ ${winner.oneLiner}
     }
   });
 
-  btnSaveCard?.addEventListener("click", async () => {
-    const winnerId = btnSaveCard.dataset.winner || "pikachu";
-    await saveCanvasAsPng(`${winnerId}-result.png`);
+btnSaveCard?.addEventListener("click", async () => {
+  const winnerId = btnSaveCard.dataset.winner || "pikachu";
+  await saveResultCardSmart(`${winnerId}-result.png`);
+});
+
+async function saveResultCardSmart(filename = "result-card.png") {
+  try {
+    await drawResultCard();
+  } catch (e) {
+    console.error(e);
+    alert("카드 생성 실패 🥲");
+    return;
+  }
+
+  if (!cardCanvas) return;
+
+  const isIOS =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  const blob = await new Promise((resolve) => {
+    try {
+      cardCanvas.toBlob(resolve, "image/png", 1.0);
+    } catch {
+      resolve(null);
+    }
   });
+
+  if (!blob) {
+    alert("이미지 변환 실패 🥲");
+    return;
+  }
+
+  // ======================
+  // 📱 iOS → 공유 시트
+  // ======================
+  if (isIOS && navigator.canShare) {
+    try {
+      const file = new File([blob], filename, { type: "image/png" });
+      if (navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: "클라이머 포켓몬 결과",
+        });
+        return; // ✅ 끝
+      }
+    } catch (e) {
+      console.warn("iOS share 취소/실패:", e);
+      // 아래 fallback으로 내려감
+    }
+  }
+
+  // ======================
+  // 💻 PC / 안드 → 다운로드
+  // ======================
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 3000);
+
+  // ======================
+  // 🍎 iOS fallback → 새 탭
+  // ======================
+  if (isIOS) {
+    setTimeout(() => {
+      const w = window.open(url, "_blank");
+      if (!w) {
+        alert("팝업 차단 해제 후 다시 시도해줘!");
+      }
+    }, 300);
+  }
+}
+
+
 
   // init
   goStart();
+// ==============================
+// 1회성: 결과화면에 '전체 저장' 버튼 자동 추가
+// ==============================
+// function injectBulkSaveButton() {
+//   const nav = document.querySelector("#screenResult .nav");
+//   if (!nav) return;
+
+//   // 중복 방지
+//   if (document.querySelector("#btnBulkSaveAll")) return;
+
+//   const btn = document.createElement("button");
+//   btn.id = "btnBulkSaveAll";
+//   btn.className = "btn";
+//   btn.textContent = "모든 결과 카드 저장(1회성)";
+//   btn.style.marginLeft = "8px";
+
+//   btn.addEventListener("click", async () => {
+//     // 유저 클릭 제스처로 실행 → 다중 저장 차단 덜 걸림
+//     await bulkSaveAllCardsSmart({ delayMs: 650 });
+//   });
+
+//   nav.appendChild(btn);
+// }
+
+// ==============================
+// 1회성: 기기/브라우저에 따라 저장 루트 자동 분기
+// - PC/안드: 다운로드
+// - iOS: 공유(canShare) 우선, 안되면 새탭 열고 길게 눌러 저장
+// ==============================
+// async function bulkSaveAllCardsSmart(options = {}) {
+//   const {
+//     ids: targetIds = POKEMON.map((p) => p.id),
+//     prefix = "result",
+//     delayMs = 650,
+//   } = options;
+
+//   const list = targetIds.slice(); // 전부
+
+//   if (!cardCanvas || !ctx) {
+//     alert("cardCanvas/ctx가 없어서 저장 불가 🥲");
+//     return;
+//   }
+
+//   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+//   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+//   async function canvasToBlob(canvas) {
+//     return await new Promise((resolve) => {
+//       try {
+//         canvas.toBlob((b) => resolve(b), "image/png", 1.0);
+//       } catch (e) {
+//         console.error(e);
+//         resolve(null);
+//       }
+//     });
+//   }
+
+//   function downloadBlob(blob, filename) {
+//     const url = URL.createObjectURL(blob);
+//     const a = document.createElement("a");
+//     a.href = url;
+//     a.download = filename;
+//     a.rel = "noopener";
+//     document.body.appendChild(a);
+//     a.click();
+//     a.remove();
+//     setTimeout(() => URL.revokeObjectURL(url), 2500);
+//     return true;
+//   }
+
+//   function openUrlInNewTab(url) {
+//     const w = window.open(url, "_blank", "noopener,noreferrer");
+//     return !!w;
+//   }
+
+//   const original = btnSaveCard?.dataset?.winner || null;
+
+//   console.log(`[bulk] start: ${list.length} cards (iOS=${isIOS})`);
+
+//   for (let i = 0; i < list.length; i++) {
+//     const id = list[i];
+//     if (btnSaveCard) btnSaveCard.dataset.winner = id;
+
+//     try {
+//       await drawResultCard();
+//       const blob = await canvasToBlob(cardCanvas);
+//       if (!blob) throw new Error("toBlob failed");
+
+//       const filename = `${prefix}-${id}.png`;
+
+//       // ✅ iOS면 Web Share 우선 (가능하면)
+//       if (isIOS && navigator.canShare) {
+//         try {
+//           const file = new File([blob], filename, { type: "image/png" });
+//           if (navigator.canShare({ files: [file] })) {
+//             await navigator.share({ files: [file], title: filename });
+//             console.log(`[bulk] shared (${i + 1}/${list.length}): ${id}`);
+//             await sleep(delayMs);
+//             continue;
+//           }
+//         } catch (e) {
+//           console.warn("share failed/canceled:", e);
+//         }
+//       }
+
+//       // ✅ PC/안드 대부분: 다운로드
+//       if (!isIOS) {
+//         downloadBlob(blob, filename);
+//         console.log(`[bulk] downloaded (${i + 1}/${list.length}): ${id}`);
+//       } else {
+//         // ✅ iOS fallback: 새 탭으로 열어서 길게 눌러 저장
+//         const url = URL.createObjectURL(blob);
+//         const opened = openUrlInNewTab(url);
+//         console.log(`[bulk] opened tab (${i + 1}/${list.length}): ${id}`);
+//         // iOS는 유저가 저장해야 하니까 너무 빠르면 의미 없음 → 텀 좀 줌
+//         await sleep(Math.max(delayMs, 900));
+//         setTimeout(() => URL.revokeObjectURL(url), 4000);
+//         if (!opened) alert("팝업 차단 풀어줘야 저장 가능 🥲");
+//         continue;
+//       }
+//     } catch (e) {
+//       console.error(`[bulk] error: ${id}`, e);
+//     }
+
+//     await sleep(delayMs);
+//   }
+
+//   // 원복
+//   if (btnSaveCard) {
+//     if (original) btnSaveCard.dataset.winner = original;
+//     else delete btnSaveCard.dataset.winner;
+//   }
+
+//   console.log("[bulk] done ✅");
+//   alert(`일괄 저장 끝 ✅ (${list.length}개)`);
+// }
+
 })();
