@@ -1,127 +1,252 @@
-// app.js (최종) - 11문항 + 14포켓몬 타입
+// app.js (최종) - 11문항 + 17포켓몬 타입(맞아용 포함)
 // - 선택지 클릭/엔터 선택 시 자동 다음 문항 이동(마지막이면 결과로)
 // - 결과 화면에 투명 PNG(assets/doodles/{id}.png) 표시
 // - 결과 카드 저장(PNG) 레이아웃: 카드 높이 안에서 자동 맞춤(넘치면 이미지/리스트 높이 줄임)
-// - 해시태그 제거
 
 (() => {
   const DOODLE_PATH = (id) => `assets/doodles/${id}.png`;
 
   // -----------------------------
-  // 1) 포켓몬 타입(14)
+  // 1) 포켓몬 타입(17)
   // -----------------------------
   const POKEMON = [
     {
       id: "togepi",
-      name: "토게피(보호본능유발형)",
+      name: "토게피(감정형)",
       emoji: "🍀",
-      oneLiner: "“괜찮아 괜찮아 거의 다 왔어!”",
-      pokemonTraits: ["긴장 잘 함", "응원 받으면 급성장", "보호본능 유발"],
-      climberTraits: ["응원 받으면 폼 올라옴", "초심 잃지 않는 타입", "다들 챙기게 됨"],
+      oneLiner: "“나… 천천히 해도 돼?”",
+      pokemonTraits: ["긴장 잘 함", "응원 버프 큼", "보호본능 유발"],
+      climberTraits: [
+        "컨디션 영향 큼",
+        "압박 주면 위축",
+        "안 풀리면 벽이 괜히 밉다",
+        "응원 들으면 급성장",
+        "주변에서 챙김 받음",
+      ],
     },
     {
-      id: "jirachi",
-      name: "자라치(버프형)",
-      emoji: "⭐",
-      oneLiner: "“너랑 하니까 오늘 다 잘 풀린다”",
-      pokemonTraits: ["나이스 요정", "분위기 메이커", "주변을 끌어올림"],
-      climberTraits: ["크루 버프 담당", "칭찬·응원 자주 함", "같이 타면 전체 컨디션 상승"],
+      id: "magikarp",
+      name: "잉어킹(끈기형)",
+      emoji: "🐟",
+      oneLiner: "“못 풀어도 괜찮지 뭐”",
+      pokemonTraits: ["욕심 적음", "꾸준함", "단단한 멘탈"],
+      climberTraits: [
+        "완등 집착 적음",
+        "트라이 수 많음",
+        "실패 후 재도전 빠름",
+        "속도는 느림",
+        "붙는 순간엔 최선",
+      ],
     },
     {
-      id: "porygon",
-      name: "폴리곤(분석형)",
-      emoji: "💾",
-      oneLiner: "“감각 말고 데이터로 푼다.”",
-      pokemonTraits: ["베타 분석 집착", "논리 우선", "계산형"],
-      climberTraits: ["각도·거리·순서 분석", "왜 안되는지 바로 분석함", "설명 잘함(근데 길어질 수 있음)"],
-    },
-    {
-      id: "psyduck",
-      name: "고라파덕(감각폭주형)",
-      emoji: "🤯",
-      oneLiner: "“방금 그거 왜 된 거야?”",
-      pokemonTraits: ["감각 ON/OFF", "될 땐 미침", "본인도 이유 모름"],
-      climberTraits: ["어떤 날은 벽이 쉬워보임", "감각 터지면 난이도 뚫음", "본인도 놀람"],
-    },
-    {
-      id: "gengar",
-      name: "팬텀(트릭형)",
-      emoji: "👻",
-      oneLiner: "“저렇게 가는 사람 처음 봄”",
-      pokemonTraits: ["장난꾸러기", "정석 거부", "창의력 과다"],
-      climberTraits: ["변칙 베타 잘 찾음", "루트파인딩이 무기", "성공하면 다들 충격"],
-    },
-    {
-      id: "pikachu",
-      name: "피카츄(각성형)",
-      emoji: "⚡",
-      oneLiner: "“오늘도 암장에 전기 공급하러 왔습니다.”",
-      pokemonTraits: ["몸이 먼저 반응", "순간 몰입력 최상", "각성 타이밍 있음"],
-      climberTraits: ["긴 존버보단 ‘타이밍/리듬’에서 강점", "루트파인딩보다 ‘순간 판단’이 빠름", "컨디션 좋으면 연속 완등"],
+      id: "treecko",
+      name: "나무지기(재능형)",
+      emoji: "🌿",
+      oneLiner: "“머리로는 모르겠고, 일단 붙어볼게”",
+      pokemonTraits: ["감각적", "실행 빠름", "자신감"],
+      climberTraits: [
+        "실전형(붙어봐야 앎)",
+        "몸 사용 능숙",
+        "기본기 약한 편",
+        "수행력 높음",
+        "기술명 몰라도 본능 활용",
+      ],
     },
     {
       id: "eevee",
-      name: "이브이(멀티성장형)",
+      name: "이브이(탐색형)",
       emoji: "🧬",
-      oneLiner: "“성장속도 미쳤네”",
-      pokemonTraits: ["적응력 GOAT", "흡수력 최강", "가능성 덩어리"],
-      climberTraits: ["조언 흡수 빠름", "스타일 다양하게 시도", "실력 증가가 눈에 보임"],
+      oneLiner: "“이렇게도… 저렇게도 되네?”",
+      pokemonTraits: ["유연함", "호기심", "실험적"],
+      climberTraits: [
+        "스타일 전환 잦음",
+        "무브 실험 많음",
+        "무난한 수행력",
+        "문제마다 접근 다름",
+        "본캐 탐색 중",
+      ],
+    },
+    {
+      id: "psyduck",
+      name: "고라파덕(각성형)",
+      emoji: "🦆",
+      oneLiner: "“어? 방금 왜 됐지?”",
+      pokemonTraits: ["멍함", "기복 큼", "잠재력 큼"],
+      climberTraits: [
+        "평소엔 불안정",
+        "가끔 폼 폭발",
+        "설명 잘 못함",
+        "감각 의존",
+        "엉뚱한 순간 성공",
+      ],
     },
     {
       id: "ditto",
-      name: "메타몽(베타흡수형)",
-      emoji: "🔄",
-      oneLiner: "“좋은 건 바로 복붙.”",
-      pokemonTraits: ["고집 없음", "관찰형", "유연한 변신"],
-      climberTraits: ["남 등반 보고 바로 적용", "상황 대응 빠름", "잘하는 사람이랑 타면 급성장"],
+      name: "메타몽(유동형)",
+      emoji: "🔁",
+      oneLiner: "“아 그거? 이렇게 하는 거지?”",
+      pokemonTraits: ["적응형", "수용적", "의존적"],
+      climberTraits: [
+        "파트너 영향 큼",
+        "앞사람 무브 복사",
+        "답지 있으면 수행력 높음",
+        "창의성 낮음",
+        "환경 따라 성능 변화",
+      ],
+    },
+    {
+      id: "gengar",
+      name: "팬텀(변칙형)",
+      emoji: "👻",
+      oneLiner: "“정석 말고 이렇게 가면 안 돼?”",
+      pokemonTraits: ["장난기", "자유로움", "창의적"],
+      climberTraits: [
+        "변칙 무브 선호",
+        "나만의 베타 추구",
+        "정답보다 재미 중시",
+        "성공하면 화려",
+        "실패도 쿨함",
+      ],
+    },
+    {
+      id: "pikachu",
+      name: "피카츄(성장형)",
+      emoji: "⚡",
+      oneLiner: "“와 클라이밍 개재밌다”",
+      pokemonTraits: ["열정적", "밝음", "사교적"],
+      climberTraits: [
+        "성장 속도 빠름",
+        "암장 투어 좋아함",
+        "두루두루 원만",
+        "초반 텐션 높음",
+        "방전도 빠름",
+      ],
+    },
+    {
+      id: "snorlax",
+      name: "잠만보(회복형)",
+      emoji: "😴",
+      oneLiner: "“나 지쳤어…(근데 또 함)”",
+      pokemonTraits: ["느긋함", "안정감", "인내심"],
+      climberTraits: [
+        "쉬는 시간 김",
+        "위험해 보이면 패스",
+        "스태틱 문제에서 빛남",
+        "무리 안 함",
+        "말은 지쳤다… 근데 해냄",
+      ],
+    },
+    {
+      id: "espeon",
+      name: "에브이(집중형)",
+      emoji: "🔮",
+      oneLiner: "“잠깐만, 생각 좀 하고 갈게”",
+      pokemonTraits: ["침착함", "분석적", "몰입형"],
+      climberTraits: [
+        "루트파인딩 열심히",
+        "조용할수록 강함",
+        "이해되면 바로 완등",
+        "방해에 취약",
+        "혼자 트라이 선호",
+      ],
+    },
+    {
+      id: "lucario",
+      name: "루카리오(정석형)",
+      emoji: "🥋",
+      oneLiner: "“기본이 제일 세”",
+      pokemonTraits: ["원칙적", "단단함", "신뢰형"],
+      climberTraits: [
+        "정석 무브 선호",
+        "다이나믹도 스태틱화",
+        "기본기 중시",
+        "완등률 안정",
+        "기준점 역할",
+      ],
     },
     {
       id: "charizard",
       name: "리자몽(다이나믹형)",
       emoji: "🔥",
-      oneLiner: "“멋있으면 됐지.”",
-      pokemonTraits: ["화려함", "리스크 감수", "임팩트 중시"],
-      climberTraits: ["다이노·런지 러버", "영상각 장인", "한 방 끝"],
-    },
-    {
-      id: "mewtwo",
-      name: "뮤츠(집착&완벽주의형)",
-      emoji: "🧠",
-      oneLiner: "“오늘 이거 안 되면 마감 찍는다.”",
-      pokemonTraits: ["자존심", "집착", "완벽주의"],
-      climberTraits: ["한 문제 올인", "끝까지 파는 타입", "풀면 세상이 밝아짐"],
-    },
-    {
-      id: "lucario",
-      name: "루카리오(스태틱형)",
-      emoji: "🥋",
-      oneLiner: "“와 진짜 정석이다”",
-      pokemonTraits: ["절제", "정석", "집중력"],
-      climberTraits: ["깔끔한 무브", "안정적인 완등", "기본기 탄탄"],
-    },
-    {
-      id: "snorlax",
-      name: "잠만보(효율안정형)",
-      emoji: "💤",
-      oneLiner: "“쉬는 것도 전략입니다.”",
-      pokemonTraits: ["느긋", "효율", "에너지 관리"],
-      climberTraits: ["할 수 있는 문제만 정확히", "휴식도 루틴", "여유로운데 잘함"],
+      oneLiner: "“이건 날아야지”",
+      pokemonTraits: ["대담함", "공격적", "자신감"],
+      climberTraits: [
+        "다이나믹 무브 사랑",
+        "리스크 겁 적음",
+        "성공하면 레전드",
+        "실패도 많은 편",
+        "하이라이트 제조기",
+      ],
     },
     {
       id: "dragonite",
-      name: "망나뇽(착한고수형)",
-      emoji: "🐲",
-      oneLiner: "“겉촉속바”",
-      pokemonTraits: ["파워+체력", "온화함", "숨은 고수"],
-      climberTraits: ["일정한 퍼포먼스", "남도 잘 챙김", "기복 거의 없음"],
+      name: "망나뇽(수호자형)",
+      emoji: "🐉",
+      oneLiner: "“너한텐 이렇게 가는 게 좋아”",
+      pokemonTraits: ["상냥함", "책임감", "안정감"],
+      climberTraits: [
+        "타인 무브 이해도 높음",
+        "맞춤 해답 제시",
+        "코칭 능력 우수",
+        "실력 있는 강자",
+        "남 완등에 진심",
+      ],
+    },
+    {
+      id: "mewtwo",
+      name: "뮤츠(집착형)",
+      emoji: "🧠",
+      oneLiner: "“이거 오늘 끝내야지”",
+      pokemonTraits: ["냉철함", "독립적", "기준 높음"],
+      climberTraits: [
+        "꽂히면 집착",
+        "솔플 선호",
+        "물어보면 친절",
+        "먼저 나서진 않음",
+        "내 운동 우선",
+      ],
     },
     {
       id: "rayquaza",
-      name: "레쿠쟈(지배자형)",
-      emoji: "🐉",
-      oneLiner: "“혼자 다른 난이도 타는 것 같아”",
-      pokemonTraits: ["압도적 존재감", "독립적", "고독한 강자"],
-      climberTraits: ["남 신경 X", "자기 페이스 확고"],
+      name: "레쿠쟈(초월자형)",
+      emoji: "🌌",
+      oneLiner: "“그건 왜 그렇게 해?”",
+      pokemonTraits: ["기준 높음", "효율 집착", "카리스마"],
+      climberTraits: [
+        "클라이밍=삶",
+        "비효율에 민감",
+        "답 알려주고 안 따르면 답답",
+        "실력 최상급",
+        "기준점 역할",
+      ],
+    },
+    {
+      id: "jirachi",
+      name: "자라치(기적형)",
+      emoji: "⭐",
+      oneLiner: "“지금이야!”",
+      pokemonTraits: ["잠잠함", "타이밍형", "따뜻함"],
+      climberTraits: [
+        "반짝이는 순간 존재",
+        "사람에 진심",
+        "응원해주는 걸 좋아함",
+        "남이 풀면 덩달아 신남",
+        "결정적 한마디로 흐름 전환",
+      ],
+    },
+    {
+      id: "wynaut",
+      name: "맞아용(완충형)",
+      emoji: "🤡",
+      oneLiner: "“……(다 이해함)”",
+      pokemonTraits: ["해탈", "관대함", "무던함"],
+      climberTraits: [
+        "고인물",
+        "다칠 짓만 아니면 OK",
+        "사람이 화나게 해도 무덤덤",
+        "분위기 완충재",
+        "뭐든 수용",
+      ],
     },
   ];
 
@@ -130,33 +255,33 @@
   const add = (score, id, pts) => (score[id] = (score[id] || 0) + pts);
 
   // -----------------------------
-  // 2) 궁합
+  // 2) 궁합(고정 1쌍) - 맞아용은 없음
   // -----------------------------
   const COMPAT = {
-    togepi: { good: "jirachi", bad: "mewtwo" },
-    jirachi: { good: "togepi", bad: "rayquaza" },
-
-    porygon: { good: "lucario", bad: "psyduck" },
-    psyduck: { good: "pikachu", bad: "porygon" },
-
-    gengar: { good: "ditto", bad: "lucario" },
-    pikachu: { good: "eevee", bad: "snorlax" },
-
-    eevee: { good: "pikachu", bad: "mewtwo" },
-    ditto: { good: "eevee", bad: "porygon" },
-
-    charizard: { good: "pikachu", bad: "snorlax" },
-    mewtwo: { good: "lucario", bad: "snorlax" },
-
-    lucario: { good: "porygon", bad: "gengar" },
-    snorlax: { good: "dragonite", bad: "mewtwo" },
-
-    dragonite: { good: "jirachi", bad: "gengar" },
-    rayquaza: { good: "mewtwo", bad: "jirachi" },
+    // good: 해당 타입에게 긍정 영향 / bad: 해당 타입에게 부정 영향
+    togepi: { good: "dragonite", bad: "mewtwo" },
+    magikarp: { good: "snorlax", bad: "charizard" },
+    treecko: { good: "dragonite", bad: "lucario" },
+    eevee: { good: "ditto", bad: "mewtwo" },
+    psyduck: { good: "gengar", bad: "espeon" },
+    ditto: { good: "eevee", bad: "rayquaza" },
+    gengar: { good: "pikachu", bad: "lucario" },
+    pikachu: { good: "gengar", bad: "mewtwo" },
+    snorlax: { good: "magikarp", bad: "charizard" },
+    espeon: { good: "dragonite", bad: "psyduck" },
+    lucario: { good: "dragonite", bad: "gengar" },
+    charizard: { good: "psyduck", bad: "snorlax" },
+    dragonite: { good: "togepi", bad: "charizard" },
+    mewtwo: { good: "espeon", bad: "togepi" },
+    rayquaza: { good: "jirachi", bad: "ditto" },
+    jirachi: { good: "rayquaza", bad: "charizard" },
+    // wynaut: 없음
   };
 
   // -----------------------------
   // 3) 질문(11개) + 점수 매핑
+  //   - 기존 문항 텍스트는 대부분 유지
+  //   - 17마리 모두 점수에 등장하도록 재배치
   // -----------------------------
   const QUESTIONS = [
     {
@@ -164,8 +289,8 @@
       options: [
         { key: "A", text: "될 거 같은데 아주 작은 차이로 계속 같은 구간에서 실패 중일 때", points: [["mewtwo", 2], ["lucario", 1]] },
         { key: "B", text: "존버하던 문제를 실력 비슷한 사람이 먼저 깰 때", points: [["mewtwo", 2], ["rayquaza", 1]] },
-        { key: "C", text: "존버하던 문제를 누군가 리치로 뜯어갈 때", points: [["gengar", 2], ["porygon", 1]] },
-        { key: "D", text: "내 그레이드 문제를 많이 풀었는데 막상 뿌무는 없을 때", points: [["charizard", 2], ["pikachu", 1]] },
+        { key: "C", text: "존버하던 문제를 누군가 리치로 뜯어갈 때", points: [["gengar", 2], ["treecko", 1]] },
+        { key: "D", text: "내 그레이드 문제를 많이 풀었는데 막상 뿌무는 없을 때", points: [["pikachu", 2], ["eevee", 1]] },
       ],
     },
     {
@@ -181,79 +306,79 @@
       title: "Q3. 존버 문제를 풀지 못했을 때 집 가면서 드는 생각은?",
       options: [
         { key: "A", text: "하 이걸 못했네...그래도 오늘 재밌었으니 됐지", points: [["jirachi", 2], ["togepi", 1]] },
-        { key: "B", text: "젠장 내일 또 와야겠다", points: [["mewtwo", 2], ["snorlax", 1]] },
-        { key: "C", text: "다른 방법으로 풀 수 있나? 다음엔 이렇게 시도해 봐야겠다", points: [["porygon", 2], ["ditto", 1]] },
+        { key: "B", text: "젠장 내일 또 와야겠다", points: [["magikarp", 2], ["mewtwo", 1]] },
+        { key: "C", text: "다른 방법으로 풀 수 있나? 다음엔 이렇게 시도해 봐야겠다", points: [["espeon", 2], ["eevee", 1]] },
         { key: "D", text: "젠장 다른 거나 풀 걸", points: [["pikachu", 2], ["charizard", 1]] },
       ],
     },
     {
       title: "Q4. 다음 중 가장 설레는 상황은?",
       options: [
-        { key: "A", text: "오늘 암장에 아는 사람 많을 때", points: [["jirachi", 2], ["eevee", 1]] },
+        { key: "A", text: "오늘 암장에 아는 사람 많을 때", points: [["pikachu", 2], ["jirachi", 1]] },
         { key: "B", text: "뉴비가 나한테 “이거 어떻게 해?” 물어볼 때", points: [["dragonite", 2], ["lucario", 1]] },
-        { key: "C", text: "암장이 한적할 때(많이 붙어볼 수 있겠다)", points: [["charizard", 2], ["pikachu", 1]] },
-        { key: "D", text: "‘뭔가 다르게 풀 수 있을 것 같은데?’ 싶은 문제를 발견했을 때", points: [["gengar", 2], ["porygon", 1]] },
+        { key: "C", text: "암장이 한적할 때(많이 붙어볼 수 있겠다)", points: [["mewtwo", 2], ["espeon", 1]] },
+        { key: "D", text: "‘뭔가 다르게 풀 수 있을 것 같은데?’ 싶은 문제를 발견했을 때", points: [["gengar", 2], ["eevee", 1]] },
       ],
     },
     {
       title: "Q5. 가장 부담스러운 순간은?",
       options: [
-        { key: "A", text: "뒤에서 많은 사람들이 나이스 외쳐줄 때", points: [["psyduck", 2], ["togepi", 1]] },
-        { key: "B", text: "힘 털려서 떨어지고 싶은데 뒤에서 탑 좋아요! 저그예요! 해줄 때", points: [["pikachu", 2], ["charizard", 1]] },
-        { key: "C", text: "잘못 푼 거 같은데 사람들이 내 무브를 따라할 때", points: [["porygon", 2], ["gengar", 1]] },
-        { key: "D", text: "못 할 거 같아서 접으려는데, 모르는 사람이 엄청 친절하게 피드백 해줄 때", points: [["charizard", 2], ["mewtwo", 1]] },
+        { key: "A", text: "뒤에서 많은 사람들이 나이스 외쳐줄 때", points: [["togepi", 2], ["psyduck", 1]] },
+        { key: "B", text: "힘 털려서 떨어지고 싶은데 뒤에서 탑 좋아요! 저그예요! 해줄 때", points: [["snorlax", 2], ["togepi", 1]] },
+        { key: "C", text: "잘못 푼 거 같은데 사람들이 내 무브를 따라할 때", points: [["espeon", 2], ["lucario", 1]] },
+        { key: "D", text: "못 할 거 같아서 접으려는데, 모르는 사람이 엄청 친절하게 피드백 해줄 때", points: [["treecko", 2], ["ditto", 1]] },
       ],
     },
     {
       title: "Q6. 가장 인스타그램 스토리로 올리고 싶은 장면은?",
       options: [
-        { key: "A", text: "나만의 무브로 문제를 풀어낸 순간", points: [["gengar", 2], ["rayquaza", 1]] },
-        { key: "B", text: "그동안 안 되던 게 갑자기 자연스럽게 풀린 순간", points: [["jirachi", 2], ["togepi", 1]] },
+        { key: "A", text: "나만의 무브로 문제를 풀어낸 순간", points: [["gengar", 2], ["charizard", 1]] },
+        { key: "B", text: "그동안 안 되던 게 갑자기 자연스럽게 풀린 순간", points: [["psyduck", 2], ["jirachi", 1]] },
         { key: "C", text: "한 번에 터진 멋있는 동작과 사람들의 환호가 담긴 장면", points: [["charizard", 2], ["pikachu", 1]] },
-        { key: "D", text: "허당짓 했는데 다 같이 웃는 장면", points: [["psyduck", 2], ["eevee", 1]] },
+        { key: "D", text: "허당짓 했는데 다 같이 웃는 장면", points: [["jirachi", 2], ["wynaut", 1]] },
       ],
     },
     {
       title: "Q7. 다음 중 가장 위로되는 순간은?",
       options: [
         { key: "A", text: "“오늘도 재밌었다”는 말 들을 때", points: [["jirachi", 2], ["togepi", 1]] },
-        { key: "B", text: "조용히 완등하고 그대로 집 갈 때", points: [["snorlax", 2], ["rayquaza", 1]] },
-        { key: "C", text: "“덕분에 풀었어요”라는 말 들을 때", points: [["dragonite", 2], ["lucario", 1]] },
-        { key: "D", text: "나보다 잘하는 사람도 내 존버 문제를 어려워할 때", points: [["mewtwo", 2], ["porygon", 1]] },
+        { key: "B", text: "조용히 완등하고 그대로 집 갈 때", points: [["snorlax", 2], ["espeon", 1]] },
+        { key: "C", text: "“덕분에 풀었어요”라는 말 들을 때", points: [["dragonite", 2], ["togepi", 1]] },
+        { key: "D", text: "나보다 잘하는 사람도 내 존버 문제를 어려워할 때", points: [["mewtwo", 2], ["rayquaza", 1]] },
       ],
     },
     {
       title: "Q8. 잘 안 풀리는 문제를 마주했을 때 속마음",
       options: [
-        { key: "A", text: "조금만 더 하면 될 거 같은데..", points: [["pikachu", 2], ["eevee", 1]] },
-        { key: "B", text: "다른 방법으로 해볼까?", points: [["porygon", 2], ["gengar", 1]] },
-        { key: "C", text: "제발 누가 한 번만 풀어주면 좋겠다", points: [["ditto", 2], ["eevee", 1]] },
-        { key: "D", text: "오늘 이거 풀어야 집 간다.", points: [["mewtwo", 2], ["charizard", 1]] },
+        { key: "A", text: "조금만 더 하면 될 거 같은데..", points: [["magikarp", 2], ["togepi", 1]] },
+        { key: "B", text: "다른 방법으로 해볼까?", points: [["eevee", 2], ["gengar", 1]] },
+        { key: "C", text: "제발 누가 한 번만 풀어주면 좋겠다", points: [["ditto", 2], ["dragonite", 1]] },
+        { key: "D", text: "오늘 이거 풀어야 집 간다.", points: [["mewtwo", 2], ["lucario", 1]] },
       ],
     },
     {
       title: "Q9. 다음 중 가장 만족스러운 마무리는?",
       options: [
-        { key: "A", text: "다 같이 웃으면서 귀가", points: [["jirachi", 2], ["eevee", 1]] },
-        { key: "B", text: "존버하던 문제 극적 완등", points: [["mewtwo", 2], ["lucario", 1]] },
-        { key: "C", text: "미친 뿌무 GET", points: [["rayquaza", 2], ["pikachu", 1]] },
-        { key: "D", text: "평소보다 갑자기 레벨업 된 느낌이 들 때", points: [["pikachu", 2], ["eevee", 1]] },
+        { key: "A", text: "다 같이 웃으면서 귀가", points: [["jirachi", 2], ["wynaut", 1]] },
+        { key: "B", text: "존버하던 문제 극적 완등", points: [["mewtwo", 2], ["magikarp", 1]] },
+        { key: "C", text: "미친 뿌무 GET", points: [["rayquaza", 2], ["charizard", 1]] },
+        { key: "D", text: "평소보다 갑자기 레벨업 된 느낌이 들 때", points: [["pikachu", 2], ["treecko", 1]] },
       ],
     },
     {
       title: "Q10. 다음 중 가장 나랑 안 맞는 사람은?",
       options: [
         { key: "A", text: "베타 강요하는 사람", points: [["gengar", 2], ["rayquaza", 1]] },
-        { key: "B", text: "자기 트라이 끝나면 바로 자리 뜨는 사람", points: [["jirachi", 2], ["togepi", 1]] },
-        { key: "C", text: "남 무브 평가하는 사람", points: [["charizard", 2], ["togepi", 1]] },
-        { key: "D", text: "스스로 고민하지 않고 하나부터 열까지 물어보는 사람", points: [["rayquaza", 2], ["snorlax", 1]] },
+        { key: "B", text: "자기 트라이 끝나면 바로 자리 뜨는 사람", points: [["togepi", 2], ["jirachi", 1]] },
+        { key: "C", text: "남 무브 평가하는 사람", points: [["pikachu", 2], ["togepi", 1]] },
+        { key: "D", text: "스스로 고민하지 않고 하나부터 열까지 물어보는 사람", points: [["rayquaza", 2], ["espeon", 1]] },
       ],
     },
     {
       title: "Q11. 가장 스트레스 받는 상황은?",
       options: [
         { key: "A", text: "못할 거 같은데 계속 “할 수 있어”라고 부추길 때", points: [["snorlax", 2], ["togepi", 1]] },
-        { key: "B", text: "알려달래서 설명해줬더니 전혀 반영하지 않을 때", points: [["porygon", 2], ["dragonite", 1]] },
+        { key: "B", text: "알려달래서 설명해줬더니 전혀 반영하지 않을 때", points: [["dragonite", 2], ["rayquaza", 1]] },
         { key: "C", text: "계속 생각나던 문제가 끝내 풀리지 않을 때", points: [["mewtwo", 2], ["lucario", 1]] },
         { key: "D", text: "문제 루트가 겹쳐서 내 페이스대로 붙어볼 수 없을 때", points: [["rayquaza", 2], ["snorlax", 1]] },
       ],
@@ -292,7 +417,7 @@
   const resultClimberTraits = document.querySelector("#resultClimberTraits");
   const goodMatches = document.querySelector("#goodMatches");
   const badMatches = document.querySelector("#badMatches");
-  const resultImg = document.querySelector("#resultImg"); // (index.html에 있어야 함)
+  const resultImg = document.querySelector("#resultImg");
 
   const cardCanvas = document.querySelector("#cardCanvas");
   const ctx = cardCanvas?.getContext?.("2d");
@@ -409,39 +534,49 @@
     }
     if (winners.length === 1) return winners[0];
 
+    // 동점 우선순위(결과 다양성+캐릭터 강도 기준)
     const priority = [
       "mewtwo",
+      "rayquaza",
       "lucario",
       "charizard",
       "pikachu",
-      "eevee",
-      "gengar",
-      "porygon",
-      "rayquaza",
+      "espeon",
       "dragonite",
+      "gengar",
       "ditto",
-      "snorlax",
+      "eevee",
+      "treecko",
+      "magikarp",
       "jirachi",
       "togepi",
       "psyduck",
+      "snorlax",
+      "wynaut",
     ];
     for (const p of priority) if (winners.includes(p)) return p;
     return winners[0];
   }
 
   function fixedMatches(winnerId) {
+    if (winnerId === "wynaut") return { good: null, bad: null }; // 맞아용은 궁합 없음
     const rule = COMPAT[winnerId] || {};
     const good = POKEMON.find((p) => p.id === rule.good) || null;
     const bad = POKEMON.find((p) => p.id === rule.bad) || null;
     return { good, bad };
   }
 
-  function renderFixedChip(target, pokemon) {
+  function renderFixedChip(target, pokemon, emptyText = "-") {
     if (!target) return;
     target.innerHTML = "";
     const chip = document.createElement("div");
     chip.className = "chip";
-    chip.textContent = pokemon ? `${pokemon.emoji} ${pokemon.name}` : "-";
+    if (!pokemon) {
+      chip.classList.add("empty");
+      chip.textContent = emptyText;
+    } else {
+      chip.textContent = `${pokemon.emoji} ${pokemon.name}`;
+    }
     target.appendChild(chip);
   }
 
@@ -484,8 +619,14 @@
     }
 
     const { good, bad } = fixedMatches(winnerId);
-    renderFixedChip(goodMatches, good);
-    renderFixedChip(badMatches, bad);
+
+    if (winnerId === "wynaut") {
+      renderFixedChip(goodMatches, null, "없음(전부 무난)");
+      renderFixedChip(badMatches, null, "없음(전부 수용)");
+    } else {
+      renderFixedChip(goodMatches, good);
+      renderFixedChip(badMatches, bad);
+    }
 
     if (btnSaveCard) btnSaveCard.dataset.winner = winnerId;
   }
@@ -564,25 +705,20 @@
     ctx.fill();
     ctx.stroke();
 
-    // ============
-    // ✅ 세로 자동 맞춤 레이아웃 계산
-    // ============
+    // 레이아웃 계산
     const innerPadX = 56;
-    const innerPadTop = 78;   // 타이틀 시작 기준
     const innerPadBottom = 52;
 
     const contentX = cardX + innerPadX;
     const contentW = cardW - innerPadX * 2;
 
-    const usableTopY = cardY + 48; // 카드 안쪽에서 실제로 시작
+    const usableTopY = cardY + 48;
     const usableBottomY = cardY + cardH - innerPadBottom;
     const usableH = usableBottomY - usableTopY;
 
-    // 상단(타이틀+타입명) 고정 영역
-    const headerH = 190; // "포켓몬..." + "이모지 이름" 영역
+    const headerH = 190;
     const headerY = usableTopY;
 
-    // 아래 콘텐츠(이미지/원라이너/리스트/궁합)
     const gapY1 = 36;
     const gapY2 = 30;
     const gapY3 = 26;
@@ -599,27 +735,21 @@
     if (needH > remainingH) {
       let over = needH - remainingH;
 
-      // 1) 이미지에서 먼저 줄이기(최소 400)
       const imgMin = 400;
       const cutImg = Math.min(over, Math.max(0, imgBoxH - imgMin));
       imgBoxH -= cutImg;
       over -= cutImg;
 
-      // 2) 리스트에서 줄이기(최소 260)
       const listMin = 260;
       const cutList = Math.min(over, Math.max(0, listH - listMin));
       listH -= cutList;
       over -= cutList;
 
-      // 3) 그래도 남으면 이미지에서 한번 더(최소 340)
       if (over > 0) {
         const imgMin2 = 340;
         const cutImg2 = Math.min(over, Math.max(0, imgBoxH - imgMin2));
         imgBoxH -= cutImg2;
-        over -= cutImg2;
       }
-
-      // (여기까지도 오버면… 캔버스 자체가 너무 낮은 거라 어쩔 수 없음)
     }
 
     const imgBoxY = headerY + headerH;
@@ -627,7 +757,6 @@
     const listY = oneY + oneH + gapY2;
     const matchY = listY + listH + gapY3;
 
-    // 2컬럼 폭 계산(정수/오차 흡수)
     const gapX = 28;
     const colW = Math.floor((contentW - gapX) / 2);
     const remain = contentW - (colW * 2 + gapX);
@@ -636,13 +765,8 @@
     const leftX = contentX;
     const rightX = leftX + leftW + gapX;
 
-    // 이미지 박스는 중앙 카드처럼 보이게 (양 옆 패딩)
     const imgBoxX = cardX + 210;
     const imgBoxW = cardW - 420;
-
-    // ============
-    // 실제 그리기
-    // ============
 
     // 상단 타이틀
     ctx.fillStyle = "rgba(148,163,184,0.95)";
@@ -666,7 +790,6 @@
       const img = await loadImage(DOODLE_PATH(winner.id));
       const iw = img.width, ih = img.height;
 
-      // contain-fit (박스가 줄어들어도 자동 대응)
       const scale = Math.min((imgBoxW - 50) / iw, (imgBoxH - 50) / ih);
       const dw = iw * scale;
       const dh = ih * scale;
@@ -715,7 +838,7 @@
 
       const top = y + 102;
       const lineH = 50;
-      const maxLines = Math.max(3, Math.floor((h - 120) / lineH)); // 박스 높이에 맞춰 자동
+      const maxLines = Math.max(3, Math.floor((h - 120) / lineH));
       let ty = top;
 
       (lines || []).slice(0, maxLines).forEach((t) => {
@@ -743,164 +866,138 @@
       ctx.fillStyle = "#e5e7eb";
       ctx.font = "bold 34px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
 
-      // 텍스트가 길면 살짝 줄바꿈
       const txt = text || "-";
       const maxW = w - 48;
       if (ctx.measureText(txt).width <= maxW) {
         ctx.fillText(txt, x + 24, y + 110);
       } else {
-        // 2줄로 쪼개기(최소한)
         ctx.font = "bold 30px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Noto Sans KR'";
         drawWrappedText(ctx, txt, x + 24, y + 98, maxW, 36, 2);
       }
     }
 
-    drawMatchBox(leftX, leftW, matchY, matchH, "🔥 잘 맞는 포켓몬", good ? `${good.emoji} ${good.name}` : "-");
-    drawMatchBox(rightX, rightW, matchY, matchH, "😵 잘 안 맞는 포켓몬", bad ? `${bad.emoji} ${bad.name}` : "-");
+    // 맞아용은 궁합 문구 바꾸기
+    if (winnerId === "wynaut") {
+      drawMatchBox(leftX, leftW, matchY, matchH, "🔥 잘 맞는 포켓몬", "없음(전부 무난)");
+      drawMatchBox(rightX, rightW, matchY, matchH, "😵 잘 안 맞는 포켓몬", "없음(전부 수용)");
+    } else {
+      drawMatchBox(leftX, leftW, matchY, matchH, "🔥 잘 맞는 포켓몬", good ? `${good.emoji} ${good.name}` : "-");
+      drawMatchBox(rightX, rightW, matchY, matchH, "😵 잘 안 맞는 포켓몬", bad ? `${bad.emoji} ${bad.name}` : "-");
+    }
   }
 
-async function saveCanvasAsPng(filename = "result-card.png") {
-  // 0) 먼저 캔버스 그리기
-  try {
-    await drawResultCard();
-  } catch (e) {
-    console.error(e);
-    alert("카드 생성 에러 🥲");
-    return;
-  }
-
-  if (!cardCanvas) return;
-
-  // 1) canvas -> blob (iOS/모바일 친화)
-  const blob = await new Promise((resolve) => {
+  async function saveCanvasAsPng(filename = "result-card.png") {
     try {
-      cardCanvas.toBlob(resolve, "image/png", 1.0);
+      await drawResultCard();
     } catch (e) {
       console.error(e);
-      resolve(null);
-    }
-  });
-
-  // 1-1) toBlob 실패(대부분: 캔버스 tainted/CORS or 구형 브라우저)
-  if (!blob) {
-    console.warn("toBlob failed. Likely canvas tainted (CORS) or unsupported.");
-
-    // fallback A) dataURL 시도 (PC/일부 안드에서라도)
-    try {
-      const dataUrl = cardCanvas.toDataURL("image/png");
-      // iOS는 download가 잘 안 먹어서 새탭 띄우기
-      openImageInNewTabForSave(dataUrl);
+      alert("카드 생성 에러 🥲");
       return;
+    }
+
+    if (!cardCanvas) return;
+
+    const blob = await new Promise((resolve) => {
+      try {
+        cardCanvas.toBlob(resolve, "image/png", 1.0);
+      } catch (e) {
+        console.error(e);
+        resolve(null);
+      }
+    });
+
+    if (!blob) {
+      try {
+        const dataUrl = cardCanvas.toDataURL("image/png");
+        openImageInNewTabForSave(dataUrl);
+        return;
+      } catch (e) {
+        console.error(e);
+        alert("이미지 저장 에러 🥲");
+        return;
+      }
+    }
+
+    const file = new File([blob], filename, { type: "image/png" });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: "포켓몬 클라이머 결과",
+          text: "내 결과 카드",
+        });
+        return;
+      } catch (e) {
+        console.warn("share canceled or failed:", e);
+      }
+    }
+
+    const objectUrl = URL.createObjectURL(blob);
+    const ok = tryDownload(objectUrl, filename);
+
+    if (!ok) openUrlInNewTabForSave(objectUrl);
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 4000);
+  }
+
+  function tryDownload(href, filename) {
+    try {
+      const a = document.createElement("a");
+      a.href = href;
+      a.download = filename;
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      return true;
+    } catch (e) {
+      console.warn("download failed:", e);
+      return false;
+    }
+  }
+
+  function openUrlInNewTabForSave(url) {
+    try {
+      const w = window.open(url, "_blank", "noopener,noreferrer");
+      if (!w) alert("팝업이 차단, 팝업 허용 ㄱㄱ");
     } catch (e) {
       console.error(e);
-      alert(
-        "이미지 저장 에러 🥲"
-      );
-      return;
+      alert("새 탭 열기 실패 🥲");
     }
   }
 
-  // 2) Web Share (모바일 최강)
-  const file = new File([blob], filename, { type: "image/png" });
-
-  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+  function openImageInNewTabForSave(dataUrl) {
     try {
-      await navigator.share({
-        files: [file],
-        title: "포켓몬 클라이머 결과",
-        text: "내 결과 카드",
-      });
-      return; // ✅ 성공 종료
+      const w = window.open("", "_blank");
+      if (!w) {
+        alert("팝업이 차단, 팝업 허용 ㄱㄱ");
+        return;
+      }
+      w.document.open();
+      w.document.write(`
+        <!doctype html>
+        <html>
+          <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>이미지 저장</title>
+            <style>
+              body{margin:0;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+              img{max-width:100vw;max-height:100vh;height:auto;width:auto;}
+              .tip{position:fixed;bottom:12px;left:12px;right:12px;color:#fff;font:14px system-ui;opacity:.85;text-align:center}
+            </style>
+          </head>
+          <body>
+            <img src="${dataUrl}" alt="result" />
+            <div class="tip">이미지를 길게 눌러서 ‘사진에 추가’로 저장하라!</div>
+          </body>
+        </html>
+      `);
+      w.document.close();
     } catch (e) {
-      // 사용자가 공유창 닫아도 여기로 옴 → fallback 진행
-      console.warn("share canceled or failed:", e);
+      console.error(e);
+      alert("이미지 열기 실패 🥲");
     }
   }
-
-  // 3) 다운로드 시도 (PC/안드 크롬은 보통 여기서 끝)
-  const objectUrl = URL.createObjectURL(blob);
-  const ok = tryDownload(objectUrl, filename);
-
-  // 4) iOS 사파리에서 download가 씹히는 경우가 많아서
-  // 다운로드가 "안 된 것 같으면" 새탭 저장 루트도 열어줌 (사용자가 길게 눌러 저장)
-  // 너무 공격적으로 열면 팝업차단 걸릴 수 있어서 "ok 여부"로 조건 걸기
-  if (!ok) {
-    openUrlInNewTabForSave(objectUrl);
-  } else {
-    // 그래도 iOS에서 저장 안 될 수 있어서 안내는 가볍게
-    setTimeout(() => {
-      // 너무 귀찮으면 이 alert 제거해도 됨
-      // alert("저장이 안 되면 뜬 이미지에서 길게 눌러 '사진에 추가' 해줘!");
-    }, 200);
-  }
-
-  // 5) 정리
-  setTimeout(() => URL.revokeObjectURL(objectUrl), 4000);
-}
-
-function tryDownload(href, filename) {
-  try {
-    const a = document.createElement("a");
-    a.href = href;
-    a.download = filename;
-    a.rel = "noopener";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    return true;
-  } catch (e) {
-    console.warn("download failed:", e);
-    return false;
-  }
-}
-
-// iOS/모바일: 새탭으로 이미지 열고 길게 눌러 저장하게 하는 루트
-function openUrlInNewTabForSave(url) {
-  try {
-    const w = window.open(url, "_blank", "noopener,noreferrer");
-    if (!w) {
-      alert("팝업이 차단, 팝업 허용 ㄱㄱ");
-      return;
-    }
-    // iOS는 여기서 사용자가 길게 눌러 저장하면 됨
-  } catch (e) {
-    console.error(e);
-    alert("새 탭 열기 실패 🥲");
-  }
-}
-
-function openImageInNewTabForSave(dataUrl) {
-  try {
-    const w = window.open("", "_blank");
-    if (!w) {
-      alert("팝업이 차단, 팝업 허용 ㄱㄱ");
-      return;
-    }
-    w.document.open();
-    w.document.write(`
-      <!doctype html>
-      <html>
-        <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>이미지 저장</title>
-          <style>
-            body{margin:0;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;}
-            img{max-width:100vw;max-height:100vh;height:auto;width:auto;}
-            .tip{position:fixed;bottom:12px;left:12px;right:12px;color:#fff;font:14px system-ui;opacity:.85;text-align:center}
-          </style>
-        </head>
-        <body>
-          <img src="${dataUrl}" alt="result" />
-          <div class="tip">이미지를 길게 눌러서 ‘사진에 추가’로 저장하라!</div>
-        </body>
-      </html>
-    `);
-    w.document.close();
-  } catch (e) {
-    console.error(e);
-    alert("이미지 열기 실패 🥲");
-  }
-}
 
   // -----------------------------
   // 6) 이벤트 바인딩
@@ -932,12 +1029,17 @@ function openImageInNewTabForSave(dataUrl) {
     const winner = POKEMON.find((p) => p.id === winnerId) || POKEMON[0];
     const { good, bad } = fixedMatches(winnerId);
 
+    const goodText =
+      winnerId === "wynaut" ? "없음(전부 무난)" : (good?.name ?? "-");
+    const badText =
+      winnerId === "wynaut" ? "없음(전부 수용)" : (bad?.name ?? "-");
+
     const shareText =
 `${winner.emoji} ${winner.name}
 ${winner.oneLiner}
 
-🔥 잘 맞는 포켓몬: ${good?.name ?? "-"}
-😵 잘 안 맞는 포켓몬: ${bad?.name ?? "-"}
+🔥 잘 맞는 포켓몬: ${goodText}
+😵 잘 안 맞는 포켓몬: ${badText}
 `;
 
     try {
