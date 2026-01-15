@@ -148,7 +148,9 @@ h1{ margin: 12px 0 6px; font-size: 30px; letter-spacing: -0.5px; }
   padding: 12px;
   background: rgba(255,255,255,.03);
 }
-.pillbox-title{ color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+.pillbox-title{
+  display: none;
+}
 .list{ margin:0; padding-left: 18px; line-height: 1.7; }
 
 .chips{ display:flex; flex-wrap: wrap; gap: 8px; }
@@ -186,4 +188,143 @@ h1{ margin: 12px 0 6px; font-size: 30px; letter-spacing: -0.5px; }
 .chip.empty{
   opacity: .75;
   border-style: dashed;
+}
+
+.r-name { font-weight: 800; }
+.r-chip{
+  display:inline-flex; align-items:center;
+  padding:6px 12px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  font-size:14px; line-height:1; white-space:nowrap;
+  margin-left:10px;
+}
+.r-chip-type{ background: rgba(124,58,237,0.18); color:#ede9fe; font-weight:700; }
+.r-chip-trait{
+  display:flex; width: fit-content;
+  margin-top:8px; margin-left:0;
+  background: rgba(255,255,255,0.08); color:#e5e7eb;
+}
+/* ✅ 결과 섹션: 성격/특징을 세로로 쌓기 */
+.result-stack{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  margin-top:16px;
+}
+
+/* pillbox 내부 list를 "칩 리스트"로 보이게 */
+.result-stack .list{
+  list-style:none;
+  padding:0;
+  margin:12px 0 0;
+  display:flex;
+  gap:10px;
+}
+
+/* ✅ 결과 페이지 칩 스타일(성격용) */
+.result-stack .list li{
+  display:inline-flex;
+  width: fit-content;
+  align-items:center;
+  padding:8px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#e5e7eb;
+  font-size:14px;
+  line-height:1;
+  white-space:nowrap;
+}
+
+/* ✅ resultName 안에서 타입칩 같이 보여주기 */
+.result-name{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.r-chip{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  font-size:13px;
+  line-height:1;
+  white-space:nowrap;
+}
+
+.r-chip-type{
+  background: rgba(124,58,237,0.18);
+  color:#ede9fe;
+  font-weight:700;
+}
+/* =========================
+   ✅ 포켓몬 성격만 '칩' + 한 줄로
+   ========================= */
+#resultPokemonTraits.list{
+  list-style:none;
+  padding:0;
+  margin:2px 0 0;
+
+  display:flex;         /* ✅ 가로로 */
+  flex-wrap:nowrap;     /* ✅ 한 줄 고정(넘치면 스크롤) */
+  /* gap:10px; */
+
+  overflow-x:auto;      /* ✅ 넘치면 가로 스크롤 */
+  -webkit-overflow-scrolling: touch;
+}
+
+#resultPokemonTraits.list li{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 14px;
+  border-radius:999px;
+
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#e5e7eb;
+
+  padding: 6px 12px;   /* ↓ 기존보다 작게 */
+  font-size: 13px;     /* ↓ 살짝만 줄이기 */
+  border-radius: 999px;
+  line-height:1;
+  white-space:nowrap;
+  flex:0 0 auto;
+}
+/* 칩 컬러 팔레트 */
+.trait-chip.c1{ background:#1f2937; border-color:#374151; color:#e5e7eb; }
+.trait-chip.c2{ background:#312e81; border-color:#4338ca; color:#eef2ff; }
+.trait-chip.c3{ background:#064e3b; border-color:#047857; color:#ecfdf5; }
+.trait-chip.c4{ background:#4c1d95; border-color:#6d28d9; color:#f5f3ff; }
+.trait-chip.c5{ background:#3f1d1d; border-color:#7f1d1d; color:#fef2f2; }
+
+/* =========================
+   ✅ 클라이머 특징은 기존 불릿 리스트 유지 (칩 효과 제거)
+   ========================= */
+#resultClimberTraits.list{
+  list-style:disc;
+  margin-top: 14px; 
+  padding-left:18px;
+  margin:12px 0 0;
+  display:block;
+  overflow:visible;
+}
+
+#resultClimberTraits.list li{
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 10px 0; 
+  display:list-item;
+  padding:0;
+  border:none;
+  background:transparent;
+  color:inherit;
+  white-space:normal;
+}
+
+/* (선택) 불릿이랑 글씨 간격 살짝 더 깔끔하게 */
+#resultClimberTraits.list li::marker{
+  font-size: 14px;
 }
