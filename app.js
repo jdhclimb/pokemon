@@ -177,103 +177,99 @@
   // -----------------------------
   const QUESTIONS = [
     {
-      title: "Q1. 다음 중 가장 싫은 상황은?",
+      title: "Q1. 다음 중 암장 도착했을 때 가장 설레는 상황은?",
       options: [
-        {key: "A", text: "될 거 같은데 아주 작은 차이로 계속 같은 구간에서 실패 중일 때",points: [["mewtwo", 1],["lucario", 1],["snorlax", -1]]},
-        {key: "B",text: "존버하던 문제를 실력 더 안 좋은 사람이 먼저 깰 때",points: [["mewtwo", 1],["rayquaza", 2], ["jirachi", -1]]},
-        {key: "C",text: "존버하던 문제를 누군가 리치로 뜯어갈 때",points: [["gengar", 1],["treecko", 1],["lucario", -1]]},
-        {key: "D",text: "내 그레이드 문제를 많이 풀었는데 막상 뿌무는 없을 때",points: [["pikachu", 1],["eevee", 1],["rayquaza", -1]]},
-        { key: "E", text: "암장에서 불편한 사람이랑 마주쳤을 때",points: [["togepi", +1], ["jirachi", +1], ["rayquaza", -1]] },
+        { key: "A", text: "암장에 반가운 사람이 많을 때", points: [["togepi", 2], ["jirachi", 1], ["dragonite", 1], ["psyduck", 1], ["rayquaza", -1]] },
+        { key: "B", text: "새로운 무브를 연습할 수 있는 문제를 발견했을 때", points: [["lucario", 2], ["magikarp", 1], ["espeon", 1],["eevee", 2], ["mewtwo", 1], ["ditto", 1],["togepi", -1]] },
+        { key: "C", text: "몇 번하면 풀 수 같은 개간지 다이나믹 문제가 있을 때", points: [["charizard", 2], ["dragonite", 1], ["pikachu", 1], ["treecko", 1], ["mewtwo", 1]] },
+        { key: "D", text: "색다른 문제를 발견했을 때(캠퍼싱 문제, 합손 금지 문제 등)", points: [["gengar", 3], ["eevee", 2]] },
+        { key: "E", text: "이제 그냥 올 뿐... 더 이상 설렐 게 없다", points: [["wynaut", 2], ["snorlax", 1], ["rayquaza", 1], ["pikachu", -1]] },
       ],
     },
     {
-      title: "Q2. 다른 사람한테 들었을 때 제일 기분 좋은 말은?",
+      title: "Q2. 존버 문제를 풀지 못했을 때 집 가면서 가장 먼저 드는 생각은?",
       options: [
-        { key: "A", text: "무브 진짜 깔끔하다", points: [["lucario", 2], ["dragonite", 1]] },
-        { key: "B", text: "방금 그 동작 진짜 멋있었다", points: [["charizard", 2], ["pikachu", 1]] },
-        { key: "C", text: "아 그 베타 나도 써봐야겠다", points: [["ditto", 2], ["gengar", 1]] },
-        { key: "D", text: "너랑 하니까 오늘 다 잘 풀린다", points: [["jirachi", 2], ["togepi", 1]] },
+        {key: "A", text: "다음에 오면 무조건 깬다.",points: [["mewtwo", 2],["lucario", 2],["charizard",2]]},
+        {key: "B",text: "젠장 다른 거나 풀 걸 싶다",points: [["snorlax", 2],["treecko", 1]]},
+        {key: "C",text: "아… 그래도 오늘 재밌긴 했다.",points: [["togepi", 2],["jirachi", 1],["magikarp", 1]]},
+        {key: "D", text: "아무 생각이 없다",points: [["wynaut", 2],["snorlax", 1],["psyduck", 2]]},
+        {key: "E", text: "영상을 돌려보며 뭐가 문제였는지 고민한다",points: [["dragonite", 2],["espeon", 2],["togepi", -1]]},
       ],
     },
     {
-      title: "Q3. 존버 문제를 풀지 못했을 때 집 가면서 드는 생각은?",
+      title: "Q3. 다음 중 가장 나랑 안 맞는 사람은?",
       options: [
-        { key: "A", text: "하 이걸 못했네...그래도 오늘 재밌었으니 됐지", points: [["jirachi", 2], ["togepi", 1]] },
-        { key: "B", text: "젠장 내일 또 와야겠다", points: [["magikarp", 2], ["mewtwo", 1]] },
-        { key: "C", text: "다른 방법으로 풀 수 있나? 다음엔 이렇게 시도해 봐야겠다", points: [["espeon", 2], ["eevee", 1]] },
-        { key: "D", text: "젠장 다른 거나 풀 걸", points: [["pikachu", 2], ["charizard", 1]] },
+        {key: "A", text: "베타 강요하는 사람",points: [["treecko", 2],["mewtwo", 2],["gengar",2],["espeon",1],["pikachu",1]]},
+        {key: "B",text: "자기 트라이 끝나면 바로 자리 뜨는 사람",points: [["togepi", 2],["jirachi", 1],["mewtwo", -2]]},
+        {key: "C",text: "스스로 고민하지 않고 하나부터 열까지 물어보는 사람",points: [["rayquaza", 2],["espeon", 1],["lucario", 1],["dragonite", -2]]},
+        {key: "D", text: "못 풀 거 같은 문제 풀어보라고 압박하는 사람",points: [["snorlax", 2],["togepi", 2],["magikarp", 1]]},
       ],
     },
     {
-      title: "Q4. 다음 중 가장 설레는 상황은?",
+      title: "Q4. 다음 중 가장 뿌듯한 순간은?",
       options: [
-        { key: "A", text: "오늘 암장에 아는 사람 많을 때", points: [["pikachu", 2], ["jirachi", 1]] },
-        { key: "B", text: "뉴비가 나한테 “이거 어떻게 해?” 물어볼 때", points: [["dragonite", 2], ["lucario", 1]] },
-        { key: "C", text: "암장이 한적할 때(많이 붙어볼 수 있겠다)", points: [["mewtwo", 2], ["espeon", 1]] },
-        { key: "D", text: "‘뭔가 다르게 풀 수 있을 것 같은데?’ 싶은 문제를 발견했을 때", points: [["gengar", 2], ["eevee", 1]] },
+        {key: "A", text: "존버하던 문제 마감 전 극적 완등",points: [["mewtwo", 2],["lucario", 2],["treecko",2],["rayquaza",1],["dragonite",1]]},
+        {key: "B",text: "예상하지 못했던 미친 뿌무 GET",points: [["wynaut", 2],["charizard", 3],["pikachu", 2],["gengar", 1],["psyduck", 1]]},
+        {key: "C",text: "전혀 못 풀 거 같던 문제를 가뿐하게 풀어냈을 때",points: [["espeon", 2],["snorlax", 1],["ditto", 1],["eevee", 1]]},
+        {key: "D", text: "사람들이 많이 늘었다면서 칭찬해 줄 때",points: [["togepi", 2],["pikachu", 2],["eevee", 2],["jirachi", 1],["dragonite", -1],["rayquaza", -5],["wynaut", -5]]},
       ],
     },
     {
-      title: "Q5. 가장 부담스러운 순간은?",
+      title: "Q5. 다음 중 가장 위로되는 순간은?",
       options: [
-        { key: "A", text: "뒤에서 많은 사람들이 나이스 외쳐줄 때", points: [["togepi", 2], ["psyduck", 1]] },
-        { key: "B", text: "힘 털려서 떨어지고 싶은데 뒤에서 탑 좋아요! 저그예요! 해줄 때", points: [["snorlax", 2], ["togepi", 1]] },
-        { key: "C", text: "잘못 푼 거 같은데 사람들이 내 무브를 따라할 때", points: [["espeon", 2], ["lucario", 1]] },
-        { key: "D", text: "못 할 거 같아서 접으려는데, 모르는 사람이 엄청 친절하게 피드백 해줄 때", points: [["treecko", 2], ["ditto", 1]] },
+        {key: "A", text: "“오늘 너랑 같이 있어서 재밌었다”는 말 들을 때",points: [["togepi", 2],["jirachi", 1],["ditto",2],["eevee",1],["psyduck",1]]},
+        {key: "B",text: "혼자 조용히 다시 해보니 딱 풀리는 순간",points: [["mewtwo", 2],["snorlax", 2],["espeon", 2],["rayquaza", 1],["pikachu", 1],["togepi", -2]]},
+        {key: "C",text: "“덕분에 풀었어요”라는 말 들을 때",points: [["dragonite", 2],["wynaut", 1],["rayquaza", 1],["lucario", 1],["pikachu", 1],["treecko", -2]]},
+        {key: "D", text: "나보다 잘하는 사람도 내 존버 문제를 어려워할 때",points: [["rayquaza", 2],["mewtwo", 2],["gengar", 2],["magikarp", -2]]},
+        {key: "E", text: "아무 말 없이 같이 같은 문제 붙어주는 사람 있을 때",points: [["jirachi", 2],["togepi", 1]]},
       ],
     },
     {
-      title: "Q6. 가장 인스타그램 스토리로 올리고 싶은 장면은?",
+      title: "Q6. 꼭 풀고 싶은 문제가 있는데 같은 구간에서 30번 연속 떨어졌을 때",
       options: [
-        { key: "A", text: "나만의 무브로 문제를 풀어낸 순간", points: [["gengar", 2], ["charizard", 1]] },
-        { key: "B", text: "그동안 안 되던 게 갑자기 자연스럽게 풀린 순간", points: [["psyduck", 2], ["jirachi", 1]] },
-        { key: "C", text: "한 번에 터진 멋있는 동작과 사람들의 환호가 담긴 장면", points: [["charizard", 2], ["pikachu", 1]] },
-        { key: "D", text: "허당짓 했는데 다 같이 웃는 장면", points: [["jirachi", 2], ["wynaut", 1]] },
+        {key: "A", text: "때려친다",points: [["togepi", 2],["jirachi", 1],["ditto",2],["snorlax", 2],["eevee",1],["mewtwo",-2]]},
+        {key: "B",text: "될 때까지 한다.",points: [["charizard",1],["mewtwo", 2],["espeon", 1],["rayquaza", 1],["pikachu", 1],["togepi", -2]]},
+        {key: "C",text: "ㅋㅋㅋ이게 안되네 걍 웃기다",points: [["charizard",1],["rayquaza", 2],["pikachu", 1],["jirachi", 1],["wynaut", 1],["psyduck", 1],["treecko", -2]]},
+        {key: "D", text: "30트? 그런 거 안 한다.",points: [["snorlax", 2],["mewtwo", -2]]},
+        {key: "E", text: "제발 누가 한 번만 풀어주면 좋겠다",points: [["ditto", 2],["ditto", 1]]},
       ],
     },
     {
-      title: "Q7. 다음 중 가장 위로되는 순간은?",
+      title: "Q7. 내가 존버하던 문제를 모르는 사람이 먼저 풀어버렸다. 이때 나는?",
       options: [
-        { key: "A", text: "“오늘도 재밌었다”는 말 들을 때", points: [["jirachi", 2], ["togepi", 1]] },
-        { key: "B", text: "조용히 완등하고 그대로 집 갈 때", points: [["snorlax", 2], ["espeon", 1]] },
-        { key: "C", text: "“덕분에 풀었어요”라는 말 들을 때", points: [["dragonite", 2], ["togepi", 1]] },
-        { key: "D", text: "나보다 잘하는 사람도 내 존버 문제를 어려워할 때", points: [["mewtwo", 2], ["rayquaza", 1]] },
+        {key: "A", text: "부럽당...",points: [["togepi", 2],["psyduck",2],["jirachi",2],["mewtwo",-2]]},
+        {key: "B",text: "알빠노 난 내 할 거 한다",points: [["wynaut", 2],["snorlax", 1],["dragonite", 1],["rayquaza", 1]]},
+        {key: "C",text: "오기가 생기기 시작한다",points: [["mewtwo", 2],["lucario", 1],["charizard", 2],["snorlax", -2]]},
+        {key: "D", text: "무브를 그대로 따라해본다.",points: [["ditto", 2],["mewtwo", -2]]},
+        {key: "E", text: "생각보다 어려워보이네...도망간다.",points: [["magikarp", 2],["eevee", 1]]},
       ],
     },
     {
-      title: "Q8. 잘 안 풀리는 문제를 마주했을 때 속마음",
+      title: "Q8. 가장 부담스러운 순간은?",
       options: [
-        { key: "A", text: "조금만 더 하면 될 거 같은데..", points: [["magikarp", 2], ["togepi", 1]] },
-        { key: "B", text: "다른 방법으로 해볼까?", points: [["eevee", 2], ["gengar", 1]] },
-        { key: "C", text: "제발 누가 한 번만 풀어주면 좋겠다", points: [["ditto", 2], ["dragonite", 1]] },
-        { key: "D", text: "오늘 이거 풀어야 집 간다.", points: [["mewtwo", 2], ["lucario", 1]] },
+        {key: "A", text: "모르는 사람들의 시선이 느껴질 때",points: [["psyduck", 2],["togepi",2],["magikarp",2],["rayquaza",-2]]},
+        {key: "B",text: "잘못 푼 거 같은데 사람들이 내 무브를 따라할 때",points: [["rayquaza", 2],["espeon", 2]]},
+        {key: "C",text: "모르는 사람이 엄청 친절하게 불필요한 피드백 해줄 때",points: [["treecko", 2],["gengar", 2],["mewtwo", 2],["charizard", 2],["eevee", 1]]},
+        {key: "D", text: "등반 중 너무 많은 사람들이 내 성공을 응원하고 있을 때",points: [["psyduck", 2],["magikarp", 2]]},
+        {key: "E", text: "내가 풀려는 문제를 바로 직전 사람이 너무 멋있게 성공했을 때",points: [["magikarp", 2],["psyduck", 1]]},
       ],
     },
     {
-      title: "Q9. 다음 중 가장 만족스러운 마무리는?",
+      title: "Q9. 내가 떨어진 문제를 누가 “저거 쉬운데”라고 했을 때",
       options: [
-        { key: "A", text: "다 같이 웃으면서 귀가", points: [["jirachi", 2], ["wynaut", 1]] },
-        { key: "B", text: "존버하던 문제 극적 완등", points: [["mewtwo", 2], ["magikarp", 1]] },
-        { key: "C", text: "미친 뿌무 GET", points: [["rayquaza", 2], ["charizard", 1]] },
-        { key: "D", text: "평소보다 갑자기 레벨업 된 느낌이 들 때", points: [["pikachu", 2], ["treecko", 1]] },
+        {key: "A", text: "말한 사람을 찾아서 뭐 푸는지 지켜본다",points: [["rayquaza", 2],["espeon", 2]]},
+        {key: "B",text: "맞긴해~ 그래도 말넘심이네 하고 넘긴다",points: [["magikarp", 2],["psyduck", 1],["wynaut", 1],["treecko", 1]]},
+        {key: "C",text: "갑자기 자신감 떨어져서 다른 곳으로 도망간다",points: [["psyduck", 2]]},
+        {key: "D", text: "지인들한테 이 서러움을 알린다",points: [["togepi", 2], ["jirachi", 2], ["eevee", 2]]},
       ],
     },
     {
-      title: "Q10. 다음 중 가장 나랑 안 맞는 사람은?",
+      title: "Q10. 클라이밍을 하면서 가장 임펙트 있던 순간은?",
       options: [
-        { key: "A", text: "베타 강요하는 사람", points: [["gengar", 2], ["rayquaza", 1]] },
-        { key: "B", text: "자기 트라이 끝나면 바로 자리 뜨는 사람", points: [["togepi", 2], ["jirachi", 1]] },
-        { key: "C", text: "남 무브 평가하는 사람", points: [["pikachu", 2], ["togepi", 1]] },
-        { key: "D", text: "스스로 고민하지 않고 하나부터 열까지 물어보는 사람", points: [["rayquaza", 2], ["espeon", 1]] },
-      ],
-    },
-    {
-      title: "Q11. 가장 스트레스 받는 상황은?",
-      options: [
-        { key: "A", text: "못할 거 같은데 계속 “할 수 있어”라고 부추길 때", points: [["snorlax", 2], ["togepi", 1]] },
-        { key: "B", text: "알려달래서 설명해줬더니 전혀 반영하지 않을 때", points: [["dragonite", 2], ["rayquaza", 1]] },
-        { key: "C", text: "계속 생각나던 문제가 끝내 풀리지 않을 때", points: [["mewtwo", 2], ["lucario", 1]] },
-        { key: "D", text: "문제 루트가 겹쳐서 내 페이스대로 붙어볼 수 없을 때", points: [["rayquaza", 2], ["snorlax", 1]] },
+        {key: "A", text: "완등하고 많은 사람들한테 나이스 받은 순간",points: [["charizard", 2],["pikachu", 2]]},
+        {key: "B",text: "하고 싶었던 무브를 너무 깔끔하게 성공해 낸 순간",points: [["lucario", 2],["espeon", 1],["mewtwo", 1]]},
+        {key: "C",text: "별 기대 없이 붙었는데 갑자기 말도 안 되게 풀린 순간",points: [["psyduck", 2],["ditto", 1]]},
+        {key: "D", text: "언젠간 그랬던 적도 있었던 거 같다",points: [["wynaut", 2],["snorlax", 1]]},
       ],
     },
   ];
@@ -1135,4 +1131,152 @@ function injectBulkSaveButton() {
 
   nav.appendChild(btn);
 }
+
+// ==============================
+// 1회성: 기기/브라우저에 따라 저장 루트 자동 분기
+// - PC/안드: 다운로드
+// - iOS: 공유(canShare) 우선, 안되면 새탭 열고 길게 눌러 저장
+// ==============================
+async function bulkSaveAllCardsSameFormat(options = {}) {
+  const {
+    prefix = "result",
+    delayMs = 650,
+  } = options;
+
+  // ✅ 무조건 전체 포켓몬(현재 결과랑 무관)
+  const targetIds = POKEMON.map((p) => p.id);
+
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  // 원래 화면(복구용)
+  const originalWinner = btnSaveCard?.dataset?.winner || CURRENT_WINNER_ID || "pikachu";
+
+  for (let i = 0; i < targetIds.length; i++) {
+    const id = targetIds[i];
+
+    try {
+      // ✅ 해당 유형으로 강제 렌더
+      renderResult(id);
+
+      // 렌더 안정화
+      await new Promise((r) => requestAnimationFrame(() => r()));
+      await sleep(60);
+
+      // ✅ 개별저장과 동일 포맷 blob 생성
+      const blob = await (async () => {
+        const appHeader = document.querySelector(".header");
+        const card = document.querySelector("#screenResult .card");
+        if (!appHeader || !card) throw new Error("캡처 대상 없음");
+
+        if (document.fonts?.ready) {
+          try { await document.fonts.ready; } catch {}
+        }
+
+        const imgEl = document.querySelector("#resultImg");
+        if (imgEl) imgEl.crossOrigin = "anonymous";
+        if (imgEl && !imgEl.complete) {
+          await new Promise((r) => {
+            const done = () => { imgEl.onload = null; imgEl.onerror = null; r(); };
+            imgEl.onload = done; imgEl.onerror = done;
+          });
+        }
+
+        const temp = document.createElement("div");
+        temp.style.position = "fixed";
+        temp.style.left = "-99999px";
+        temp.style.top = "0";
+        temp.style.padding = "28px 18px 40px";
+        temp.style.width = card.getBoundingClientRect().width + "px";
+        temp.style.color = getComputedStyle(document.body).color;
+        temp.style.fontFamily = getComputedStyle(document.body).fontFamily;
+
+        const bodyStyle = getComputedStyle(document.body);
+        temp.style.backgroundImage = bodyStyle.backgroundImage;
+        temp.style.backgroundColor = bodyStyle.backgroundColor;
+
+        const headerClone = appHeader.cloneNode(true);
+        headerClone.querySelector(".sub")?.remove(); // 도움주신 멋쟁이들 제거
+
+        const cardClone = card.cloneNode(true);
+        cardClone.querySelectorAll(".nav").forEach((n) => n.remove()); // 버튼 제거
+        cardClone.querySelector("#cardCanvas")?.remove();
+        cardClone.querySelector("#btnBulkSaveAll")?.remove();
+
+        temp.appendChild(headerClone);
+        temp.appendChild(cardClone);
+        document.body.appendChild(temp);
+
+        try {
+          const canvas = await html2canvas(temp, {
+            backgroundColor: null,
+            scale: Math.max(2, window.devicePixelRatio || 2),
+            useCORS: true,
+            allowTaint: true,
+            logging: false,
+          });
+
+          const b = await new Promise((resolve) => canvas.toBlob(resolve, "image/png", 1.0));
+          if (!b) throw new Error("toBlob 실패");
+          return b;
+        } finally {
+          temp.remove();
+        }
+      })();
+
+      const filename = `${prefix}-${id}.png`;
+
+      // ✅ iOS: 공유 우선
+      if (isIOS && navigator.canShare) {
+        try {
+          const file = new File([blob], filename, { type: "image/png" });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: filename });
+            await sleep(Math.max(delayMs, 900));
+            continue;
+          }
+        } catch (e) {
+          console.warn("share failed/canceled:", e);
+        }
+      }
+
+      // ✅ 그 외: 다운로드
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2500);
+    } catch (e) {
+      console.error("[bulkSameFormat] error:", id, e);
+    }
+
+    await sleep(delayMs);
+  }
+
+  renderResult(id);
+
+// ✅ DOM 반영 한 번 기다리고
+await new Promise((r) => requestAnimationFrame(() => r()));
+
+// ✅ 이미지 로딩까지 기다리기 (안 하면 이전 이미지로 찍힐 수 있음)
+const imgEl = document.querySelector("#resultImg");
+if (imgEl && !imgEl.complete) {
+  await new Promise((r) => {
+    const done = () => { imgEl.onload = null; imgEl.onerror = null; r(); };
+    imgEl.onload = done;
+    imgEl.onerror = done;
+  });
+}
+
+  // ✅ 화면 원복
+  renderResult(originalWinner);
+  if (btnSaveCard) btnSaveCard.dataset.winner = originalWinner;
+
+  alert(`일괄 저장 끝 ✅ (${targetIds.length}개)`);
+}
+
 })();
