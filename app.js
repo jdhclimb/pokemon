@@ -168,167 +168,75 @@ const COMPAT = {
   },
   // wynaut: intentionally 없음
 };
-
-
   // -----------------------------
   // 3) 질문(개) + 점수 매핑
   // -----------------------------
 const QUESTIONS = [
   {
-    title: "Q1. 존버 문제 못 풀고 집에 갈 때",
+    title: "Q1. 나랑 제일 안 맞는 사람은?",
     options: [
-      { key: "A", text: "젠장 다른 거 할 걸", points: [["snorlax", 2], ["", 1], ["", 1], ["", -1]] },
-      { key: "B", text: "그래도 오늘 재밌긴 했어", points: [["", 2], ["", 2], ["", 1], ["", -1]] },
-      { key: "C", text: "아무 생각 없음", points: [["", 2], ["", 1], ["", 2], ["", -1]] },
-      { key: "D", text: "아직 그 문제에서 헤어나오지 못 함", points: [["", 2], ["", 2], ["", 1], ["", -1]] },
+      {key: "A", text: "베타 강요자",points: [["gengar", 2],["mewtwo", 2],["charizard", 1],["eevee", 1],],},
+      {key: "B",text: "유기 전문가(솔플러)",points: [["togepi", 2],["pikachu", 2],["dragonite", 1],["ditto", 1],],},
+      {key: "C",text: "수행력 0인 질문 폭격기",points: [["snorlax", 2],["rayquaza", 2],["dragonite", -1],],},
     ],
   },
-  // {
-  //   title: "Q2. 나랑 안 맞는 사람",
-  //   options: [
-  //     { key: "A", text: "베타 강요자", points: [["mewtwo", 2], ["lucario", 1], ["togepi", -1]] },
-  //     { key: "B", text: "유기 전문가", points: [["rayquaza", 2], ["charizard", 1], ["dragonite", -1]] },
-  //     { key: "C", text: "자아 상실자", points: [["togepi", 2], ["psyduck", 1], ["mewtwo", -1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q3. 뿌듯한 순간",
-  //   options: [
-  //     { key: "A", text: "내가 알려준 무브로 깼을 때", points: [["togepi", 2], ["jirachi", 2], ["lucario", 1]] },
-  //     { key: "B", text: "존버하던 문제 결국 깼을 때", points: [["dragonite", 2], ["rayquaza", 2], ["charizard", 1]] },
-  //     { key: "C", text: "개 힘든 문제 완등하고 숨 찰 때", points: [["charizard", 2], ["rayquaza", 1], ["lucario", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q4. 기분 좋아지는 한 마디",
-  //   options: [
-  //     { key: "A", text: "같이 하니까 재밌다!", points: [["togepi", 2], ["psyduck", 1], ["pikachu", 1]] },
-  //     { key: "B", text: "덕분에 풀었다!", points: [["jirachi", 2], ["togepi", 1], ["lucario", 1]] },
-  //     { key: "C", text: "너 많이 늘었다", points: [["lucario", 2], ["mewtwo", 1], ["dragonite", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q5. 암장 가기 전에 카탈로그",
-  //   options: [
-  //     { key: "A", text: "정독한다", points: [["mewtwo", 2], ["lucario", 1], ["jirachi", 1]] },
-  //     { key: "B", text: "재밌는 문제 있는지만 본다", points: [["pikachu", 2], ["charizard", 1], ["psyduck", 1]] },
-  //     { key: "C", text: "안 본다", points: [["dragonite", 2], ["psyduck", 2], ["mewtwo", -1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q6. 같이 간 사람이 나이스 안 해주면?",
-  //   options: [
-  //     { key: "A", text: "기강을 잡는다", points: [["rayquaza", 2], ["charizard", 1], ["mewtwo", 1]] },
-  //     { key: "B", text: "상관없다", points: [["dragonite", 2], ["psyduck", 1], ["snorlax", 1]] },
-  //     { key: "C", text: "좀 서운함", points: [["togepi", 2], ["jirachi", 1], ["psyduck", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q7. 좋아하는 문제 유형은?",
-  //   options: [
-  //     { key: "A", text: "스태틱", points: [["mewtwo", 2], ["lucario", 1], ["dragonite", 1]] },
-  //     { key: "B", text: "다이나믹", points: [["charizard", 2], ["rayquaza", 2], ["pikachu", 1]] },
-  //     { key: "C", text: "밸런스", points: [["lucario", 2], ["jirachi", 1], ["mewtwo", 1]] },
-  //     { key: "D", text: "다", points: [["pikachu", 2], ["psyduck", 2], ["dragonite", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q8. 망클 기준",
-  //   options: [
-  //     { key: "A", text: "하나도 못 푼 날", points: [["rayquaza", 2], ["charizard", 1], ["pikachu", -1]] },
-  //     { key: "B", text: "목표 문제 못 푼 날", points: [["mewtwo", 2], ["dragonite", 1], ["lucario", 1]] },
-  //     { key: "C", text: "재미없던 날", points: [["togepi", 2], ["psyduck", 2], ["mewtwo", -1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q9. 벽에 붙을 때",
-  //   options: [
-  //     { key: "A", text: "남들 푸는 거 보고 올라간다", points: [["jirachi", 2], ["togepi", 1], ["mewtwo", 1]] },
-  //     { key: "B", text: "일단 붙어본다", points: [["pikachu", 2], ["charizard", 1], ["psyduck", 1]] },
-  //     { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["mewtwo", 2], ["lucario", 2], ["dragonite", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q10. 누가 베타 조언해 주면?",
-  //   options: [
-  //     { key: "A", text: "안 듣는다", points: [["rayquaza", 2], ["charizard", 1], ["mewtwo", -1]] },
-  //     { key: "B", text: "참고만", points: [["mewtwo", 2], ["lucario", 1], ["dragonite", 1]] },
-  //     { key: "C", text: "너무 고맙다", points: [["togepi", 2], ["jirachi", 2], ["psyduck", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q11. 컨디션이 좋지 않으면?",
-  //   options: [
-  //     { key: "A", text: "그래도 한다", points: [["dragonite", 2], ["rayquaza", 1], ["lucario", 1]] },
-  //     { key: "B", text: "가볍게만 한다", points: [["mewtwo", 1], ["psyduck", 2], ["togepi", 1]] },
-  //     { key: "C", text: "안 가~", points: [["snorlax", 2], ["psyduck", 1], ["pikachu", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q12. 문제 선택 기준",
-  //   options: [
-  //     { key: "A", text: "재미", points: [["pikachu", 2], ["togepi", 1], ["psyduck", 1]] },
-  //     { key: "B", text: "어려운 거", points: [["rayquaza", 2], ["charizard", 2], ["dragonite", 1]] },
-  //     { key: "C", text: "내가 풀 수 있는 거", points: [["mewtwo", 2], ["lucario", 2], ["dragonite", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q13. 모르는 사람한테 나이스 받으면",
-  //   options: [
-  //     { key: "A", text: "민망하다", points: [["togepi", 2], ["psyduck", 2], ["mewtwo", -1]] },
-  //     { key: "B", text: "더 해 줘", points: [["pikachu", 2], ["charizard", 1], ["rayquaza", 1]] },
-  //     { key: "C", text: "못 들음", points: [["dragonite", 2], ["snorlax", 1], ["psyduck", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q14. 암장에 혼자 남으면?",
-  //   options: [
-  //     { key: "A", text: "집중력 MAX", points: [["mewtwo", 2], ["lucario", 2], ["dragonite", 1]] },
-  //     { key: "B", text: "조금 심심", points: [["psyduck", 2], ["togepi", 1], ["pikachu", 1]] },
-  //     { key: "C", text: "혼자 절대 남지 않음", points: [["togepi", 2], ["jirachi", 1], ["psyduck", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q15. 마감 15분 전 나는?",
-  //   options: [
-  //     { key: "A", text: "막트 진짜 찐막", points: [["rayquaza", 2], ["charizard", 2], ["dragonite", 1]] },
-  //     { key: "B", text: "나갈 준비 끝!", points: [["mewtwo", 2], ["lucario", 1], ["jirachi", 1]] },
-  //     { key: "C", text: "이미 밖", points: [["snorlax", 2], ["psyduck", 1], ["dragonite", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q16. 실력보다 중요한 것은?",
-  //   options: [
-  //     { key: "A", text: "멘탈", points: [["mewtwo", 2], ["dragonite", 1], ["lucario", 1]] },
-  //     { key: "B", text: "재미", points: [["pikachu", 2], ["togepi", 2], ["psyduck", 1]] },
-  //     { key: "C", text: "없음", points: [["rayquaza", 2], ["charizard", 1], ["mewtwo", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q17. 나의 클라이밍 템포",
-  //   options: [
-  //     { key: "A", text: "천천히~", points: [["dragonite", 2], ["snorlax", 2], ["mewtwo", 1]] },
-  //     { key: "B", text: "점점 빠르게", points: [["lucario", 2], ["charizard", 1], ["pikachu", 1]] },
-  //     { key: "C", text: "들쭉날쭉", points: [["psyduck", 2], ["pikachu", 1], ["togepi", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q18. 문제 깬 직후",
-  //   options: [
-  //     { key: "A", text: "쉰다", points: [["snorlax", 2], ["dragonite", 1], ["psyduck", 1]] },
-  //     { key: "B", text: "다음 문제 찾기", points: [["pikachu", 2], ["rayquaza", 1], ["charizard", 1]] },
-  //     { key: "C", text: "내 무브 구경", points: [["mewtwo", 2], ["lucario", 1], ["jirachi", 1]] },
-  //   ],
-  // },
-  // {
-  //   title: "Q19. 나에게 클라이밍이란?",
-  //   options: [
-  //     { key: "A", text: "도전", points: [["rayquaza", 2], ["charizard", 2], ["dragonite", 1]] },
-  //     { key: "B", text: "놀이", points: [["pikachu", 2], ["togepi", 2], ["psyduck", 1]] },
-  //     { key: "C", text: "습관", points: [["dragonite", 2], ["mewtwo", 1], ["snorlax", 1]] },
-  //   ],
-  // },
+  {
+    title: "Q2. 컨디션이 좋지 않으면?",
+    options: [
+      { key: "A", text: "그래도 한 번씩 붙어본다", points: [["mewtwo",2],["charizard",2],["rayquaza",2],["lucario",2]] },
+      { key: "B", text: "가볍게 즐기기만", points: [["eevee",2],["pikachu",1],["ditto",1]] },
+      { key: "C", text: "다른 사람 봐준다", points: [["dragonite",2],["wynaut",1]] },
+      { key: "D", text: "쉬어야지 암장을 왜 가", points: [["snorlax",2],["magikarp",2],["togepi",1],["mewtwo",-1]] },
+    ],
+  },
+  {
+    title: "Q3. 뿌듯한 순간",
+    options: [
+      { key: "A", text: "존버하던 문제 결국 깼을 때", points: [["mewtwo",2],["charizard",2],["ditto",1]] },
+      { key: "B", text: "빡센 문제 완등하고 숨 찰 때", points: [["rayquaza",2],["lucario",1]] },
+      { key: "C", text: "다른 사람이 내가 알려준 무브로 깼을 때", points: [["dragonite",2],["wynaut",1]] },
+    ],
+  },
+  {
+    title: "Q4. 암장 선택 시 가장 고려하는 것",
+    options: [
+      { key: "A", text: "같이 가는 사람", points: [["pikachu",2],["togepi",2],["dragonite",1]] },
+      { key: "B", text: "풀고 싶은 문제 여부", points: [["mewtwo",2],["charizard",2],["lucario",1],["rayquaza",2]] },
+      { key: "C", text: "뉴셋 주기", points: [["eevee",2]] },
+    ],
+  },
+  {
+    title: "Q5. 처음 붙을 때",
+    options: [
+      { key: "A", text: "일단 붙어본다", points: [["charizard",2],["mewtwo",1],["pikachu",1],["gengar",1]] },
+      { key: "B", text: "루트파인딩 충분히 하고 붙는다", points: [["lucario",2],["dragonite",1]] },
+      { key: "C", text: "남들 푸는 거 보고 붙는다", points: [["ditto",2],["togepi",1],["eevee",1],["magikarp",1]] },
+    ],
+  },
+  {
+    title: "Q6. 실력보다 중요한 것은?",
+    options: [
+      { key: "A", text: "태도", points: [["lucario",2],["dragonite",2],["wynaut",1]] },
+      { key: "B", text: "재미", points: [["pikachu",2],["gengar",2],["charizard",1],["eevee",1],["togepi",1]] },
+      { key: "C", text: "없다", points: [["mewtwo",2],["rayquaza",2],["wynaut",1]] },
+    ],
+  },
+  {
+    title: "Q.7 같이 간 사람이 나이스 안 해주면?",
+    options: [
+      { key: "A", text: "서운하다", points: [["togepi",2],["pikachu",2],["eevee",1],["dragonite",1]] },
+      { key: "B", text: "상관없다", points: [["wynaut",2],["magikarp",1],["gengar",1]] },
+    ],
+  },
+  {
+    title: "Q.8 더 불편한 상황은?",
+    options: [
+      { key: "A", text: "루트 다 아는데 뒤에서 루파 해줄 때", points: [["mewtwo",2],["lucario",2],["rayquaza",2],["gengar",2],["charizard",1]] },
+      { key: "B", text: "혼자 계속 해맬 때", points: [["ditto",2],["togepi",2],["magikarp",2]] },
+    ],
+  },
 ];
+
 
   // -----------------------------
   // 0) 유틸(먼저 선언)
@@ -533,19 +441,7 @@ const QUESTIONS = [
     if (winners.length === 1) return winners[0];
 
     const priority = [
-      "mewtwo",
-      "rayquaza",
-      "lucario",
-      "charizard",
-      "pikachu",
-      "dragonite",
-      "gengar",
-      "ditto",
-      "eevee",
-      "magikarp",
-      "togepi",
-      "snorlax",
-      "wynaut",
+      "magikarp","ditto","eevee","togepi","lucario","snorlax","pikachu","gengar","dragonite","charizard","mewtwo","rayquaza","wynaut",
     ];
     for (const p of priority) if (winners.includes(p)) return p;
     return winners[0];
