@@ -154,7 +154,6 @@ h1{ margin: 12px 0 6px; font-size: 30px; letter-spacing: -0.5px; }
 
 .footer{ margin-top: 10px; color: var(--muted); text-align:center; }
 
-
 .result-media{
   margin: 10px 0 14px;
   display:flex;
@@ -260,6 +259,7 @@ h1{ margin: 12px 0 6px; font-size: 30px; letter-spacing: -0.5px; }
 }
 
 .match-chips{
+  margin-top: 10px;
   display:flex;
   flex-wrap:wrap;
   align-items:flex-start;
