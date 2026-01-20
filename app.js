@@ -173,84 +173,103 @@ const COMPAT = {
   // -----------------------------
 const QUESTIONS = [
   {
-    title: "Q1. 나랑 제일 안 맞는 사람은?",
+    title: "Q. 제일 풀고 싶은 문제는?",
     options: [
-      {key: "A", text: "베타 강요자",points: [["gengar", 2],["mewtwo", 2],["charizard", 1],["eevee", 1],],},
-      {key: "B",text: "유기 전문가(솔플러)",points: [["togepi", 2],["pikachu", 2],["dragonite", 1],["ditto", 1],],},
-      {key: "C",text: "수행력 0인 질문 폭격기",points: [["snorlax", 2],["rayquaza", 2],["dragonite", -1],],},
+      { key: "A", text: "스타트 수상하게 생긴 거", points: [["gengar", 2], ["eevee", 1], ["ditto", 1]] },
+      { key: "B", text: "재밌어 보이는 거", points: [["pikachu", 2], ["togepi", 1], ["snorlax", 1]] },
+      { key: "C", text: "개간지 다이나믹", points: [["charizard", 2], ["mewtwo", 1], ["rayquaza", 1]] },
     ],
   },
   {
-    title: "Q2. 컨디션이 좋지 않으면?",
+      title: "Q. 가장 인스스로 올리고 싶은 장면은?",
+      options: [
+        { key: "A", text: "같이 간 사람들과 찍은 사진", points: [["togepi", 2], ["pikachu", 1]] },
+        { key: "B", text: "존버 크럭스 구간 제압 장면", points: [["lucario", 2], ["snorlax", 1]] },
+        { key: "C", text: "허당짓 하고 다 같이 웃는 장면", points: [["magikarp", 2], ["gengar", 1], ["eevee", 1]] },
+        { key: "D", text: "개쩌는 다이나믹 동작", points: [["charizard", 2], ["mewtwo", 1], ["rayquaza", 1]] },
+      ],
+  },
+  {
+      title: "Q. 내가 존버 중인 문제를 누가 쉽다고 하면?",
+      options: [
+        { key: "A", text: "주늑든다...🥲", points: [["togepi", 2], ["magikarp", 2]] },
+        { key: "B", text: "누군지 찾아내서 뭐 푸는지 확인한다", points: [["rayquaza", 2], ["mewtwo", 1]] },
+        { key: "C", text: "찾아서 어떻게 쉽게 풀었는지 물어본다", points: [["pikachu", 2],["ditto", 1], ["eevee", 1]] },
+        { key: "D", text: "알빠노", points: [["snorlax", 2], ["gengar", 1],["wynaut",2]] },
+      ],
+  },
+  {
+    title: "Q. 가장 킹받는 사람",
     options: [
-      { key: "A", text: "그래도 한 번씩 붙어본다", points: [["mewtwo",2],["charizard",2],["rayquaza",2],["lucario",2]] },
-      { key: "B", text: "가볍게 즐기기만", points: [["eevee",2],["pikachu",1],["ditto",1]] },
+      { key: "A", text: "나한테 맞지 않는 베타 강요하는 사람",points: [["gengar", 2],["mewtwo", 2], ["eevee", 1], ["ditto", 1]],},
+      { key: "B", text: "지 문제만 풀고 휘릭 가버리는 사람", points: [["togepi", 2], ["pikachu", 1],["dragonite",1]] },
+      { key: "C", text: "개판으로 풀어서 열심히 알려줬더니 여전히 개판인 사람", points: [["rayquaza", 2], ["lucario", 1]] },
+    ],
+  },
+    {
+    title: "Q. 벽에 붙을 때",
+    options: [
+      { key: "A", text: "남들 푸는 거 보고 올라간다", points: [["ditto",2],["eevee",1],["togepi",1]] },
+      { key: "B", text: "일단 붙어본다", points: [["charizard",2],["mewtwo",1],["gengar",1]] },
+      { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["lucario",2]] },
+    ],
+  },
+  {
+    title: "Q. 컨디션이 좋지 않으면?",
+    options: [
+      { key: "A", text: "그래도 한다", points: [["mewtwo",2],["lucario",2]] },
+      { key: "B", text: "쉬운 거만 한다", points: [["eevee",2],["pikachu",1],["ditto",1]] },
       { key: "C", text: "다른 사람 봐준다", points: [["dragonite",2],["wynaut",1]] },
-      { key: "D", text: "쉬어야지 암장을 왜 가", points: [["snorlax",2],["magikarp",2],["togepi",1],["mewtwo",-1]] },
+      { key: "D", text: "쉬어야지 암장을 왜 가", points: [["snorlax",2],["magikarp",2],["togepi",1]] },
     ],
   },
   {
-    title: "Q3. 뿌듯한 순간",
+    title: "Q. 가장 기분 좋은 순간은?",
     options: [
       { key: "A", text: "존버하던 문제 결국 깼을 때", points: [["mewtwo",2],["charizard",2],["ditto",1]] },
-      { key: "B", text: "빡센 문제 완등하고 숨 찰 때", points: [["rayquaza",2],["lucario",1]] },
+      { key: "B", text: "빡센 문제 완등하고 숨 찰 때", points: [["rayquaza",2],["lucario",2]] },
       { key: "C", text: "다른 사람이 내가 알려준 무브로 깼을 때", points: [["dragonite",2],["wynaut",1]] },
+      { key: "D", text: "사람들이 뒤에서 응원해 줄 때", points: [["pikachu",2],["togepi",1]] },
     ],
   },
   {
-    title: "Q4. 암장 선택 시 가장 고려하는 것",
+    title: "Q. 실력보다 중요한 것은?",
     options: [
-      { key: "A", text: "같이 가는 사람", points: [["pikachu",2],["togepi",2],["dragonite",1]] },
-      { key: "B", text: "풀고 싶은 문제 여부", points: [["mewtwo",2],["charizard",2],["lucario",1],["rayquaza",2]] },
-      { key: "C", text: "뉴셋 주기", points: [["eevee",2]] },
-    ],
-  },
-  {
-    title: "Q5. 처음 붙을 때",
-    options: [
-      { key: "A", text: "일단 붙어본다", points: [["charizard",2],["mewtwo",1],["pikachu",1],["gengar",1]] },
-      { key: "B", text: "루트파인딩 충분히 하고 붙는다", points: [["lucario",2],["dragonite",1]] },
-      { key: "C", text: "남들 푸는 거 보고 붙는다", points: [["ditto",2],["togepi",1],["eevee",1],["magikarp",1]] },
-    ],
-  },
-  {
-    title: "Q6. 실력보다 중요한 것은?",
-    options: [
-      { key: "A", text: "태도", points: [["lucario",2],["dragonite",2],["wynaut",1]] },
+      { key: "A", text: "태도", points: [["dragonite",2],["wynaut",1]] },
       { key: "B", text: "재미", points: [["pikachu",2],["gengar",2],["charizard",1],["eevee",1],["togepi",1]] },
-      { key: "C", text: "없다", points: [["mewtwo",2],["rayquaza",2],["wynaut",1]] },
+      { key: "C", text: "없다", points: [["mewtwo",2],["rayquaza",2],["lucario",2]] },
     ],
   },
   {
-    title: "Q.7 같이 간 사람이 나이스 안 해주면?",
+    title: "Q. 꼭 풀고 싶은 문제 30트째 떨어지고 있다면?",
     options: [
-      { key: "A", text: "서운하다", points: [["togepi",2],["pikachu",2],["eevee",1],["dragonite",1]] },
-      { key: "B", text: "상관없다", points: [["wynaut",2],["magikarp",1],["gengar",1]] },
+      { key: "A", text: "때려친다", points: [["eevee",2],["pikachu",1]] },
+      { key: "B", text: "샤갈 될 때까지 한다", points: [["mewtwo",2],["charizard",2]] },
+      { key: "C", text: "30트? 애초에 안한다", points: [["snorlax",2],["lucario",2],["wynaut",2],["magikarp",1]] },
+      { key: "D", text: "제발 누가 알려주면 좋겠다", points: [["ditto",2],["togepi",2],["eevee",1]] },
     ],
   },
-  {
-    title: "Q.8 더 불편한 상황은?",
+    {
+    title: "Q. 누가 베타 조언해 주면?",
     options: [
-      { key: "A", text: "루트 다 아는데 뒤에서 루파 해줄 때", points: [["mewtwo",2],["lucario",2],["rayquaza",2],["gengar",2],["charizard",1]] },
-      { key: "B", text: "혼자 계속 해맬 때", points: [["ditto",2],["togepi",2],["magikarp",2]] },
+      { key: "A", text: "안 듣는다", points: [["rayquaza", 2], ["gengar", 2]] },
+      { key: "B", text: "내가 필요한 부분 참고만", points: [["wynaut", 2],["mewtwo", 2], ["snorlax", 1], ["dragonite", 1]] },
+      { key: "C", text: "너무 고맙다", points: [["pikachu", 2], ["togepi", 2], ["eevee", 1], ["ditto", 1], ["magikarp", 1]] },
     ],
   },
 ];
 
-
   // -----------------------------
-  // 0) 유틸(먼저 선언)
+  // 0) 유틸
   // -----------------------------
   const show = (el) => el && el.classList.remove("hidden");
   const hide = (el) => el && el.classList.add("hidden");
-
   function splitNameAndType(nameStr) {
     const s = String(nameStr || "");
     const m = s.match(/^(.*)\((.*)\)\s*$/);
     if (!m) return { base: s, type: "" };
     return { base: m[1].trim(), type: m[2].trim() };
   }
-
   function fixedMatches(winnerId) {
     if (winnerId === "wynaut") return { good: [], bad: [] };
     const rule = COMPAT[winnerId] || { good: [], bad: [] };
@@ -258,11 +277,9 @@ const QUESTIONS = [
     const bad  = (rule.bad  || []).map((id) => POKEMON.find((p) => p.id === id)).filter(Boolean);
     return { good, bad };
   }
-
   function renderFixedChips(target, list, emptyText = "-") {
     if (!target) return;
     target.innerHTML = "";
-
     if (!list || list.length === 0) {
       const chip = document.createElement("div");
       chip.className = "chip empty";
@@ -270,7 +287,6 @@ const QUESTIONS = [
       target.appendChild(chip);
       return;
     }
-
     list.forEach((pokemon) => {
       const chip = document.createElement("div");
       chip.className = "chip";
@@ -278,35 +294,28 @@ const QUESTIONS = [
       target.appendChild(chip);
     });
   }
-
   // -----------------------------
   // 4) DOM
   // -----------------------------
   const screenStart = document.querySelector("#screenStart");
   const screenQuiz = document.querySelector("#screenQuiz");
   const screenResult = document.querySelector("#screenResult");
-
   const qTotal = document.querySelector("#qTotal");
   const qTotal2 = document.querySelector("#qTotal2");
   if (qTotal) qTotal.textContent = QUESTIONS.length;
   if (qTotal2) qTotal2.textContent = QUESTIONS.length;
-
   const qIndex = document.querySelector("#qIndex");
   const qTitle = document.querySelector("#qTitle");
   const optionsWrap = document.querySelector("#options");
   const progressBar = document.querySelector("#progressBar");
-
   const btnStart = document.querySelector("#btnStart");
   const btnPrev = document.querySelector("#btnPrev");
   const btnNext = document.querySelector("#btnNext");
   const btnRestart = document.querySelector("#btnRestart");
   const btnResetTop = document.querySelector("#btnResetTop");
   const btnSaveCard = document.querySelector("#btnSaveCard");
-
-  // (있으면 제거/숨김) 결과 복사 버튼
   const btnCopy = document.querySelector("#btnCopy");
   if (btnCopy) btnCopy.remove();
-
   const resultEmoji = document.querySelector("#resultEmoji");
   const resultName = document.querySelector("#resultName");
   const resultOneLiner = document.querySelector("#resultOneLiner");
@@ -315,7 +324,6 @@ const QUESTIONS = [
   const goodMatches = document.querySelector("#goodMatches");
   const badMatches = document.querySelector("#badMatches");
   const resultImg = document.querySelector("#resultImg");
-
   let current = 0;
   const answers = new Array(QUESTIONS.length).fill(null);
 
@@ -329,14 +337,12 @@ const QUESTIONS = [
     hide(screenQuiz);
     hide(screenResult);
   }
-
   function goQuiz() {
     hide(screenStart);
     show(screenQuiz);
     hide(screenResult);
     render();
   }
-
   function goResult() {
     hide(screenStart);
     hide(screenQuiz);
@@ -345,7 +351,6 @@ const QUESTIONS = [
     // injectBulkSaveButton();
     injectShareLinkButton();
   }
-
   function autoAdvance() {
     setTimeout(() => {
       if (current === QUESTIONS.length - 1) goResult();
@@ -363,15 +368,12 @@ const QUESTIONS = [
     const q = QUESTIONS[current];
     if (qIndex) qIndex.textContent = String(current + 1);
     if (qTitle) qTitle.textContent = q.title;
-
     if (progressBar) {
       const pct = Math.round((current / Math.max(1, QUESTIONS.length - 1)) * 100);
       progressBar.style.width = `${Math.max(0, Math.min(100, pct))}%`;
     }
-
     if (!optionsWrap) return;
     optionsWrap.innerHTML = "";
-
     q.options.forEach((opt) => {
       const div = document.createElement("div");
       div.className = "option";
@@ -379,7 +381,6 @@ const QUESTIONS = [
       div.setAttribute("role", "button");
       div.setAttribute("tabindex", "0");
       div.innerHTML = `<div class="key">${opt.key}</div><div class="txt">${opt.text}</div>`;
-
       div.addEventListener("click", () => select(opt.key, true));
       div.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -387,10 +388,8 @@ const QUESTIONS = [
           select(opt.key, true);
         }
       });
-
       optionsWrap.appendChild(div);
     });
-
     if (btnPrev) btnPrev.disabled = current === 0;
     if (btnNext) {
       btnNext.disabled = answers[current] == null;
@@ -400,14 +399,12 @@ const QUESTIONS = [
 
   function select(key, shouldAutoAdvance = false) {
     answers[current] = key;
-
     if (optionsWrap) {
       [...optionsWrap.children].forEach((c) => {
         const k = c.querySelector(".key")?.textContent;
         c.classList.toggle("selected", k === key);
       });
     }
-
     if (btnNext) btnNext.disabled = false;
     if (shouldAutoAdvance) autoAdvance();
   }
@@ -421,11 +418,10 @@ const QUESTIONS = [
       if (!ansKey) return;
       const opt = QUESTIONS[idx].options.find((o) => o.key === ansKey);
       if (!opt) return;
-      (opt.points || []).forEach(([pid, pts]) => add(score, pid, pts)); // ✅ "" 무시됨
+      (opt.points || []).forEach(([pid, pts]) => add(score, pid, pts));
     });
     return score;
   }
-
   function pickWinner(score) {
     let max = -Infinity;
     let winners = [];
@@ -439,34 +435,26 @@ const QUESTIONS = [
       }
     }
     if (winners.length === 1) return winners[0];
-
     const priority = [
       "magikarp","ditto","eevee","togepi","lucario","snorlax","pikachu","gengar","dragonite","charizard","mewtwo","rayquaza","wynaut",
     ];
     for (const p of priority) if (winners.includes(p)) return p;
     return winners[0];
   }
-
   function renderResult(forcedWinnerId = null) {
     const score = forcedWinnerId ? null : calcScores();
     const winnerId = forcedWinnerId || pickWinner(score);
-
     CURRENT_WINNER_ID = winnerId;
     const winner = POKEMON.find((p) => p.id === winnerId) || POKEMON[0];
     const { base: baseName, type: typeLabel } = splitNameAndType(winner.name);
-
     if (resultEmoji) resultEmoji.textContent = winner.emoji;
-
     if (resultName) {
       resultName.innerHTML = `
         <span class="r-name">${baseName}</span>
         ${typeLabel ? `<span class="r-chip r-chip-type">${typeLabel}</span>` : ""}
       `;
     }
-
     if (resultOneLiner) resultOneLiner.textContent = winner.oneLiner;
-
-    // 포켓몬 성격 칩
     if (resultPokemonTraits) {
       resultPokemonTraits.innerHTML = "";
       const colors = ["c1", "c2", "c3", "c4", "c5"];
@@ -477,8 +465,6 @@ const QUESTIONS = [
         resultPokemonTraits.appendChild(li);
       });
     }
-
-    // 클라이머 특징
     if (resultClimberTraits) {
       resultClimberTraits.innerHTML = "";
       (winner.climberTraits || []).filter(Boolean).forEach((t) => {
@@ -487,8 +473,6 @@ const QUESTIONS = [
         resultClimberTraits.appendChild(li);
       });
     }
-
-    // 이미지
     if (resultImg) {
       resultImg.style.display = "none";
       resultImg.onload = () => (resultImg.style.display = "block");
@@ -498,28 +482,22 @@ const QUESTIONS = [
       };
       resultImg.src = DOODLE_PATH(winner.id);
     }
-
-    // 궁합 chips
     const { good, bad } = fixedMatches(winnerId);
     renderFixedChips(goodMatches, good, "없음(전부 무난)");
     renderFixedChips(badMatches, bad, "없음(전부 수용)");
-
     if (btnSaveCard) btnSaveCard.dataset.winner = winnerId;
     return winnerId;
   }
-
   // -----------------------------
-  // 8) 결과 저장 (기존 너 함수 유지)
+  // 8) 결과 저장
   // -----------------------------
   async function saveResultWithHeaderNoButtons(filename = "result.png") {
     const appHeader = document.querySelector(".header");
     const card = document.querySelector("#screenResult .card");
-    if (!appHeader || !card) return alert("저장할 요소를 못 찾음 🥲");
-
+    if (!appHeader || !card) return alert("저장 불가");
     if (document.fonts?.ready) {
       try { await document.fonts.ready; } catch {}
     }
-
     const imgEl = document.querySelector("#resultImg");
     if (imgEl) imgEl.crossOrigin = "anonymous";
     if (imgEl && !imgEl.complete) {
@@ -528,7 +506,6 @@ const QUESTIONS = [
         imgEl.onload = done; imgEl.onerror = done;
       });
     }
-
     const temp = document.createElement("div");
     temp.style.position = "fixed";
     temp.style.left = "-99999px";
@@ -537,24 +514,19 @@ const QUESTIONS = [
     temp.style.width = card.getBoundingClientRect().width + "px";
     temp.style.color = getComputedStyle(document.body).color;
     temp.style.fontFamily = getComputedStyle(document.body).fontFamily;
-
     const bodyStyle = getComputedStyle(document.body);
     temp.style.backgroundImage = bodyStyle.backgroundImage;
     temp.style.backgroundColor = bodyStyle.backgroundColor;
-
     const headerClone = appHeader.cloneNode(true);
     headerClone.querySelector(".sub")?.remove();
-
     const cardClone = card.cloneNode(true);
     cardClone.querySelectorAll(".nav").forEach((n) => n.remove());
     cardClone.querySelector("#cardCanvas")?.remove();
     cardClone.querySelector("#btnBulkSaveAll")?.remove();
     cardClone.querySelector("#btnShareLink")?.remove();
-
     temp.appendChild(headerClone);
     temp.appendChild(cardClone);
     document.body.appendChild(temp);
-
     try {
       const canvas = await html2canvas(temp, {
         backgroundColor: null,
@@ -563,10 +535,8 @@ const QUESTIONS = [
         allowTaint: true,
         logging: false,
       });
-
       const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png", 1.0));
       if (!blob) return alert("이미지 변환 실패 🥲");
-
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -591,16 +561,13 @@ const QUESTIONS = [
     const nav = document.querySelector("#screenResult .nav");
     if (!nav) return;
     if (document.querySelector("#btnShareLink")) return;
-
     const btn = document.createElement("button");
     btn.id = "btnShareLink";
     btn.className = "btn";
     btn.textContent = "결과 링크 공유";
-
     btn.addEventListener("click", async () => {
       const winnerId = CURRENT_WINNER_ID;
       const url = `${location.origin}${location.pathname}?result=${winnerId}`;
-
       try {
         await navigator.clipboard.writeText(url);
         alert("결과 링크 복사 완료!");
@@ -608,18 +575,14 @@ const QUESTIONS = [
         prompt("아래 링크 복사", url);
       }
     });
-
     nav.appendChild(btn);
   }
-
   function checkSharedResult() {
     const params = new URLSearchParams(location.search);
     const sharedId = params.get("result");
     if (!sharedId) return;
-
     const exists = POKEMON.some(p => p.id === sharedId);
     if (!exists) return;
-
     hide(screenStart);
     hide(screenQuiz);
     show(screenResult);
@@ -627,36 +590,27 @@ const QUESTIONS = [
     // injectBulkSaveButton();
     injectShareLinkButton();
   }
-
   // -----------------------------
-  // 10) 전체 저장 버튼(너 기능 유지 + 끝부분 버그 수정)
+  // 10) 전체 저장 버튼 - 실제 페이지x
   // -----------------------------
   async function bulkSaveAllCardsSameFormat(options = {}) {
     const { prefix = "result", delayMs = 650 } = options;
-
     const targetIds = POKEMON.map((p) => p.id);
     const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
     const originalWinner = btnSaveCard?.dataset?.winner || CURRENT_WINNER_ID || "pikachu";
-
     for (let i = 0; i < targetIds.length; i++) {
       const id = targetIds[i];
-
       try {
         renderResult(id);
         await new Promise((r) => requestAnimationFrame(() => r()));
         await sleep(60);
-
-        // blob 만들기 = saveResultWithHeaderNoButtons랑 동일 로직
         const appHeader = document.querySelector(".header");
         const card = document.querySelector("#screenResult .card");
         if (!appHeader || !card) throw new Error("캡처 대상 없음");
-
         if (document.fonts?.ready) {
           try { await document.fonts.ready; } catch {}
         }
-
         const imgEl = document.querySelector("#resultImg");
         if (imgEl) imgEl.crossOrigin = "anonymous";
         if (imgEl && !imgEl.complete) {
@@ -665,7 +619,6 @@ const QUESTIONS = [
             imgEl.onload = done; imgEl.onerror = done;
           });
         }
-
         const temp = document.createElement("div");
         temp.style.position = "fixed";
         temp.style.left = "-99999px";
@@ -674,24 +627,19 @@ const QUESTIONS = [
         temp.style.width = card.getBoundingClientRect().width + "px";
         temp.style.color = getComputedStyle(document.body).color;
         temp.style.fontFamily = getComputedStyle(document.body).fontFamily;
-
         const bodyStyle = getComputedStyle(document.body);
         temp.style.backgroundImage = bodyStyle.backgroundImage;
         temp.style.backgroundColor = bodyStyle.backgroundColor;
-
         const headerClone = appHeader.cloneNode(true);
         headerClone.querySelector(".sub")?.remove();
-
         const cardClone = card.cloneNode(true);
         cardClone.querySelectorAll(".nav").forEach((n) => n.remove());
         cardClone.querySelector("#cardCanvas")?.remove();
         cardClone.querySelector("#btnBulkSaveAll")?.remove();
         cardClone.querySelector("#btnShareLink")?.remove();
-
         temp.appendChild(headerClone);
         temp.appendChild(cardClone);
         document.body.appendChild(temp);
-
         let blob;
         try {
           const canvas = await html2canvas(temp, {
@@ -706,9 +654,7 @@ const QUESTIONS = [
         } finally {
           temp.remove();
         }
-
         const filename = `${prefix}-${id}.png`;
-
         if (isIOS && navigator.canShare) {
           try {
             const file = new File([blob], filename, { type: "image/png" });
@@ -721,7 +667,6 @@ const QUESTIONS = [
             console.warn("share failed/canceled:", e);
           }
         }
-
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
@@ -734,27 +679,23 @@ const QUESTIONS = [
       } catch (e) {
         console.error("[bulkSameFormat] error:", id, e);
       }
-
       await sleep(delayMs);
     }
     renderResult(originalWinner);
     if (btnSaveCard) btnSaveCard.dataset.winner = originalWinner;
-    alert(`일괄 저장 끝 ✅ (${targetIds.length}개)`);
+    alert(`일괄 저장 끝! (${targetIds.length}개)`);
   }
   function injectBulkSaveButton() {
     const nav = document.querySelector("#screenResult .nav");
     if (!nav) return;
     if (document.querySelector("#btnBulkSaveAll")) return;
-
     const btn = document.createElement("button");
     btn.id = "btnBulkSaveAll";
     btn.className = "btn";
     btn.textContent = "모든 결과 카드 저장(1회성)";
-
     btn.addEventListener("click", async () => {
       await bulkSaveAllCardsSameFormat({ delayMs: 650 });
     });
-
     nav.appendChild(btn);
   }
 
@@ -762,14 +703,12 @@ const QUESTIONS = [
   // 11) 이벤트
   // -----------------------------
   btnStart?.addEventListener("click", goQuiz);
-
   btnPrev?.addEventListener("click", () => {
     if (current > 0) {
       current -= 1;
       render();
     }
   });
-
   btnNext?.addEventListener("click", () => {
     if (answers[current] == null) return;
     if (current === QUESTIONS.length - 1) goResult();
@@ -778,23 +717,18 @@ const QUESTIONS = [
       render();
     }
   });
-
   btnRestart?.addEventListener("click", () => {
     history.replaceState({}, "", location.pathname);
     goStart();
   });
-
   btnResetTop?.addEventListener("click", () => {
     history.replaceState({}, "", location.pathname);
     goStart();
   });
-
   btnSaveCard?.addEventListener("click", async () => {
     const winnerId = btnSaveCard.dataset.winner || CURRENT_WINNER_ID || "pikachu";
     await saveResultWithHeaderNoButtons(`${winnerId}-result.png`);
   });
-
-  // init
   document.addEventListener("DOMContentLoaded", () => {
     checkSharedResult();
     if (!new URLSearchParams(location.search).get("result")) goStart();
