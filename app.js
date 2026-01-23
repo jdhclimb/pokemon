@@ -140,28 +140,28 @@
   // -----------------------------
   // 3) 질문 + 점수
   // -----------------------------
-    const QUESTIONS = [
+      const QUESTIONS = [
     {
       title: "Q1. 제일 풀고 싶은 문제는?",
       options: [
         { key: "A", text: "수상하게 생긴 거(누워서 시작, 합손 금지 등)", points: [["gengar", 2], ["eevee", 1], ["mewtwo", 1]] },
-        { key: "B", text: "할 만하게 생긴 재밌는 거", points: [["pikachu", 2], ["togepi", 1], ["snorlax", 1], ["ditto", 1], ["lucario", 1]] },
+        { key: "B", text: "할 만하게 생긴 재밌는 거", points: [["pikachu", 2], ["togepi", 2], ["snorlax", 1], ["ditto", 1], ["lucario", 1]] },
         { key: "C", text: "개간지 다이나믹", points: [["charizard", 2], ["dragonite", 2], ["lucario", -5], ["mewtwo", 1]] },
       ],
     },
     {
       title: "Q2. 벽에 붙을 때",
       options: [
-        { key: "A", text: "카탈로그/남들 푸는 거 보고 올라간다", points: [["ditto", 2], ["togepi", 1]] },
+        { key: "A", text: "카탈로그/남들 푸는 거 보고 올라간다", points: [["ditto", 2], ["togepi", 2]] },
         { key: "B", text: "일단 붙어본다", points: [["charizard", 2], ["mewtwo", 1], ["snorlax", 1], ["gengar", 1]] },
-        { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["lucario", 1], ["eevee", 2]] },
+        { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["rayquaza", 1],["lucario", 1], ["eevee", 2]] },
       ],
     },
     {
       title: "Q3. 제일 잘 될 때는?",
       options: [
         { key: "A", text: "사람들이 나이스 외쳐줄 때", points: [["pikachu", 2], ["togepi", 1],["charizard", 1]] },
-        { key: "B", text: "혼자 집중해서 풀 수 있을 때", points: [["lucario", 1], ["mewtwo", 2], ["pikachu", -1]] },
+        { key: "B", text: "혼자 집중해서 풀 수 있을 때", points: [["rayquaza", 2],["lucario", 1], ["mewtwo", 2], ["pikachu", -1]] },
         { key: "C", text: "옆에서 베타 알려주는 사람이 있을 때", points: [["ditto", 2], ["eevee", 1]] },
         { key: "D", text: "몰?루? 갑자기 될 때 있음", points: [["wynaut", 2], ["magikarp", 1], ["snorlax", 1], ["gengar", 1]] },
       ],
@@ -169,15 +169,15 @@
     {
       title: "Q4. 누가 베타 조언해 주면?",
       options: [
-        { key: "A", text: "안 듣는다", points: [["gengar", 2], ["rayquaza", 1]] },
-        { key: "B", text: "내가 필요한 부분 참고만", points: [["mewtwo", 1],["charizard", 1], ["lucario", 1], ["ditto", 1], ["eevee", 1]] },
+        { key: "A", text: "안 듣는다", points: [["gengar", 2]] },
+        { key: "B", text: "내가 필요한 부분 참고만", points: [["rayquaza", 1],["mewtwo", 1],["charizard", 1], ["lucario", 1], ["ditto", 1], ["eevee", 1]] },
         { key: "C", text: "너무 고맙다", points: [["togepi", 2], ["pikachu", 1], ["dragonite", 2], ["gengar", -1]] },
       ],
     },
     {
       title: "Q5. 가장 인스스 올리고 싶은 장면은?",
       options: [
-        { key: "A", text: "존버 크럭스 구간 제압 장면", points: [["rayquaza", 2], ["lucario", 1],["snorlax", 1], ["dragonite", 1]] },
+        { key: "A", text: "존버 크럭스 구간 제압 장면", points: [["rayquaza", 1], ["lucario", 1],["snorlax", 1], ["dragonite", 1]] },
         { key: "B", text: "허당짓 하고 다 같이 웃는 장면", points: [["pikachu", 2], ["togepi", 1], ["rayquaza", -1]] },
         { key: "C", text: "화려한 다이나믹 동작", points: [["charizard", 2], ["eevee", 1], ["dragonite", 1]] },
       ],
@@ -187,7 +187,7 @@
       options: [
         { key: "A", text: "때려친다", points: [["snorlax", 2], ["magikarp", 1], ["lucario", 1]] },
         { key: "B", text: "샤갈! 오늘은 너다. 될 때까지 ㄱㄱ", points: [["mewtwo", 2],["charizard", 1]] },
-        { key: "C", text: "30트...해본 적 없는데?", points: [["togepi", 2], ["magikarp", 1], ["eevee", 1]] },
+        { key: "C", text: "30트...해본 적 없는데?", points: [["rayquaza", 2],["togepi", 2], ["magikarp", 1], ["eevee", 1]] },
         { key: "D", text: "제발 누가 알려주면 좋겠다", points: [["ditto", 2]] },
       ],
     },
@@ -195,7 +195,7 @@
       title: "Q7. 컨디션이 좋지 않으면?",
       options: [
         { key: "A", text: "그래도 해야지", points: [["mewtwo", 2], ["rayquaza", 2], ["lucario", 1],["charizard", 1]] },
-        { key: "B", text: "쉬엄쉬엄~ 나이스~ 응원도 하고~", points: [["snorlax", 1]] },
+        { key: "B", text: "쉬엄쉬엄~ 나이스~ 응원도 하고~", points: [["snorlax", 2], ["dragonite", 2],["rayquaza", -1],] },
         { key: "C", text: "쉬어야지 암장을 왜 가", points: [["magikarp", 2], ["pikachu", 2],["togepi", 1], ["ditto", 1], ["rayquaza", -1], ["mewtwo", -1]] },
       ],
     },
@@ -211,7 +211,7 @@
       title: "Q9. 암장에서 제일 위축되는 순간은?",
       options: [
         { key: "A", text: "괜히 나만 못하는 느낌 들 때", points: [["togepi", 2], ["magikarp", 1]] },
-        { key: "B", text: "옆에서 계속 보고 있는데 안 풀릴 때", points: [["snorlax", 1], ["charizard", 1], ["eevee", 1]] },
+        { key: "B", text: "옆에서 계속 보고 있는데 안 풀릴 때", points: [["snorlax", 2], ["charizard", 1], ["eevee", 1]] },
         { key: "C", text: "딱히 없음", points: [["wynaut", 1], ["rayquaza", 1], ["lucario", 1],["mewtwo", 2]] },
       ],
     },
@@ -219,25 +219,25 @@
       title: "Q10. 나를 기분 좋게 하는 한마디",
       options: [
         { key: "A", text: "너랑 오니까 너무 재밌다!", points: [["pikachu", 2], ["togepi", 1]] },
-        { key: "B", text: "덕분에 풀었다 고마워!", points: [["dragonite", 2], ["mewtwo", 1]] },
+        { key: "B", text: "덕분에 풀었다 고마워!", points: [["dragonite", 2], ["mewtwo", 1],] },
         { key: "C", text: "실력 왤케 늘었어", points: [["mewtwo", 1], ["eevee", 1],["charizard", 1]] },
-        { key: "D", text: "저게 왜 되누", points: [["gengar", 2], ["rayquaza", 2],["lucario", 1], ] },
+        { key: "D", text: "저게 왜 되누", points: [["gengar", 2], ["rayquaza", 1],["lucario", 1], ] },
       ],
     },
     {
       title: "Q11. 가장 빡치는 순간",
       options: [
         { key: "A", text: "안 물어봤는데 베타 강요할 때", points: [["gengar", 2], ["charizard", 1], ["mewtwo", 1]] },
-        { key: "B", text: "집중하고 싶은데 자꾸 말 걸 때", points: [["rayquaza", 2]] },
-        { key: "C", text: "딱히 없음… 걍 그런갑다 함", points: [["wynaut", 2], ["snorlax", 1],["magikarp", 2], ["lucario", 1]] },
+        { key: "B", text: "집중하고 싶은데 자꾸 말 걸 때", points: [["rayquaza", 3]] },
+        { key: "C", text: "딱히 없음… 걍 그런갑다 함", points: [["wynaut", 2], ["snorlax", 2],["magikarp", 2], ["lucario", 2]] },
       ],
     },
     {
       title: "Q12. 클라이밍을 계속 하는 이유?",
       options: [
         { key: "A", text: "도파민", points: [] },
-        { key: "B", text: "성장하는 게 재밌어서", points: [["eevee", 1], ["lucario", 1]] },
-        { key: "C", text: "글쎄...그냥?", points: [["wynaut", 2], ["magikarp", 2], ["snorlax", 1]] },
+        { key: "B", text: "성장하는 게 재밌어서", points: [["eevee", 1], ["togepi", 1],["lucario", 2], ["snorlax", 1],["ditto", 1]] },
+        { key: "C", text: "글쎄...그냥?", points: [["wynaut", 2], ["magikarp", 2]] },
       ],
     },
   ];
@@ -748,4 +748,5 @@
     if (!new URLSearchParams(location.search).get("result")) goStart();
   });
 })();
+
 
