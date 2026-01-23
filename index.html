@@ -25,6 +25,7 @@
       <h1>클라이머 포켓몬 유형 테스트</h1>
       <p class="sub">도움 주신 멋쟁이들: @attottootta, @un_cl_, @mxxnxn, @climb_gogyuma</p>
     </header>
+
     <section id="screenStart" class="screen">
       <div class="card">
         <h2>시작하기</h2>
@@ -35,6 +36,7 @@
         <button id="btnStart" class="btn primary">테스트 시작 🧗‍♀️</button>
       </div>
     </section>
+
     <section id="screenQuiz" class="screen hidden">
       <div class="topbar">
         <div class="progress-wrap">
@@ -47,6 +49,7 @@
         </div>
         <button id="btnResetTop" class="btn ghost" title="처음부터">다시 테스트하기</button>
       </div>
+
       <div class="card">
         <h2 id="qTitle" class="q-title">Q1. ...</h2>
         <div id="options" class="options"></div>
@@ -56,9 +59,11 @@
           <button id="btnNext" class="btn primary" disabled>다음 →</button>
         </div>
       </div>
+
       <p class="hint">※ 문항 중에 고를 게 없다면 그나마 가장 가까운 걸로 ㄱㄱ</p>
     </section>
-<section id="screenResult" class="screen hidden">
+
+    <section id="screenResult" class="screen hidden">
       <div class="card">
         <div class="result-head">
           <div id="resultEmoji" class="result-emoji">⚡</div>
@@ -67,10 +72,13 @@
             <h2 id="resultName" class="result-name">피카츄형</h2>
           </div>
         </div>
+
         <p id="resultOneLiner" class="result-oneliner">“오늘도 암장에 전기 공급하러 왔습니다.”</p>
+
         <div class="result-media">
-          <img id="resultImg" class="result-img" alt="결과 카드 이미지" />
+          <img id="resultImg" class="result-img" alt="결과 카드 이미지" crossorigin="anonymous" />
         </div>
+
         <div class="result-stack">
           <div class="pillbox">
             <ul id="resultPokemonTraits" class="list"></ul>
@@ -79,29 +87,35 @@
             <ul id="resultClimberTraits" class="list"></ul>
           </div>
         </div>
+
         <div class="match-grid">
           <div class="match-box">
-          <div class="match-title">🔥 잘 맞는 포켓몬</div>
-          <div id="goodMatches" class="match-chips"></div>
+            <div class="match-title">🔥 잘 맞는 포켓몬</div>
+            <div id="goodMatches" class="match-chips"></div>
+          </div>
+          <div class="match-box">
+            <div class="match-title">😵 잘 안 맞는 포켓몬</div>
+            <div id="badMatches" class="match-chips"></div>
+          </div>
         </div>
-        <div class="match-box">
-          <div class="match-title">😵 잘 안 맞는 포켓몬</div>
-          <div id="badMatches" class="match-chips"></div>
-        </div>
-        </div>
+
         <div class="nav">
           <button id="btnRestart" class="btn">다시 하기</button>
           <button id="btnShareLink" class="btn">결과 링크 공유 🔗</button>
           <button id="btnSaveCard" class="btn primary">결과 카드 저장(PNG)</button>
         </div>
+
         <canvas id="cardCanvas" width="1080" height="1350" class="hidden"></canvas>
       </div>
+
       <footer class="footer">
         <small>※ 맘에 안 들면 맞짱 뜨던가~</small>
       </footer>
     </section>
-    <div id="exportMount" class="hidden"></div>
+
+    <div id="exportMount"></div>
   </main>
+
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="app.js"></script>
 </body>
