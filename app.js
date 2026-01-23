@@ -200,8 +200,8 @@ const QUESTIONS = [
   {
     title: "Q4. 누가 베타 조언해 주면?",
     options: [
-      { key: "A", text: "안 듣는다", points: [["gengar", 2], ["mewtwo", 1], ["rayquaza", 1],] },
-      { key: "B", text: "내가 필요한 부분 참고만", points: [["eevee", 2],["lucario", 1]] },
+      { key: "A", text: "안 듣는다", points: [["gengar", 2], ["rayquaza", 1],] },
+      { key: "B", text: "내가 필요한 부분 참고만", points: [["mewtwo", 1],["lucario", 1]] },
       { key: "C", text: "너무 고맙다", points: [["ditto", 2], ["eevee", 1], ["togepi", 1], ["pikachu", 1],["dragonite", 2],["gengar",-1]] },
     ],
   },
@@ -217,8 +217,8 @@ const QUESTIONS = [
     title: "Q6. 꼭 풀고 싶은 문제 30트째 떨어지고 있다면?",
     options: [
       { key: "A", text: "때려친다", points: [["snorlax",2],["magikarp",1]] },
-      { key: "B", text: "샤갈! 디졌다. 될 때까지 ㄱㄱ", points: [["mewtwo",2],["lucario",1]] },
-      { key: "D", text: "제발 누가 알려주면 좋겠다...", points: [["ditto",2],["eevee",1]] },
+      { key: "B", text: "샤갈! 오늘은 너다. 될 때까지 ㄱㄱ", points: [["mewtwo",2],["lucario",1]] },
+      { key: "D", text: "제발 누가 알려주면 좋겠다", points: [["ditto",2],["eevee",1]] },
       { key: "C", text: "30트...해본 적 없는데?", points: [["togepi",2],["magikarp",1]] },
     ],
   },
@@ -258,10 +258,9 @@ const QUESTIONS = [
   {
       title: "Q11. 가장 빡치는 순간",
       options: [
-        { key: "A", text: "누가 먼저 풀고 은근 긁을 때", points: [["mewtwo", 2], ["togepi", 1]] },
-        { key: "B", text: "안 물어봤는데 베타 강요할 때", points: [["gengar", 2], ["lucario", 1]] },
-        { key: "C", text: "집중하고 싶은데 자꾸 말 걸 때", points: [["rayquaza", 2],["snorlax", 1],] },
-        { key: "D", text: "딱히 없음… 걍 그런갑다 함", points: [["wynaut", 2],["magikarp", 2]] },
+        { key: "A", text: "안 물어봤는데 베타 강요할 때", points: [["gengar", 2], ["lucario", 1]] },
+        { key: "B", text: "집중하고 싶은데 자꾸 말 걸 때", points: [["rayquaza", 2],["mewtwo", 1],["snorlax", 1],] },
+        { key: "C", text: "딱히 없음… 걍 그런갑다 함", points: [["wynaut", 2],["magikarp", 2]] },
       ],
   },
   {
@@ -273,7 +272,6 @@ const QUESTIONS = [
     ],
   },
 ];
-
   // -----------------------------
   // 0) 유틸
   // -----------------------------
@@ -749,4 +747,5 @@ const QUESTIONS = [
     if (!new URLSearchParams(location.search).get("result")) goStart();
   });
 })();
+
 
