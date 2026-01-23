@@ -266,12 +266,6 @@ h1{ margin: 12px 0 6px; font-size: 30px; letter-spacing: -0.5px; }
 
 #resultPokemonTraits.list::-webkit-scrollbar{ display:none; }
 #resultPokemonTraits.list{ scrollbar-width:none; }
-
-/* =========================
-   RESULT UI FINAL OVERRIDE
-   ========================= */
-
-/* 하단 버튼 3개 한 줄 예쁘게 */
 #screenResult .nav{
   margin-top: 18px;
   display: grid;
@@ -297,9 +291,8 @@ h1{ margin: 12px 0 6px; font-size: 30px; letter-spacing: -0.5px; }
   }
 }
 
-/* "잘 안 맞는 포켓몬" 박스 좀 아래로 + 간격 */
 #screenResult .match-grid{
-  gap: 14px; /* 기존 1px 덮어쓰기 */
+  gap: 14px;
 }
 @media (max-width: 719px){
   #screenResult .match-grid .match-box:nth-child(2){
