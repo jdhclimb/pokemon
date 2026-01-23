@@ -878,6 +878,159 @@ async function saveStoryCard1080x1920(filename = "story.png") {
     });
     nav.appendChild(btn);
   }
+  function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
+function isKakaoInApp() {
+  return /KAKAOTALK/i.test(navigator.userAgent);
+}
+
+async function saveBlob(blob, filename) {
+  // 1) iOS: Web Share로 "파일 저장" 유도 (카톡웹뷰 포함)
+  if (isIOS() && navigator.canShare) {
+    try {
+      const file = new File([blob], filename, { type: "image/png" });
+      if (navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: filename });
+        return true;
+      }
+    } catch (e) {
+      // 사용자가 공유 취소하거나, webview가 막으면 아래 fallback
+      console.warn("share failed:", e);
+    }
+  }
+
+  // 2) 일반 브라우저: a.download 시도
+  try {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2500);
+    return true;
+  } catch (e) {
+    console.warn("download failed:", e);
+  }
+
+  // 3) 카톡 iOS 웹뷰 fallback: 이미지 화면으로 띄워서 길게 눌러 저장
+  try {
+    const dataUrl = await new Promise((resolve) => {
+      const r = new FileReader();
+      r.onload = () => resolve(r.result);
+      r.readAsDataURL(blob);
+    });
+
+    // 카톡웹뷰는 새탭이 막힐 수 있어서 location 이동이 더 잘 먹힘
+    if (isKakaoInApp()) {
+      location.href = dataUrl;
+    } else {
+      window.open(dataUrl, "_blank", "noopener,noreferrer");
+    }
+
+    alert("이미지 화면이 뜨면 길게 눌러 ‘사진 저장’ 해줘!");
+    return true;
+  } catch (e) {
+    console.error("fallback failed:", e);
+    alert("저장 실패 🥲 사파리로 열어서 저장해줘!");
+    return false;
+  }
+}
+
+async function saveResultCard1080x1350(filename = "result.png") {
+  const card = document.querySelector("#screenResult .card");
+  const mount = document.querySelector("#exportMount");
+  if (!card || !mount) return alert("저장 불가 🥲");
+
+  // 숨김 캡처 프레임(1080x1350)
+  mount.innerHTML = "";
+  const frame = document.createElement("div");
+  Object.assign(frame.style, {
+    width: "1080px",
+    height: "1350px",
+    position: "fixed",
+    left: "0",
+    top: "0",
+    zIndex: "-1",
+    visibility: "hidden",
+    pointerEvents: "none",
+    overflow: "hidden",
+    boxSizing: "border-box",
+    padding: "56px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  });
+
+  // 배경은 body 그대로
+  const bodyStyle = getComputedStyle(document.body);
+  frame.style.backgroundImage = bodyStyle.backgroundImage;
+  frame.style.backgroundColor = bodyStyle.backgroundColor;
+
+  // card clone: 버튼(nav)/푸터/canvas 제거
+  const cardClone = card.cloneNode(true);
+  cardClone.querySelectorAll(".nav").forEach((n) => n.remove());
+  cardClone.querySelector(".footer")?.remove();
+  cardClone.querySelector("#cardCanvas")?.remove();
+  cardClone.querySelector("#btnBulkSaveAll")?.remove();
+  cardClone.querySelector("#btnShareLink")?.remove();
+
+  // 카드가 프레임에 꽉 차게
+  Object.assign(cardClone.style, {
+    width: "100%",
+    height: "100%",
+    margin: "0",
+    borderRadius: "28px",
+    padding: "34px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+  });
+
+  frame.appendChild(cardClone);
+  mount.appendChild(frame);
+
+  // 폰트/이미지 로딩 대기
+  if (document.fonts?.ready) {
+    try { await document.fonts.ready; } catch {}
+  }
+  const imgEl = document.querySelector("#resultImg");
+  if (imgEl) imgEl.crossOrigin = "anonymous";
+  if (imgEl && !imgEl.complete) {
+    await new Promise((r) => {
+      const done = () => { imgEl.onload = null; imgEl.onerror = null; r(); };
+      imgEl.onload = done; imgEl.onerror = done;
+    });
+  }
+
+  try {
+    const canvas = await html2canvas(frame, {
+      backgroundColor: null,
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      width: 1080,
+      height: 1350,
+      windowWidth: 1080,
+      windowHeight: 1350,
+    });
+
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png", 1.0));
+    if (!blob) return alert("이미지 변환 실패 🥲");
+
+    await saveBlob(blob, filename);
+  } catch (e) {
+    console.error(e);
+    alert("저장 실패 🥲");
+  } finally {
+    mount.innerHTML = "";
+  }
+}
 
   // -----------------------------
   // 11) 이벤트
@@ -907,7 +1060,7 @@ async function saveStoryCard1080x1920(filename = "story.png") {
   });
   btnSaveCard?.addEventListener("click", async () => {
   const winnerId = btnSaveCard.dataset.winner || CURRENT_WINNER_ID || "pikachu";
-  await saveStoryCard1080x1920(`${winnerId}-story.png`);
+  await saveResultCard1080x1350(`${winnerId}-result.png`);
 });
 
   document.addEventListener("DOMContentLoaded", () => {
