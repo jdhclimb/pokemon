@@ -345,14 +345,13 @@
 
     renderResult();
     bindShareLinkButton();
-    bindSaveCardButton(); // ✅ 버튼 씹힘 방지
+    bindSaveCardButton(); 
   }
 
-  // ✅ 마지막 문항만 “자동 다음/결과” 금지
   function autoAdvance() {
     setTimeout(() => {
       const last = QUESTIONS.length - 1;
-      if (current >= last) return; // 마지막은 자동 이동 X
+      if (current >= last) return; 
       current += 1;
       render();
     }, 120);
@@ -384,7 +383,7 @@
       div.setAttribute("tabindex", "0");
       div.innerHTML = `<div class="key">${opt.key}</div><div class="txt">${opt.text}</div>`;
 
-      const shouldAuto = current !== last; // ✅ 마지막 문항만 false
+      const shouldAuto = current !== last; 
       div.addEventListener("click", () => select(opt.key, shouldAuto));
       div.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -493,7 +492,6 @@
     }
 
     if (resultImg) {
-      // 로딩 안정
       resultImg.style.display = "none";
       resultImg.onload = () => (resultImg.style.display = "block");
       resultImg.onerror = () => {
@@ -508,7 +506,6 @@
     renderFixedChips(goodMatches, good, "없음(전부 무난)");
     renderFixedChips(badMatches, bad, "없음(전부 수용)");
 
-    // ✅ 저장 버튼에 winner 박아두기
     const btnSave = document.querySelector("#btnSaveCard");
     if (btnSave) btnSave.dataset.winner = winnerId;
 
@@ -550,13 +547,11 @@
 
     renderResult(sharedId);
     bindShareLinkButton();
-    bindSaveCardButton(); // ✅ 공유로 들어와도 저장 버튼 씹힘 방지
+    bindSaveCardButton();
   }
 
   // -----------------------------
-  // 9) PNG 저장 (원하는 “두번째 사진” 스타일)
-  // - 결과 카드 전체(텍스트+칩+궁합) 저장
-  // - 버튼(nav) / footer 제외
+  // 9) PNG 저장 
   // -----------------------------
   function isIOS() {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -579,7 +574,6 @@
       }
     }
 
-    // 일반: 다운로드
     try {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -594,8 +588,6 @@
     } catch (e) {
       console.warn("download failed:", e);
     }
-
-    // 카톡 iOS webview fallback: 이미지 화면 띄우기
     try {
       const dataUrl = await new Promise((resolve) => {
         const r = new FileReader();
@@ -620,9 +612,7 @@
     if (!card) return null;
 
     const cardClone = card.cloneNode(true);
-    // 버튼 영역 제거
     cardClone.querySelectorAll(".nav").forEach((n) => n.remove());
-    // 캔버스 제거(혹시 남아있으면)
     cardClone.querySelector("#cardCanvas")?.remove();
 
     return cardClone;
@@ -635,10 +625,8 @@
     const cardClone = cloneResultCardWithoutButtons();
     if (!cardClone) return alert("저장 불가 🥲");
 
-    // mount 초기화
     mount.innerHTML = "";
 
-    // ✅ 캡처용 wrapper
     const wrap = document.createElement("div");
     Object.assign(wrap.style, {
       position: "fixed",
@@ -649,13 +637,10 @@
       pointerEvents: "none",
     });
 
-    // ✅ “두번째 사진”처럼 카드만 깔끔하게
-    // body 배경은 그대로 두고, 카드만 렌더
     const bodyStyle = getComputedStyle(document.body);
     wrap.style.backgroundImage = bodyStyle.backgroundImage;
     wrap.style.backgroundColor = bodyStyle.backgroundColor || "#0b0f19";
 
-    // clone 카드 폭은 실제 카드 폭 따라가게 (모바일에서도 “보이는 그대로” 느낌)
     Object.assign(cardClone.style, {
       width: "100%",
       margin: "0",
@@ -664,13 +649,11 @@
     wrap.appendChild(cardClone);
     mount.appendChild(wrap);
 
-    // 렌더 타이밍 보장
     await wait2Frames();
     if (document.fonts?.ready) {
       try { await document.fonts.ready; } catch {}
     }
 
-    // 결과 이미지 로딩 대기
     const liveImg = document.querySelector("#resultImg");
     if (liveImg && !liveImg.complete) {
       await new Promise((r) => {
@@ -700,7 +683,6 @@
     }
   }
 
-  // ✅ 저장 버튼 씹힘 방지: 버튼 교체 + 저장 중 잠금
   function bindSaveCardButton() {
     const oldBtn = document.querySelector("#btnSaveCard");
     if (!oldBtn) return;
