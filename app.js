@@ -173,88 +173,103 @@ const COMPAT = {
   // -----------------------------
 const QUESTIONS = [
   {
-    title: "Q. 제일 풀고 싶은 문제는?",
+    title: "Q1. 제일 풀고 싶은 문제는?",
     options: [
-      { key: "A", text: "스타트 수상하게 생긴 거", points: [["gengar", 2], ["eevee", 1], ["ditto", 1]] },
-      { key: "B", text: "재밌어 보이는 거", points: [["pikachu", 2], ["togepi", 1], ["snorlax", 1]] },
-      { key: "C", text: "개간지 다이나믹", points: [["charizard", 2], ["mewtwo", 1], ["rayquaza", 1]] },
+      { key: "A", text: "수상하게 생긴 거(누워서 시작, 합손 금지 등)", points: [["gengar", 2], ["eevee", 2], ["ditto", 1], ["mewtwo", 1]] },
+      { key: "B", text: "할 만하게 생긴 재밌는 거", points: [["pikachu", 2], ["togepi", 1], ["snorlax", 1], ["magikarp", 1], ] },
+      { key: "C", text: "개간지 다이나믹", points: [["charizard", 2], ["dragonite", 2],["lucario",-1]] },
     ],
   },
   {
-      title: "Q. 가장 인스스로 올리고 싶은 장면은?",
-      options: [
-        { key: "A", text: "같이 간 사람들과 찍은 사진", points: [["togepi", 2], ["pikachu", 1]] },
-        { key: "B", text: "존버 크럭스 구간 제압 장면", points: [["lucario", 2], ["snorlax", 1]] },
-        { key: "C", text: "허당짓 하고 다 같이 웃는 장면", points: [["magikarp", 2], ["gengar", 1], ["eevee", 1]] },
-        { key: "D", text: "개쩌는 다이나믹 동작", points: [["charizard", 2], ["mewtwo", 1], ["rayquaza", 1]] },
-      ],
-  },
-  {
-      title: "Q. 내가 존버 중인 문제를 누가 쉽다고 하면?",
-      options: [
-        { key: "A", text: "주늑든다...🥲", points: [["togepi", 2], ["magikarp", 2]] },
-        { key: "B", text: "누군지 찾아내서 뭐 푸는지 확인한다", points: [["rayquaza", 2], ["mewtwo", 1]] },
-        { key: "C", text: "찾아서 어떻게 쉽게 풀었는지 물어본다", points: [["pikachu", 2],["ditto", 1], ["eevee", 1]] },
-        { key: "D", text: "알빠노", points: [["snorlax", 2], ["gengar", 1],["wynaut",2]] },
-      ],
-  },
-  {
-    title: "Q. 가장 킹받는 사람",
+    title: "Q2. 벽에 붙을 때",
     options: [
-      { key: "A", text: "나한테 맞지 않는 베타 강요하는 사람",points: [["gengar", 2],["mewtwo", 2], ["eevee", 1], ["ditto", 1]],},
-      { key: "B", text: "지 문제만 풀고 휘릭 가버리는 사람", points: [["togepi", 2], ["pikachu", 1],["dragonite",1]] },
-      { key: "C", text: "개판으로 풀어서 열심히 알려줬더니 여전히 개판인 사람", points: [["rayquaza", 2], ["lucario", 1]] },
-    ],
-  },
-    {
-    title: "Q. 벽에 붙을 때",
-    options: [
-      { key: "A", text: "남들 푸는 거 보고 올라간다", points: [["ditto",2],["eevee",1],["togepi",1]] },
-      { key: "B", text: "일단 붙어본다", points: [["charizard",2],["mewtwo",1],["gengar",1]] },
+      { key: "A", text: "카탈로그/남들 푸는 거 보고 올라간다", points: [["ditto",2],["eevee",1],["togepi",1]] },
+      { key: "B", text: "일단 붙어본다", points: [["charizard",2],["gengar",1]] },
       { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["lucario",2]] },
     ],
   },
   {
-    title: "Q. 컨디션이 좋지 않으면?",
+    title: "Q3. 제일 잘 될 때는?",
     options: [
-      { key: "A", text: "그래도 한다", points: [["mewtwo",2],["lucario",2]] },
-      { key: "B", text: "쉬운 거만 한다", points: [["eevee",2],["pikachu",1],["ditto",1]] },
-      { key: "C", text: "다른 사람 봐준다", points: [["dragonite",2],["wynaut",1]] },
-      { key: "D", text: "쉬어야지 암장을 왜 가", points: [["snorlax",2],["magikarp",2],["togepi",1]] },
+      { key: "A", text: "사람들이 나이스 외쳐줄 때", points: [["pikachu", 2],["togepi", 1],] },
+      { key: "B", text: "혼자 집중해서 풀 수 있을 때", points: [["lucario", 2], ["mewtwo", 1],["pikachu", -1],] },
+      { key: "C", text: "옆에서 베타 알려주는 사람이 있을 때", points: [["ditto", 2],["eevee", 1],] },
+      { key: "D", text: "몰?루? 갑자기 될 때 있음", points: [["wynaut", 2],["magikarp", 1],["snorlax", 1],["gengar",1],] },
     ],
   },
   {
-    title: "Q. 가장 기분 좋은 순간은?",
+    title: "Q4. 누가 베타 조언해 주면?",
+    options: [
+      { key: "A", text: "안 듣는다", points: [["gengar", 2], ["mewtwo", 1], ["rayquaza", 1],] },
+      { key: "B", text: "내가 필요한 부분 참고만", points: [["eevee", 2],["lucario", 1]] },
+      { key: "C", text: "너무 고맙다", points: [["ditto", 2], ["eevee", 1], ["togepi", 1], ["pikachu", 1],["dragonite", 2],["gengar",-1]] },
+    ],
+  },
+  {
+      title: "Q5. 가장 인스스 올리고 싶은 장면은?",
+      options: [
+        { key: "A", text: "존버 크럭스 구간 제압 장면", points: [["rayquaza", 2], ["snorlax", 1],["dragonite", 1],] },
+        { key: "B", text: "허당짓 하고 다 같이 웃는 장면", points: [["pikachu", 2], ["togepi", 1], ["rayquaza",-1]] },
+        { key: "C", text: "화려한 다이나믹 동작", points: [["charizard", 2], ["eevee", 1],["dragonite", 1],] },
+      ],
+  },
+  {
+    title: "Q6. 꼭 풀고 싶은 문제 30트째 떨어지고 있다면?",
+    options: [
+      { key: "A", text: "때려친다", points: [["snorlax",2],["magikarp",1]] },
+      { key: "B", text: "샤갈! 디졌다. 될 때까지 ㄱㄱ", points: [["mewtwo",2],["lucario",1]] },
+      { key: "D", text: "제발 누가 알려주면 좋겠다...", points: [["ditto",2],["eevee",1]] },
+      { key: "C", text: "30트...해본 적 없는데?", points: [["togepi",2],["magikarp",1]] },
+    ],
+  },
+  {
+    title: "Q7. 컨디션이 좋지 않으면?",
+    options: [
+      { key: "A", text: "그래도 해야지", points: [["mewtwo",2],["rayquaza",2]] },
+      { key: "B", text: "쉬엄쉬엄~ 나이스~ 응원도 하고~", points: [["pikachu",2],["togepi",1], ["ditto", 1]] },
+      { key: "C", text: "쉬어야지 암장을 왜 가", points: [["snorlax",2],["magikarp",2], ["rayquaza",-1], ["mewtwo",-1]] },
+    ],
+  },
+  {
+    title: "Q8. 가장 기분 좋은 순간은?",
     options: [
       { key: "A", text: "존버하던 문제 결국 깼을 때", points: [["mewtwo",2],["charizard",2],["ditto",1]] },
       { key: "B", text: "빡센 문제 완등하고 숨 찰 때", points: [["rayquaza",2],["lucario",2]] },
       { key: "C", text: "다른 사람이 내가 알려준 무브로 깼을 때", points: [["dragonite",2],["wynaut",1]] },
-      { key: "D", text: "사람들이 뒤에서 응원해 줄 때", points: [["pikachu",2],["togepi",1]] },
     ],
   },
   {
-    title: "Q. 실력보다 중요한 것은?",
-    options: [
-      { key: "A", text: "태도", points: [["dragonite",2],["wynaut",1]] },
-      { key: "B", text: "재미", points: [["pikachu",2],["gengar",2],["charizard",1],["eevee",1],["togepi",1]] },
-      { key: "C", text: "없다", points: [["mewtwo",2],["rayquaza",2],["lucario",2]] },
-    ],
+      title: "Q9. 암장에서 제일 위축되는 순간은?",
+      options: [
+        { key: "A", text: "괜히 나만 못하는 느낌 들 때", points: [["togepi", 2], ["magikarp", 1], ["eevee", 1]] },
+        { key: "B", text: "옆에서 계속 보고 있는데 안 풀릴 때", points: [["snorlax", 1], ["charizard", 1]] },
+        { key: "D", text: "딱히 없음", points: [["wynaut", 1],["rayquaza", 1]] },
+      ],
   },
   {
-    title: "Q. 꼭 풀고 싶은 문제 30트째 떨어지고 있다면?",
-    options: [
-      { key: "A", text: "때려친다", points: [["eevee",2],["pikachu",1]] },
-      { key: "B", text: "샤갈 될 때까지 한다", points: [["mewtwo",2],["charizard",2]] },
-      { key: "C", text: "30트? 애초에 안한다", points: [["snorlax",2],["lucario",2],["wynaut",2],["magikarp",1]] },
-      { key: "D", text: "제발 누가 알려주면 좋겠다", points: [["ditto",2],["togepi",2],["eevee",1]] },
-    ],
+      title: "Q10. 나를 기분 좋게 하는 한마디",
+      options: [
+        { key: "A", text: "너랑 오니까 너무 재밌다!", points: [["pikachu", 2], ["togepi", 1]] },
+        { key: "B", text: "덕분에 풀었다 고마워!", points: [["dragonite", 2], ["mewtwo", 1]] },
+        { key: "C", text: "실력 왤케 늘었어", points: [["lucario", 2],["mewtwo", 1], ["eevee", 1]] },
+        { key: "D", text: "저게 왜 되누", points: [["gengar", 2],["rayquaza", 1]] },
+      ],
   },
-    {
-    title: "Q. 누가 베타 조언해 주면?",
+  {
+      title: "Q11. 가장 빡치는 순간",
+      options: [
+        { key: "A", text: "누가 먼저 풀고 은근 긁을 때", points: [["mewtwo", 2], ["togepi", 1]] },
+        { key: "B", text: "안 물어봤는데 베타 강요할 때", points: [["gengar", 2], ["lucario", 1]] },
+        { key: "C", text: "집중하고 싶은데 자꾸 말 걸 때", points: [["rayquaza", 2],["snorlax", 1],] },
+        { key: "D", text: "딱히 없음… 걍 그런갑다 함", points: [["wynaut", 2],["magikarp", 2]] },
+      ],
+  },
+  {
+    title: "Q12. 클라이밍을 계속 하는 이유?",
     options: [
-      { key: "A", text: "안 듣는다", points: [["rayquaza", 2], ["gengar", 2]] },
-      { key: "B", text: "내가 필요한 부분 참고만", points: [["wynaut", 2],["mewtwo", 2], ["snorlax", 1], ["dragonite", 1]] },
-      { key: "C", text: "너무 고맙다", points: [["pikachu", 2], ["togepi", 2], ["eevee", 1], ["ditto", 1], ["magikarp", 1]] },
+      { key: "A", text: "도파민", points: [] },
+      { key: "B", text: "성장하는 게 재밌어서", points: [["eevee", 2],] },
+      { key: "D", text: "글쎄...그냥?", points: [["wynaut", 2],["magikarp", 2],["snorlax", 1],] },
     ],
   },
 ];
@@ -734,3 +749,4 @@ const QUESTIONS = [
     if (!new URLSearchParams(location.search).get("result")) goStart();
   });
 })();
+
