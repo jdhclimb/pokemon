@@ -268,3 +268,79 @@ h1{ margin: 12px 0 6px; font-size: 30px; letter-spacing: -0.5px; }
 
 #resultPokemonTraits.list::-webkit-scrollbar{ display:none; }
 #resultPokemonTraits.list{ scrollbar-width:none; }
+
+#screenResult .nav{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#screenResult .nav .btn{
+  width: 100%;
+  justify-content: center;
+  font-weight: 700;
+  padding: 12px 12px;
+  border-radius: 16px;
+}
+
+#screenResult .nav .btn{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 520px){
+  #screenResult .nav{
+    grid-template-columns: 1fr 1fr;
+  }
+  #screenResult #btnSaveCard{
+    grid-column: 1 / -1; 
+  }
+}
+
+#screenResult .match-grid{
+  gap: 14px; 
+}
+
+@media (max-width: 719px){
+  #screenResult .match-grid .match-box:nth-child(2){
+    margin-top: 8px;
+  }
+}
+/* RESULT 하단 버튼 3개 예쁘게 한 줄 */
+#screenResult .nav{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#screenResult .nav .btn{
+  width: 100%;
+  justify-content: center;
+  font-weight: 700;
+  padding: 12px 12px;
+  border-radius: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 520px){
+  #screenResult .nav{
+    grid-template-columns: 1fr 1fr;
+  }
+  #screenResult #btnSaveCard{
+    grid-column: 1 / -1;
+  }
+}
+
+#screenResult .match-grid{
+  gap: 14px;
+}
+@media (max-width: 719px){
+  #screenResult .match-grid .match-box:nth-child(2){
+    margin-top: 8px;
+  }
+}
