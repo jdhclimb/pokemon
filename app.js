@@ -184,7 +184,7 @@ const QUESTIONS = [
     title: "Q2. 벽에 붙을 때",
     options: [
       { key: "A", text: "카탈로그/남들 푸는 거 보고 올라간다", points: [["ditto",2],["togepi",1]] },
-      { key: "B", text: "일단 붙어본다", points: [["charizard",2],["gengar",1]] },
+      { key: "B", text: "일단 붙어본다", points: [["charizard",2], ["snorlax", 1],["gengar",1]] },
       { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["lucario",2],["eevee",1],] },
     ],
   },
