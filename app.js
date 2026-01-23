@@ -35,7 +35,7 @@
       emoji: "🔁",
       oneLiner: "“아까 이렇게 하던데, 오 됐다!”",
       pokemonTraits: ["적응력 빠름", "수용적", "관찰력 좋음"],
-      climberTraits: ["다른 사람 무브를 잘 관찰함","앞에서 누가 시범 보여주면 그대로 복사 가능","카탈로그 없으면 헤맬 때 있음","뒤에서 INPUT 넣는대로 OUTPUT 나옴","나보다 잘하는 사람 있으면 효율 올라감",],
+      climberTraits: ["뒤에서 INPUT 넣는대로 OUTPUT 나옴","베타 시연 보면 바로 흡수","나도 가끔 내가 이걸 어떻게 풀었는지 모를 때가 있음","가끔 자세가 수상해짐","나보다 잘하는 사람 있으면 효율 올라감",],
     },
     {
       id: "gengar",
@@ -107,7 +107,7 @@
       emoji: "🤡",
       oneLiner: "“클라이밍? 재밌나? 그냥 하는 거지...”",
       pokemonTraits: ["해탈", "관대함", "무던함"],
-      climberTraits: ["다 내려놓은 고인물","등반에 큰 감정 기복 없음","성장 중인 사람보면 기분이 묘함","안전 관련되면 엄격해짐","가끔 도파민 터지면 ‘아… 아직 설레네’ 싶어짐",],
+      climberTraits: ["안전 관련되면 엄격해짐","다 내려놓은 고인물","등반에 큰 감정 기복 없음","성장 중인 사람보면 기분이 묘함","가끔 도파민 터지면 ‘아… 아직 설레네’ 싶어짐",],
     },
   ];
   const ids = POKEMON.map((p) => p.id);
@@ -119,51 +119,51 @@
   // -----------------------------
 const COMPAT = {
   togepi: {
-    good: ["dragonite", "pikachu", "snorlax"],
-    bad: ["mewtwo", "rayquaza", "charizard"],
+    good: ["dragonite", "pikachu"],
+    bad: ["mewtwo", "rayquaza"],
   },
   magikarp: {
     good: ["snorlax", "eevee"],
-    bad: ["charizard", "mewtwo", "pikachu"],
+    bad: ["mewtwo", "rayquaza"],
   },
   eevee: {
-    good: ["ditto", "gengar", "pikachu"],
-    bad: ["mewtwo", "lucario", "rayquaza"],
+    good: ["gengar", "ditto"],
+    bad: ["mewtwo", "lucario"],
   },
   ditto: {
-    good: ["eevee", "dragonite", "lucario"],
-    bad: ["rayquaza", "gengar"],
+    good: ["dragonite", "lucario"],
+    bad: ["snorlax", "mewtwo"],
   },
   gengar: {
-    good: ["pikachu", "eevee", "charizard"],
-    bad: ["lucario", "dragonite", "rayquaza"],
+    good: ["pikachu", "eevee"],
+    bad: ["lucario", "rayquaza"],
   },
   pikachu: {
-    good: ["gengar", "togepi", "eevee"],
+    good: ["charizard", "togepi"],
     bad: ["mewtwo"],
   },
   snorlax: {
     good: ["magikarp", "dragonite"],
-    bad: ["charizard", "pikachu"],
+    bad: ["charizard", "mewtwo"],
   },
   lucario: {
-    good: ["dragonite", "mewtwo", "ditto"],
+    good: ["dragonite", "mewtwo"],
     bad: ["gengar", "charizard"],
   },
   charizard: {
-    good: ["pikachu", "gengar", "rayquaza"],
-    bad: ["snorlax", "magikarp"],
+    good: ["pikachu", "rayquaza"],
+    bad: ["snorlax", "lucario"],
   },
   dragonite: {
-    good: ["togepi", "lucario", "pikachu"],
-    bad: ["mewtwo", "gengar"],
+    good: ["togepi", "ditto"],
+    bad: ["gengar"],
   },
   mewtwo: {
-    good: ["rayquaza", "lucario"],
-    bad: ["togepi", "magikarp"],
+    good: ["rayquaza", "charizard"],
+    bad: ["togepi", "pikachu"],
   },
   rayquaza: {
-    good: ["mewtwo", "lucario", "ditto"],
+    good: ["mewtwo", "charizard"],
     bad: ["togepi", "gengar"],
   },
   // wynaut: intentionally 없음
@@ -175,17 +175,17 @@ const QUESTIONS = [
   {
     title: "Q1. 제일 풀고 싶은 문제는?",
     options: [
-      { key: "A", text: "수상하게 생긴 거(누워서 시작, 합손 금지 등)", points: [["gengar", 2], ["eevee", 2], ["ditto", 1], ["mewtwo", 1]] },
-      { key: "B", text: "할 만하게 생긴 재밌는 거", points: [["pikachu", 2], ["togepi", 1], ["snorlax", 1], ["magikarp", 1], ] },
+      { key: "A", text: "수상하게 생긴 거(누워서 시작, 합손 금지 등)", points: [["gengar", 2], ["eevee", 2], ["mewtwo", 1]] },
+      { key: "B", text: "할 만하게 생긴 재밌는 거", points: [["pikachu", 2], ["togepi", 1], ["snorlax", 1], ["ditto", 1],] },
       { key: "C", text: "개간지 다이나믹", points: [["charizard", 2], ["dragonite", 2],["lucario",-1]] },
     ],
   },
   {
     title: "Q2. 벽에 붙을 때",
     options: [
-      { key: "A", text: "카탈로그/남들 푸는 거 보고 올라간다", points: [["ditto",2],["eevee",1],["togepi",1]] },
+      { key: "A", text: "카탈로그/남들 푸는 거 보고 올라간다", points: [["ditto",2],["togepi",1]] },
       { key: "B", text: "일단 붙어본다", points: [["charizard",2],["gengar",1]] },
-      { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["lucario",2]] },
+      { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["lucario",2],["eevee",1],] },
     ],
   },
   {
@@ -201,8 +201,8 @@ const QUESTIONS = [
     title: "Q4. 누가 베타 조언해 주면?",
     options: [
       { key: "A", text: "안 듣는다", points: [["gengar", 2], ["rayquaza", 1],] },
-      { key: "B", text: "내가 필요한 부분 참고만", points: [["mewtwo", 1],["lucario", 1]] },
-      { key: "C", text: "너무 고맙다", points: [["ditto", 2], ["eevee", 1], ["togepi", 1], ["pikachu", 1],["dragonite", 2],["gengar",-1]] },
+      { key: "B", text: "내가 필요한 부분 참고만", points: [["mewtwo", 1],["lucario", 1],["ditto", 1],["eevee", 1], ] },
+      { key: "C", text: "너무 고맙다", points: [["togepi", 1], ["pikachu", 1],["dragonite", 2],["gengar",-1]] },
     ],
   },
   {
@@ -241,8 +241,8 @@ const QUESTIONS = [
   {
       title: "Q9. 암장에서 제일 위축되는 순간은?",
       options: [
-        { key: "A", text: "괜히 나만 못하는 느낌 들 때", points: [["togepi", 2], ["magikarp", 1], ["eevee", 1]] },
-        { key: "B", text: "옆에서 계속 보고 있는데 안 풀릴 때", points: [["snorlax", 1], ["charizard", 1]] },
+        { key: "A", text: "괜히 나만 못하는 느낌 들 때", points: [["togepi", 2], ["magikarp", 1]] },
+        { key: "B", text: "옆에서 계속 보고 있는데 안 풀릴 때", points: [["snorlax", 1], ["charizard", 1], ["eevee", 1]] },
         { key: "D", text: "딱히 없음", points: [["wynaut", 1],["rayquaza", 1]] },
       ],
   },
@@ -268,10 +268,11 @@ const QUESTIONS = [
     options: [
       { key: "A", text: "도파민", points: [] },
       { key: "B", text: "성장하는 게 재밌어서", points: [["eevee", 2],] },
-      { key: "D", text: "글쎄...그냥?", points: [["wynaut", 2],["magikarp", 2],["snorlax", 1],] },
+      { key: "C", text: "글쎄...그냥?", points: [["wynaut", 2],["magikarp", 2],["snorlax", 1],] },
     ],
   },
 ];
+
   // -----------------------------
   // 0) 유틸
   // -----------------------------
@@ -362,7 +363,7 @@ const QUESTIONS = [
     show(screenResult);
     renderResult();
     // injectBulkSaveButton();
-    injectShareLinkButton();
+    bindShareLinkButton();
   }
   function autoAdvance() {
     setTimeout(() => {
@@ -521,8 +522,11 @@ const QUESTIONS = [
     }
     const temp = document.createElement("div");
     temp.style.position = "fixed";
-    temp.style.left = "-99999px";
+    temp.style.left = "0";
     temp.style.top = "0";
+    temp.style.zIndex = "-1";
+    temp.style.visibility = "hidden";
+    temp.style.pointerEvents = "none";
     temp.style.padding = "28px 18px 40px";
     temp.style.width = card.getBoundingClientRect().width + "px";
     temp.style.color = getComputedStyle(document.body).color;
@@ -567,29 +571,192 @@ const QUESTIONS = [
     }
   }
 
+  function buildStoryExportNode() {
+  const appHeader = document.querySelector(".header");
+  const card = document.querySelector("#screenResult .card");
+  const mount = document.querySelector("#exportMount");
+  if (!appHeader || !card || !mount) return null;
+
+  // mount 초기화
+  mount.innerHTML = "";
+
+  // story frame(1080x1920)
+  const frame = document.createElement("div");
+  frame.id = "storyFrame";
+  Object.assign(frame.style, {
+    width: "1080px",
+    height: "1920px",
+    position: "fixed",
+    left: "0",
+    top: "0",
+    zIndex: "-1",
+    visibility: "hidden",
+    pointerEvents: "none",
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+  });
+
+  // 배경 (body 배경 그대로)
+  const bodyStyle = getComputedStyle(document.body);
+  frame.style.backgroundImage = bodyStyle.backgroundImage;
+  frame.style.backgroundColor = bodyStyle.backgroundColor;
+
+  // inner padding + 중앙 정렬
+  const inner = document.createElement("div");
+  Object.assign(inner.style, {
+    padding: "70px 64px 64px",
+    width: "100%",
+    height: "100%",
+    boxSizing: "border-box",
+    display: "flex",
+    flexDirection: "column",
+    gap: "24px",
+  });
+
+  // header clone (sub 제거)
+  const headerClone = appHeader.cloneNode(true);
+  headerClone.querySelector(".sub")?.remove();
+
+  // header 스타일(스토리용 살짝 정리)
+  Object.assign(headerClone.style, {
+    margin: "0",
+  });
+
+  // card clone (버튼/nav/푸터/canvas 제외)
+  const cardClone = card.cloneNode(true);
+
+  // 결과 카드 내부에서 버튼(nav) 제거
+  cardClone.querySelectorAll(".nav").forEach((n) => n.remove());
+
+  // 혹시 footer가 카드 안에 생겼을 경우 대비
+  cardClone.querySelector(".footer")?.remove();
+
+  // canvas 제거
+  cardClone.querySelector("#cardCanvas")?.remove();
+
+  // “링크공유/일괄저장” 삽입 버튼들 제거(있을 수 있음)
+  cardClone.querySelector("#btnBulkSaveAll")?.remove();
+  cardClone.querySelector("#btnShareLink")?.remove();
+
+  // 스토리에서 카드가 예쁘게 보이게 살짝 키우기
+  Object.assign(cardClone.style, {
+    padding: "28px",
+    borderRadius: "26px",
+    margin: "0",
+    flex: "1 1 auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+  });
+
+  // 결과 이미지 조금 키우고 싶으면(원하면 수치 조절 가능)
+  const img = cardClone.querySelector("#resultImg");
+  if (img) {
+    Object.assign(img.style, {
+      width: "340px",
+      maxWidth: "340px",
+    });
+  }
+
+  inner.appendChild(headerClone);
+  inner.appendChild(cardClone);
+
+  // 하단 작은 워터마크(원하면 삭제 ㄱㄴ)
+  const wm = document.createElement("div");
+  wm.textContent = "@jdh._.climb";
+  Object.assign(wm.style, {
+    marginTop: "10px",
+    textAlign: "center",
+    color: "rgba(229,231,235,.65)",
+    fontSize: "22px",
+    letterSpacing: "-0.2px",
+  });
+  inner.appendChild(wm);
+
+  frame.appendChild(inner);
+  mount.appendChild(frame);
+  return frame;
+}
+
+async function saveStoryCard1080x1920(filename = "story.png") {
+  const frame = buildStoryExportNode();
+  if (!frame) return alert("저장 불가 🥲");
+
+  // 폰트 로딩 대기
+  if (document.fonts?.ready) {
+    try { await document.fonts.ready; } catch {}
+  }
+
+  // 결과 이미지 로딩 대기 (CORS)
+  const imgEl = document.querySelector("#resultImg");
+  if (imgEl) imgEl.crossOrigin = "anonymous";
+  if (imgEl && !imgEl.complete) {
+    await new Promise((r) => {
+      const done = () => { imgEl.onload = null; imgEl.onerror = null; r(); };
+      imgEl.onload = done; imgEl.onerror = done;
+    });
+  }
+
+  try {
+    const canvas = await html2canvas(frame, {
+      backgroundColor: null,
+      scale: 2,         // 1080x1920 * 2 로 더 선명
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      width: 1080,
+      height: 1920,
+      windowWidth: 1080,
+      windowHeight: 1920,
+    });
+
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png", 1.0));
+    if (!blob) return alert("이미지 변환 실패 🥲");
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2500);
+  } catch (e) {
+    console.error(e);
+    alert("저장 실패 🥲");
+  } finally {
+    // mount 정리
+    const mount = document.querySelector("#exportMount");
+    if (mount) mount.innerHTML = "";
+  }
+}
+
+
   // -----------------------------
   // 9) 공유 링크 버튼(자동 삽입)
   // -----------------------------
-  function injectShareLinkButton() {
-    const nav = document.querySelector("#screenResult .nav");
-    if (!nav) return;
-    if (document.querySelector("#btnShareLink")) return;
-    const btn = document.createElement("button");
-    btn.id = "btnShareLink";
-    btn.className = "btn";
-    btn.textContent = "결과 링크 공유";
-    btn.addEventListener("click", async () => {
-      const winnerId = CURRENT_WINNER_ID;
-      const url = `${location.origin}${location.pathname}?result=${winnerId}`;
-      try {
-        await navigator.clipboard.writeText(url);
-        alert("결과 링크 복사 완료!");
-      } catch {
-        prompt("아래 링크 복사", url);
-      }
-    });
-    nav.appendChild(btn);
-  }
+  function bindShareLinkButton() {
+  const btn = document.querySelector("#btnShareLink");
+  if (!btn) return;
+
+  // 중복 바인딩 방지
+  if (btn.dataset.bound === "1") return;
+  btn.dataset.bound = "1";
+
+  btn.addEventListener("click", async () => {
+    const winnerId = CURRENT_WINNER_ID;
+    const url = `${location.origin}${location.pathname}?result=${winnerId}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      alert("결과 링크 복사 완료!");
+    } catch {
+      prompt("아래 링크 복사", url);
+    }
+  });
+}
+
   function checkSharedResult() {
     const params = new URLSearchParams(location.search);
     const sharedId = params.get("result");
@@ -601,7 +768,7 @@ const QUESTIONS = [
     show(screenResult);
     renderResult(sharedId);
     // injectBulkSaveButton();
-    injectShareLinkButton();
+    bindShareLinkButton();
   }
   // -----------------------------
   // 10) 전체 저장 버튼 - 실제 페이지x
@@ -739,13 +906,12 @@ const QUESTIONS = [
     goStart();
   });
   btnSaveCard?.addEventListener("click", async () => {
-    const winnerId = btnSaveCard.dataset.winner || CURRENT_WINNER_ID || "pikachu";
-    await saveResultWithHeaderNoButtons(`${winnerId}-result.png`);
-  });
+  const winnerId = btnSaveCard.dataset.winner || CURRENT_WINNER_ID || "pikachu";
+  await saveStoryCard1080x1920(`${winnerId}-story.png`);
+});
+
   document.addEventListener("DOMContentLoaded", () => {
     checkSharedResult();
     if (!new URLSearchParams(location.search).get("result")) goStart();
   });
 })();
-
-
