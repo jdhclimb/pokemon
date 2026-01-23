@@ -140,11 +140,11 @@
   // -----------------------------
   // 3) 질문 + 점수
   // -----------------------------
-  const QUESTIONS = [
+    const QUESTIONS = [
     {
       title: "Q1. 제일 풀고 싶은 문제는?",
       options: [
-        { key: "A", text: "수상하게 생긴 거(누워서 시작, 합손 금지 등)", points: [["gengar", 2], ["eevee", 2], ["mewtwo", 1]] },
+        { key: "A", text: "수상하게 생긴 거(누워서 시작, 합손 금지 등)", points: [["gengar", 2], ["eevee", 1], ["mewtwo", 1]] },
         { key: "B", text: "할 만하게 생긴 재밌는 거", points: [["pikachu", 2], ["togepi", 1], ["snorlax", 1], ["ditto", 1], ["lucario", 1]] },
         { key: "C", text: "개간지 다이나믹", points: [["charizard", 2], ["dragonite", 2], ["lucario", -5], ["mewtwo", 1]] },
       ],
@@ -153,7 +153,7 @@
       title: "Q2. 벽에 붙을 때",
       options: [
         { key: "A", text: "카탈로그/남들 푸는 거 보고 올라간다", points: [["ditto", 2], ["togepi", 1]] },
-        { key: "B", text: "일단 붙어본다", points: [["charizard", 2], ["snorlax", 1], ["gengar", 1]] },
+        { key: "B", text: "일단 붙어본다", points: [["charizard", 2], ["mewtwo", 1], ["snorlax", 1], ["gengar", 1]] },
         { key: "C", text: "루트파인딩 충분히 하고 ㄱㄱ", points: [["lucario", 1], ["eevee", 2]] },
       ],
     },
@@ -171,7 +171,7 @@
       options: [
         { key: "A", text: "안 듣는다", points: [["gengar", 2], ["rayquaza", 1]] },
         { key: "B", text: "내가 필요한 부분 참고만", points: [["mewtwo", 1],["charizard", 1], ["lucario", 1], ["ditto", 1], ["eevee", 1]] },
-        { key: "C", text: "너무 고맙다", points: [["togepi", 1], ["pikachu", 1], ["dragonite", 2], ["gengar", -1]] },
+        { key: "C", text: "너무 고맙다", points: [["togepi", 2], ["pikachu", 1], ["dragonite", 2], ["gengar", -1]] },
       ],
     },
     {
@@ -212,7 +212,7 @@
       options: [
         { key: "A", text: "괜히 나만 못하는 느낌 들 때", points: [["togepi", 2], ["magikarp", 1]] },
         { key: "B", text: "옆에서 계속 보고 있는데 안 풀릴 때", points: [["snorlax", 1], ["charizard", 1], ["eevee", 1]] },
-        { key: "C", text: "딱히 없음", points: [["wynaut", 1], ["rayquaza", 1], ["lucario", 1]] },
+        { key: "C", text: "딱히 없음", points: [["wynaut", 1], ["rayquaza", 1], ["lucario", 1],["mewtwo", 2]] },
       ],
     },
     {
@@ -236,7 +236,7 @@
       title: "Q12. 클라이밍을 계속 하는 이유?",
       options: [
         { key: "A", text: "도파민", points: [] },
-        { key: "B", text: "성장하는 게 재밌어서", points: [["eevee", 2], ["lucario", 1]] },
+        { key: "B", text: "성장하는 게 재밌어서", points: [["eevee", 1], ["lucario", 1]] },
         { key: "C", text: "글쎄...그냥?", points: [["wynaut", 2], ["magikarp", 2], ["snorlax", 1]] },
       ],
     },
@@ -748,3 +748,4 @@
     if (!new URLSearchParams(location.search).get("result")) goStart();
   });
 })();
+
