@@ -169,16 +169,16 @@
     {
       title: "Q4. 누가 베타 조언해 주면?",
       options: [
-        { key: "A", text: "안 듣는다", points: [["gengar", 2]] },
-        { key: "B", text: "내가 필요한 부분 참고만", points: [["eevee", 2],["lucario", 1],] },
-        { key: "C", text: "너무 고맙다", points: [["togepi", 2], ["pikachu", 1], ["dragonite", 1], ["gengar", -1]] },
+        { key: "A", text: "지금 당장 필요한 조언 아니면 안 듣는다", points: [["gengar", 2], ["mewtwo", 1]] },
+        { key: "B", text: "내가 필요한 부분만 참고", points: [["eevee", 2],["lucario", 1],] },
+        { key: "C", text: "너무 고맙다", points: [["togepi", 2], ["pikachu", 1], ["ditto", 1], ["dragonite", 1], ["gengar", -1]] },
       ],
     },
     {
       title: "Q5. 가장 인스스 올리고 싶은 장면은?",
       options: [
         { key: "A", text: "존버 크럭스 구간 제압 장면", points: [["rayquaza", 1], ["lucario", 1],["snorlax", 1]] },
-        { key: "B", text: "허당짓 하고 다 같이 웃는 장면", points: [["togepi", 1], ["rayquaza", -1]] },
+        { key: "B", text: "허당짓 하고 다 같이 웃는 장면", points: [["togepi", 1], ["ditto", 1], ["rayquaza", -1]] },
         { key: "C", text: "화려한 다이나믹 동작", points: [["charizard", 2], ["pikachu", 2], ["eevee", 1], ["dragonite", 1]] },
       ],
     },
@@ -210,9 +210,9 @@
     {
       title: "Q9. 암장에서 제일 위축되는 순간은?",
       options: [
-        { key: "A", text: "괜히 나만 못하는 느낌 들 때", points: [["togepi", 2], ["magikarp", 1]] },
+        { key: "A", text: "괜히 나만 못하는 느낌 들 때", points: [["gengar", 1],["togepi", 2], ["magikarp", 1],["ditto", 1], ] },
         { key: "B", text: "옆에서 계속 보고 있는데 안 풀릴 때", points: [["snorlax", 2], ["charizard", 1], ["eevee", 1], ["pikachu", 1],] },
-        { key: "C", text: "딱히 없음", points: [["wynaut", 1], ["rayquaza", 1], ["lucario", 1],["mewtwo", 2]] },
+        { key: "C", text: "딱히 없음", points: [["wynaut", 1], ["rayquaza", 1], ["lucario", 1]] },
       ],
     },
     {
@@ -227,7 +227,7 @@
     {
       title: "Q11. 가장 빡치는 순간",
       options: [
-        { key: "A", text: "안 물어봤는데 베타 강요할 때", points: [["gengar", 2], ["pikachu", 1], ["charizard", 1], ["mewtwo", 1]] },
+        { key: "A", text: "베타 강요할 때", points: [["gengar", 2], ["pikachu", 1], ["charizard", 1], ["mewtwo", 1]] },
         { key: "B", text: "집중하고 싶은데 자꾸 말 걸 때", points: [["rayquaza", 2]] },
         { key: "C", text: "딱히 없음… 걍 그런갑다 함", points: [["wynaut", 2], ["snorlax", 2],["magikarp", 2], ["eevee", 1],["lucario", 2]] },
       ],
@@ -748,6 +748,3 @@
     if (!new URLSearchParams(location.search).get("result")) goStart();
   });
 })();
-
-
-
